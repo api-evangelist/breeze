@@ -1,0 +1,66 @@
+{
+    "name": "Breeze",
+    "description": "Breeze is a simple web-based project management tool. Agile project management with tasks, calendars, discussions, time tracking, to-dos, files and reports.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1768-breeze.jpg",
+    "tags": [
+        "api provider",
+        "have api",
+        "projects",
+        "tasks"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/breeze\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Breeze",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1768-breeze.jpg",
+            "humanURL": "http:\/\/breeze.pm",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/breeze-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/breeze-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Blog",
+            "url": "http:\/\/www.breeze.pm\/blog"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/breeze-software"
+        },
+        {
+            "type": "Email",
+            "url": "support@breeze.pm"
+        },
+        {
+            "type": "Email",
+            "url": "team@breeze.pm"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/BreezeTeam"
+        },
+        {
+            "type": "Pricing",
+            "url": "https:\/\/www.breeze.pm\/pricing"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/breeze.pm"
+        }
+    ]
+}

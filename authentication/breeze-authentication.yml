@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/breeze-openapi-original.json
+docs: https://docs.breeze.baby/get-your-api-key/instruction
+notes: >-
+  Integration endpoints authenticate with an API key in the x-api-key header
+  (generated in the Breeze Customer Portal, portal.breeze.baby). Organization and
+  admin endpoints use a JWT bearer token. The x402 Agent Kit path is keyless,
+  gated by USDC micropayments instead.
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: api_key
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  sources:
+  - openapi/breeze-openapi-original.json
+- name: bearer_auth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/breeze-openapi-original.json

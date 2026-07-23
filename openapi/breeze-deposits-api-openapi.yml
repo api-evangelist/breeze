@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: Breeze Admin Deposits API
+  description: A comprehensive API for managing yield farming operations, funds, and user authentication
+  contact:
+    name: Breeze Team
+    email: support@breeze.com
+  license:
+    name: Proprietary
+    url: https://breeze.com/license
+  version: 1.0.0
+servers:
+- url: http://localhost:8080
+  description: Local development server
+- url: https://api.breeze.com
+  description: Production server
+tags:
+- name: Deposits
+  description: Deposit operations
+paths:
+  /deposit/ix:
+    post:
+      tags:
+      - Deposits
+      operationId: process_for_deposit_with_instruction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StructuredInputForDeposit'
+        required: true
+      responses:
+        '200':
+          description: Deposit instruction prepared successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - api_key: []
+  /deposit/tx:
+    post:
+      tags:
+      - Deposits
+      operationId: process_for_deposit_with_transaction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StructuredInputForDeposit'
+        required: true
+      responses:
+        '200':
+          description: Deposit transaction prepared successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - api_key: []
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Error message description
+    InputForDeposit:
+      type: object
+      properties:
+        all:
+          type:
+          - boolean
+          - 'null'
+        amount:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 0
+        base_asset:
+          type:
+          - string
+          - 'null'
+        fund_id:
+          type:
+          - string
+          - 'null'
+          description: 'Deprecated: `fund_id` is no longer supported for deposits.
+
+            Use `strategy_id` + `base_asset` instead.'
+          deprecated: true
+        is_agent:
+          type:
+          - boolean
+          - 'null'
+        payer_key:
+          type:
+          - string
+          - 'null'
+        strategy_id:
+          type:
+          - string
+          - 'null'
+        user_key:
+          type:
+          - string
+          - 'null'
+        user_token_account:
+          type:
+          - string
+          - 'null'
+    StructuredInputForDeposit:
+      type: object
+      required:
+      - params
+      properties:
+        params:
+          $ref: '#/components/schemas/InputForDeposit'
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: x-api-key
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

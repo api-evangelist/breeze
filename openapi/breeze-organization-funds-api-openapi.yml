@@ -1,0 +1,321 @@
+openapi: 3.1.0
+info:
+  title: Breeze Admin Organization Funds API
+  description: A comprehensive API for managing yield farming operations, funds, and user authentication
+  contact:
+    name: Breeze Team
+    email: support@breeze.com
+  license:
+    name: Proprietary
+    url: https://breeze.com/license
+  version: 1.0.0
+servers:
+- url: http://localhost:8080
+  description: Local development server
+- url: https://api.breeze.com
+  description: Production server
+tags:
+- name: Organization Funds
+paths:
+  /funds:
+    get:
+      tags:
+      - Organization Funds
+      operationId: get_organization_funds
+      responses:
+        '200':
+          description: Organization funds retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationFundsResponse'
+        '403':
+          description: Organization access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+components:
+  schemas:
+    ApiLendFundStatus:
+      type: string
+      enum:
+      - Live
+      - Paused
+      - WithdrawOnly
+    ApiConstraintType:
+      type: string
+      enum:
+      - MaxPercentage
+      - MaxBaseAssetAmount
+    ApiYieldSourceTarget:
+      type: object
+      required:
+      - yield_source_type
+      - protocol
+      properties:
+        protocol:
+          type: string
+        yield_source_type:
+          type: string
+    ApiFundConstraint:
+      type: object
+      required:
+      - yield_source_target
+      - constraint_type
+      - value
+      properties:
+        constraint_type:
+          $ref: '#/components/schemas/ApiConstraintType'
+        value:
+          type: integer
+          format: int64
+          minimum: 0
+        yield_source_target:
+          $ref: '#/components/schemas/ApiYieldSourceTarget'
+    ApiProtocolOptions:
+      type: object
+      required:
+      - kamino_reserve
+      - marginfi_bank
+      - drift_market
+      - jup_lend_market
+      - jup_lend_reserve
+      properties:
+        drift_market:
+          type: string
+        jup_lend_market:
+          type: string
+        jup_lend_reserve:
+          type: string
+        kamino_reserve:
+          type: string
+        marginfi_bank:
+          type: string
+    ApiYieldAllocation:
+      type: object
+      required:
+      - index
+      - yield_source_type
+      - protocol
+      - protocol_id
+      - position_id
+      - deposit_amount
+      - deposit_timestamp
+      - current_value
+      - time_weighted_value
+      properties:
+        current_value:
+          type: integer
+          format: int64
+          minimum: 0
+        deposit_amount:
+          type: integer
+          format: int64
+          minimum: 0
+        deposit_timestamp:
+          type: integer
+          format: int64
+        index:
+          type: integer
+          format: int32
+          minimum: 0
+        position_id:
+          type: string
+        protocol:
+          type: string
+        protocol_id:
+          type: string
+        time_weighted_value:
+          type: integer
+          minimum: 0
+        yield_source_type:
+          type: string
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Error message description
+    ApiFund:
+      type: object
+      required:
+      - fund_id
+      - base_asset_token_mint
+      - base_asset_token_decimals
+      - base_asset_token_account
+      - total_deposits
+      - total_users
+      - last_value_tracked_at
+      - total_shares
+      - share_price
+      - current_value
+      - authority
+      - updated_at_timestamp
+      - updated_at_slot
+      - risk_max
+      - risk_aversion_bps
+      - allocated_to_yield
+      - unallocated_amount
+      - bump
+      - token_account_bump
+      - index_number
+      - lookup_table
+      - has_fees
+      - constraints
+      - allocations
+      - protocol_options
+      - last_rebalance_slot
+      - status
+      properties:
+        allocated_to_yield:
+          type: integer
+          minimum: 0
+        allocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiYieldAllocation'
+        assigned_org:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApiFundOrganization'
+        authority:
+          type: string
+        base_asset_token_account:
+          type: string
+        base_asset_token_decimals:
+          type: integer
+          format: int32
+          minimum: 0
+        base_asset_token_mint:
+          type: string
+        bump:
+          type: integer
+          format: int32
+          minimum: 0
+        constraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiFundConstraint'
+        current_value:
+          type: integer
+          minimum: 0
+        fund_id:
+          type: string
+        has_fees:
+          type: boolean
+        index_number:
+          type: integer
+          format: int64
+          minimum: 0
+        last_rebalance_slot:
+          type: integer
+          format: int64
+          minimum: 0
+        last_value_tracked_at:
+          type: integer
+          format: int64
+          minimum: 0
+        lookup_table:
+          type: string
+        protocol_options:
+          $ref: '#/components/schemas/ApiProtocolOptions'
+        risk_aversion_bps:
+          type: integer
+          format: int64
+          minimum: 0
+        risk_max:
+          type: integer
+          format: int64
+          minimum: 0
+        share_price:
+          type: integer
+          format: int64
+          minimum: 0
+        status:
+          $ref: '#/components/schemas/ApiLendFundStatus'
+        token_account_bump:
+          type: integer
+          format: int32
+          minimum: 0
+        total_deposits:
+          type: integer
+          minimum: 0
+        total_shares:
+          type: integer
+          minimum: 0
+        total_users:
+          type: integer
+          minimum: 0
+        unallocated_amount:
+          type: integer
+          minimum: 0
+        updated_at_slot:
+          type: integer
+          format: int64
+          minimum: 0
+        updated_at_timestamp:
+          type: integer
+          format: int64
+          minimum: 0
+        withdraw_authority:
+          type:
+          - string
+          - 'null'
+    OrganizationFundsResponse:
+      type: object
+      description: Organization funds response with admin flag
+      required:
+      - funds
+      - is_admin
+      properties:
+        funds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiFundWithStrategyInfo'
+        is_admin:
+          type: boolean
+    ApiFundWithStrategyInfo:
+      type: object
+      required:
+      - fund
+      properties:
+        assigned_org:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApiFundOrganization'
+        fund:
+          $ref: '#/components/schemas/ApiFund'
+        strategy_name:
+          type:
+          - string
+          - 'null'
+    ApiFundOrganization:
+      type: object
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: x-api-key
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

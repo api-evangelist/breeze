@@ -1,0 +1,285 @@
+openapi: 3.1.0
+info:
+  title: Breeze Admin Organization API Keys API
+  description: A comprehensive API for managing yield farming operations, funds, and user authentication
+  contact:
+    name: Breeze Team
+    email: support@breeze.com
+  license:
+    name: Proprietary
+    url: https://breeze.com/license
+  version: 1.0.0
+servers:
+- url: http://localhost:8080
+  description: Local development server
+- url: https://api.breeze.com
+  description: Production server
+tags:
+- name: Organization API Keys
+  description: Organization API key management
+paths:
+  /organization/api-keys:
+    get:
+      tags:
+      - Organization API Keys
+      operationId: get_organization_api_keys
+      responses:
+        '200':
+          description: Organization API keys retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyListResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+    post:
+      tags:
+      - Organization API Keys
+      operationId: create_organization_api_key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortalCreateApiKeyRequest'
+        required: true
+      responses:
+        '200':
+          description: API key created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyCreatedResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+  /organization/api-keys/{api_key_id}:
+    put:
+      tags:
+      - Organization API Keys
+      operationId: update_organization_api_key
+      parameters:
+      - name: api_key_id
+        in: path
+        description: API key identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortalUpdateApiKeyRequest'
+        required: true
+      responses:
+        '200':
+          description: API key updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '403':
+          description: Access denied - API key belongs to different organization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: API key not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+    delete:
+      tags:
+      - Organization API Keys
+      operationId: delete_organization_api_key
+      parameters:
+      - name: api_key_id
+        in: path
+        description: API key identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: API key deleted successfully
+        '403':
+          description: Access denied - API key belongs to different organization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: API key not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+components:
+  schemas:
+    ApiKeyCreatedResponse:
+      type: object
+      required:
+      - api_key
+      - message
+      properties:
+        api_key:
+          $ref: '#/components/schemas/ApiKey'
+          description: The newly created API key data
+        message:
+          type: string
+          description: Success message
+    ApiKey:
+      type: object
+      required:
+      - api_key
+      - organization_id
+      - active
+      - created_at
+      - scopes
+      properties:
+        active:
+          type: boolean
+          description: Whether the API key is active
+        api_key:
+          type: string
+          description: Unique API key identifier
+        created_at:
+          type: integer
+          format: int64
+          description: Timestamp when the API key was created
+          minimum: 0
+        expires_at:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Expiration timestamp (optional)
+          minimum: 0
+        last_used_at:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Timestamp when the API key was last used
+          minimum: 0
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name/description for the API key
+        organization_id:
+          type: string
+          description: Organization identifier
+        scopes:
+          type: array
+          items:
+            type: string
+          description: Permissions or scopes for the API key
+    PortalCreateApiKeyRequest:
+      type: object
+      properties:
+        expires_at:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Expiration timestamp (optional)
+          minimum: 0
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name/description for the API key
+        scopes:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Permissions or scopes for the API key
+    ApiKeyListResponse:
+      type: object
+      required:
+      - api_keys
+      - total
+      properties:
+        api_keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiKey'
+          description: List of API keys for the organization
+        total:
+          type: integer
+          description: Total count of API keys
+          minimum: 0
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Error message description
+    PortalUpdateApiKeyRequest:
+      type: object
+      properties:
+        active:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the API key is active
+        expires_at:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Expiration timestamp (optional)
+          minimum: 0
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name/description for the API key
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: x-api-key
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

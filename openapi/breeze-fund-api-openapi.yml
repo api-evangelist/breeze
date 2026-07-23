@@ -1,0 +1,82 @@
+openapi: 3.1.0
+info:
+  title: Breeze Admin fund API
+  description: A comprehensive API for managing yield farming operations, funds, and user authentication
+  contact:
+    name: Breeze Team
+    email: support@breeze.com
+  license:
+    name: Proprietary
+    url: https://breeze.com/license
+  version: 1.0.0
+servers:
+- url: http://localhost:8080
+  description: Local development server
+- url: https://api.breeze.com
+  description: Production server
+tags:
+- name: fund
+paths:
+  /organization/stats:
+    get:
+      tags:
+      - fund
+      operationId: get_organization_stats
+      responses:
+        '200':
+          description: Organization stats retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiOrganizationFundStats'
+components:
+  schemas:
+    ApiTokenPair:
+      type: object
+      required:
+      - token_mint
+      - amount
+      properties:
+        amount:
+          type: integer
+          minimum: 0
+        token_mint:
+          type: string
+    ApiOrganizationFundStats:
+      type: object
+      required:
+      - total_funds
+      - total_deposits
+      - total_users
+      - total_values
+      - total_currencies
+      properties:
+        total_currencies:
+          type: integer
+          format: int64
+          minimum: 0
+        total_deposits:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiTokenPair'
+        total_funds:
+          type: integer
+          format: int64
+          minimum: 0
+        total_users:
+          type: integer
+          format: int64
+          minimum: 0
+        total_values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiTokenPair'
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: x-api-key
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

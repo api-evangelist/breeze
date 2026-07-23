@@ -1,0 +1,184 @@
+openapi: 3.1.0
+info:
+  title: Breeze Admin Strategy API
+  description: A comprehensive API for managing yield farming operations, funds, and user authentication
+  contact:
+    name: Breeze Team
+    email: support@breeze.com
+  license:
+    name: Proprietary
+    url: https://breeze.com/license
+  version: 1.0.0
+servers:
+- url: http://localhost:8080
+  description: Local development server
+- url: https://api.breeze.com
+  description: Production server
+tags:
+- name: Strategy
+paths:
+  /organization/get-strategy:
+    post:
+      tags:
+      - Strategy
+      operationId: get_strategy_template_by_tags
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiInputForGetStrategyByTags'
+        required: true
+      responses:
+        '200':
+          description: Strategy template requests retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vec'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+components:
+  schemas:
+    FeeInfoForStrategy:
+      type: object
+      required:
+      - fee_bps
+      - fee_recipient
+      - frequency_seconds
+      - fee_type
+      properties:
+        fee_bps:
+          type: integer
+          format: int32
+          minimum: 0
+        fee_recipient:
+          type: string
+        fee_type:
+          type: string
+        frequency_seconds:
+          type: integer
+          format: int64
+          minimum: 0
+    Vec:
+      type: array
+      items:
+        allOf:
+        - $ref: '#/components/schemas/StrategyInstance'
+          description: The full strategy instance data
+        - type: object
+          required:
+          - apy
+          - total_users
+          properties:
+            apy:
+              type: number
+              format: double
+              description: Weighted APY of the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
+            total_users:
+              type: integer
+              format: int64
+              description: Total unique users in the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
+              minimum: 0
+        description: Strategy with pre-computed metrics for list views (avoids N+1 queries)
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Error message description
+    StrategyInstanceStatus:
+      type: string
+      enum:
+      - active
+      - pending
+      - failed
+      - updating
+    ApiInputForGetStrategyByTags:
+      type: object
+      required:
+      - tags
+      properties:
+        tags:
+          type: array
+          items:
+            type: string
+    StrategyInstance:
+      type: object
+      required:
+      - id
+      - org_id
+      - name
+      - template_id
+      - funds
+      - fee_info
+      - created_at
+      - updated_at
+      properties:
+        created_at:
+          type: integer
+          format: int64
+          minimum: 0
+        description:
+          type:
+          - string
+          - 'null'
+        fee_info:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeeInfoForStrategy'
+        funds:
+          type: array
+          items:
+            $ref: '#/components/schemas/FundRef'
+        id:
+          type: string
+        name:
+          type: string
+        org_id:
+          type: string
+        status:
+          $ref: '#/components/schemas/StrategyInstanceStatus'
+        template_id:
+          type: string
+        updated_at:
+          type: integer
+          format: int64
+          minimum: 0
+    FundRef:
+      type: object
+      required:
+      - mint
+      - fund_id
+      properties:
+        allocation_percent:
+          type:
+          - number
+          - 'null'
+          format: double
+        fund_id:
+          type: string
+        mint:
+          type: string
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: x-api-key
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

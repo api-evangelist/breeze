@@ -1,0 +1,197 @@
+openapi: 3.1.0
+info:
+  title: Breeze Admin Withdrawals API
+  description: A comprehensive API for managing yield farming operations, funds, and user authentication
+  contact:
+    name: Breeze Team
+    email: support@breeze.com
+  license:
+    name: Proprietary
+    url: https://breeze.com/license
+  version: 1.0.0
+servers:
+- url: http://localhost:8080
+  description: Local development server
+- url: https://api.breeze.com
+  description: Production server
+tags:
+- name: Withdrawals
+  description: Withdrawal operations
+paths:
+  /withdraw/ix:
+    post:
+      tags:
+      - Withdrawals
+      operationId: process_for_withdraw_with_instruction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StructuredInputForWithdraw'
+        required: true
+      responses:
+        '200':
+          description: Withdraw instruction prepared successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - api_key: []
+  /withdraw/tx:
+    post:
+      tags:
+      - Withdrawals
+      operationId: process_for_withdraw_with_transaction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StructuredInputForWithdraw'
+        required: true
+      responses:
+        '200':
+          description: Withdraw transaction prepared successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - api_key: []
+components:
+  schemas:
+    InputForWithdraw:
+      type: object
+      properties:
+        all:
+          type:
+          - boolean
+          - 'null'
+        amount:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 0
+        base_asset:
+          type:
+          - string
+          - 'null'
+        create_wsol_ata:
+          type:
+          - boolean
+          - 'null'
+          description: 'If base asset is WSOL and `user_token_account` is not provided, prepend an ATA-create ix.
+
+            Defaults to `true` when omitted.'
+        detect_wsol_ata:
+          type:
+          - boolean
+          - 'null'
+          description: 'If `true`, the API will do an RPC round-trip to detect whether the user''s WSOL ATA exists.
+
+            When enabled (and base asset is WSOL), this overrides the other WSOL ATA flags:
+
+            - If the WSOL ATA does not exist: `create_wsol_ata=true` and `unwrap_wsol_ata=true`
+
+            - If the WSOL ATA exists: `create_wsol_ata=false` and `unwrap_wsol_ata=false`
+
+
+            Defaults to `false` when omitted.'
+        exclude_fees:
+          type:
+          - boolean
+          - 'null'
+          description: Defaults to `false`, when true excludes fees from the amount
+        fund_id:
+          type:
+          - string
+          - 'null'
+          description: 'Deprecated: `fund_id` is no longer supported for withdrawals.
+
+            Use `strategy_id` + `base_asset` instead.'
+          deprecated: true
+        is_agent:
+          type:
+          - boolean
+          - 'null'
+        no_balance_checks:
+          type:
+          - boolean
+          - 'null'
+          description: 'When `true`, skips API-side balance preflight checks: the "insufficient shares"
+
+            error and the requirement that a `user_fund` record exist for the (user, fund)
+
+            pair. Intended for test environments like surfpool / mainnet forks where the
+
+            on-chain state has balances the API database doesn''t know about. The on-chain
+
+            Breeze program still validates share availability, so this only relaxes
+
+            API-side preflight — it does not let anyone withdraw funds they don''t actually
+
+            own on-chain. Defaults to `false`.'
+        payer_key:
+          type:
+          - string
+          - 'null'
+        strategy_id:
+          type:
+          - string
+          - 'null'
+        unwrap_wsol_ata:
+          type:
+          - boolean
+          - 'null'
+          description: 'If base asset is WSOL, unwrap to SOL by syncing and closing the user''s WSOL ATA at the end.
+
+            Defaults to `false` when omitted.'
+        user_key:
+          type:
+          - string
+          - 'null'
+        user_token_account:
+          type:
+          - string
+          - 'null'
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Error message description
+    StructuredInputForWithdraw:
+      type: object
+      required:
+      - params
+      properties:
+        params:
+          $ref: '#/components/schemas/InputForWithdraw'
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: x-api-key
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

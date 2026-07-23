@@ -1,0 +1,242 @@
+openapi: 3.1.0
+info:
+  title: Breeze Admin Global Config API
+  description: A comprehensive API for managing yield farming operations, funds, and user authentication
+  contact:
+    name: Breeze Team
+    email: support@breeze.com
+  license:
+    name: Proprietary
+    url: https://breeze.com/license
+  version: 1.0.0
+servers:
+- url: http://localhost:8080
+  description: Local development server
+- url: https://api.breeze.com
+  description: Production server
+tags:
+- name: Global Config
+  description: Global configuration and supported assets
+paths:
+  /global-config:
+    get:
+      tags:
+      - Global Config
+      summary: Get the global configuration
+      operationId: get_global_config
+      responses:
+        '200':
+          description: Global configuration retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalConfigResponse'
+        '404':
+          description: Global configuration not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+  /global-config/supported-assets:
+    get:
+      tags:
+      - Global Config
+      summary: Get only the supported base assets from global configuration
+      operationId: get_supported_assets
+      responses:
+        '200':
+          description: Supported assets retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportedAssetsResponse'
+        '404':
+          description: Global configuration not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+  /global-config/supported-assets-by-venue:
+    get:
+      tags:
+      - Global Config
+      summary: Get supported base assets grouped by venue.
+      operationId: get_supported_assets_by_venue
+      responses:
+        '200':
+          description: Supported assets by venue retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportedAssetsByVenueResponse'
+        '404':
+          description: Global configuration not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+components:
+  schemas:
+    GlobalConfigResponse:
+      type: object
+      required:
+      - global_config
+      properties:
+        global_config:
+          $ref: '#/components/schemas/ApiGlobalConfig'
+          description: Global configuration information
+    CodexToken:
+      type: object
+      required:
+      - address
+      - symbol
+      - name
+      - decimals
+      properties:
+        address:
+          type: string
+        decimals:
+          type: integer
+          format: int32
+        logo_uri:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        symbol:
+          type: string
+    SupportedVenueAsset:
+      type: object
+      required:
+      - mint
+      - name
+      - apy
+      properties:
+        apy:
+          type: number
+          format: double
+          description: Current APY for this venue + mint pair (decimal, e.g. 0.052 for 5.2%)
+        mint:
+          type: string
+          description: Base asset mint address
+        name:
+          type: string
+          description: Common token name (typically symbol, e.g. USDC)
+    ApiGlobalConfig:
+      type: object
+      required:
+      - program_admin
+      - initialized
+      - paused
+      - bump
+      - fund_counter
+      - supported_base_assets
+      - updated_at_timestamp
+      - updated_at_slot
+      properties:
+        bump:
+          type: integer
+          format: int32
+          description: Program derived address bump
+          minimum: 0
+        fund_counter:
+          type: integer
+          format: int64
+          description: Counter for funds created
+          minimum: 0
+        initialized:
+          type: boolean
+          description: Whether the program is initialized
+        paused:
+          type: boolean
+          description: Whether the program is paused
+        program_admin:
+          type: string
+          description: Program admin pubkey
+        supported_base_assets:
+          type: array
+          items:
+            type: string
+          description: List of supported base asset mint addresses
+        updated_at_slot:
+          type: integer
+          format: int64
+          description: Slot when the config was last updated
+          minimum: 0
+        updated_at_timestamp:
+          type: integer
+          format: int64
+          description: Timestamp when the config was last updated
+          minimum: 0
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Error message description
+    SupportedAssetsResponse:
+      type: object
+      required:
+      - supported_base_assets
+      properties:
+        supported_base_assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodexToken'
+          description: List of supported base assets with metadata
+    SupportedAssetsByVenueResponse:
+      type: object
+      required:
+      - venues
+      - venue_to_supported_assets
+      properties:
+        venue_to_supported_assets:
+          type: object
+          description: Mapping from venue to its supported base assets.
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/SupportedVenueAsset'
+          propertyNames:
+            type: string
+        venues:
+          type: array
+          items:
+            type: string
+          description: Canonical venue names.
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: x-api-key
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

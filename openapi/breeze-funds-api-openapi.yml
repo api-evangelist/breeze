@@ -1,0 +1,862 @@
+openapi: 3.1.0
+info:
+  title: Breeze Admin Funds API
+  description: A comprehensive API for managing yield farming operations, funds, and user authentication
+  contact:
+    name: Breeze Team
+    email: support@breeze.com
+  license:
+    name: Proprietary
+    url: https://breeze.com/license
+  version: 1.0.0
+servers:
+- url: http://localhost:8080
+  description: Local development server
+- url: https://api.breeze.com
+  description: Production server
+tags:
+- name: Funds
+  description: Fund management operations
+paths:
+  /fund/{fund_id}:
+    get:
+      tags:
+      - Funds
+      operationId: get_fund
+      parameters:
+      - name: fund_id
+        in: path
+        description: Fund identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Fund retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiFund'
+        '404':
+          description: Fund not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+  /fund/{fund_id}/apy:
+    get:
+      tags:
+      - Funds
+      operationId: get_fund_apy
+      parameters:
+      - name: fund_id
+        in: path
+        description: Fund identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Fund APY retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/f64'
+        '404':
+          description: Fund not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+  /fund/{fund_id}/fees:
+    get:
+      tags:
+      - Funds
+      operationId: get_fund_fees
+      parameters:
+      - name: fund_id
+        in: path
+        description: Fund identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Fund fees retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Option'
+        '404':
+          description: Fund not found or no fees configured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+  /fund/{fund_id}/metrics:
+    get:
+      tags:
+      - Funds
+      operationId: get_fund_metrics
+      parameters:
+      - name: start_timestamp
+        in: query
+        description: Start timestamp for metrics range (ISO 8601 format)
+        required: true
+        schema:
+          type: string
+      - name: end_timestamp
+        in: query
+        description: End timestamp for metrics range (ISO 8601 format)
+        required: true
+        schema:
+          type: string
+      - name: aggregation_window
+        in: query
+        description: Optional aggregation window (e.g., '1h', '1d', '5m') - if not provided, database will choose optimal window
+        required: false
+        schema:
+          type: string
+      - name: fund_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Fund metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiFundMetrics'
+        '400':
+          description: Invalid time range
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Fund not found or no data available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+  /fund/{fund_id}/rebalance-history:
+    get:
+      tags:
+      - Funds
+      operationId: get_fund_rebalance_history
+      parameters:
+      - name: per_page
+        in: query
+        description: Limit of records to return
+        required: true
+        schema:
+          type: integer
+          format: int64
+          minimum: 0
+      - name: page
+        in: query
+        description: Offset of records to return
+        required: true
+        schema:
+          type: integer
+          format: int64
+          minimum: 0
+      - name: include_failed
+        in: query
+        description: Include failed rebalance history
+        required: true
+        schema:
+          type: boolean
+      - name: fund_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Fund rebalance history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse'
+        '404':
+          description: Fund not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+  /organization/fund-requests:
+    get:
+      tags:
+      - Funds
+      operationId: get_organization_request_funds
+      responses:
+        '200':
+          description: Fund requests retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiFundRequestListResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+  /organization/fund-resolver:
+    post:
+      tags:
+      - Funds
+      operationId: fund_resolver
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiInputForFundResolver'
+        required: true
+      responses:
+        '200':
+          description: Fund requested successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiFundResolverResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+  /organization/request-fund:
+    post:
+      tags:
+      - Funds
+      operationId: request_new_fund
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiInputsForRequestingFund'
+        required: true
+      responses:
+        '200':
+          description: Fund requested successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiFundRequest'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - bearer_auth: []
+components:
+  schemas:
+    f64:
+      type: number
+      format: double
+    ApiProtocolOptions:
+      type: object
+      required:
+      - kamino_reserve
+      - marginfi_bank
+      - drift_market
+      - jup_lend_market
+      - jup_lend_reserve
+      properties:
+        drift_market:
+          type: string
+        jup_lend_market:
+          type: string
+        jup_lend_reserve:
+          type: string
+        kamino_reserve:
+          type: string
+        marginfi_bank:
+          type: string
+    ApiYieldSourceTarget:
+      type: object
+      required:
+      - yield_source_type
+      - protocol
+      properties:
+        protocol:
+          type: string
+        yield_source_type:
+          type: string
+    Option:
+      oneOf:
+      - type: 'null'
+      - type: object
+        required:
+        - fund_id
+        - fees
+        properties:
+          fees:
+            type: array
+            items:
+              $ref: '#/components/schemas/ApiFundFee'
+          fund_id:
+            type: string
+    ApiFundRequest:
+      type: object
+      required:
+      - id
+      - organization_id
+      - yield_target
+      - risk_aversion
+      - base_assets
+      - fund_type
+      - status
+      properties:
+        base_assets:
+          type: array
+          items:
+            type: string
+        fund_type:
+          $ref: '#/components/schemas/ApiFundType'
+        id:
+          type: string
+        organization_id:
+          type: string
+        risk_aversion:
+          $ref: '#/components/schemas/ApiRiskAversion'
+        status:
+          $ref: '#/components/schemas/ApiRequestStatus'
+        yield_target:
+          type: number
+          format: double
+    ApiInputsForRequestingFund:
+      type: object
+      required:
+      - base_assets
+      - fund_type
+      - yield_target
+      - risk_aversion
+      properties:
+        base_assets:
+          type: array
+          items:
+            type: string
+        fund_type:
+          $ref: '#/components/schemas/ApiFundType'
+        risk_aversion:
+          $ref: '#/components/schemas/ApiRiskAversion'
+        yield_target:
+          type: number
+          format: double
+    ApiFundType:
+      type: string
+      enum:
+      - LendBorrow
+      - LST
+      - Staking
+      - Mixed
+    ApiYieldSource:
+      type: object
+      required:
+      - pubkey
+      - source
+      - yield_type
+      - current_apy
+      - risk
+      - updated_at_timestamp
+      - base_assets
+      properties:
+        base_assets:
+          type: array
+          items:
+            type: string
+          description: List of supported base assets
+        current_apy:
+          type: number
+          format: double
+          description: Current annual percentage yield
+        pubkey:
+          type: string
+          description: Unique identifier for the yield source
+        risk:
+          type: integer
+          format: int32
+          description: Risk level (0-255, lower is safer)
+          minimum: 0
+        source:
+          type: string
+          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
+        updated_at_timestamp:
+          type: integer
+          format: int64
+          description: Timestamp when the data was last updated
+          minimum: 0
+        yield_type:
+          type: string
+          description: Type of yield source (e.g., "Lending", "TokenStaking", etc.)
+    ApiYieldAllocation:
+      type: object
+      required:
+      - index
+      - yield_source_type
+      - protocol
+      - protocol_id
+      - position_id
+      - deposit_amount
+      - deposit_timestamp
+      - current_value
+      - time_weighted_value
+      properties:
+        current_value:
+          type: integer
+          format: int64
+          minimum: 0
+        deposit_amount:
+          type: integer
+          format: int64
+          minimum: 0
+        deposit_timestamp:
+          type: integer
+          format: int64
+        index:
+          type: integer
+          format: int32
+          minimum: 0
+        position_id:
+          type: string
+        protocol:
+          type: string
+        protocol_id:
+          type: string
+        time_weighted_value:
+          type: integer
+          minimum: 0
+        yield_source_type:
+          type: string
+    ApiRequestStatus:
+      type: string
+      enum:
+      - PENDING
+      - APPROVED
+      - REJECTED
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Error message description
+    PaginatedResponse:
+      type: object
+      description: Paginated response wrapper
+      required:
+      - data
+      - meta
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProtocolYieldSources'
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+          description: Pagination metadata
+    ApiFund:
+      type: object
+      required:
+      - fund_id
+      - base_asset_token_mint
+      - base_asset_token_decimals
+      - base_asset_token_account
+      - total_deposits
+      - total_users
+      - last_value_tracked_at
+      - total_shares
+      - share_price
+      - current_value
+      - authority
+      - updated_at_timestamp
+      - updated_at_slot
+      - risk_max
+      - risk_aversion_bps
+      - allocated_to_yield
+      - unallocated_amount
+      - bump
+      - token_account_bump
+      - index_number
+      - lookup_table
+      - has_fees
+      - constraints
+      - allocations
+      - protocol_options
+      - last_rebalance_slot
+      - status
+      properties:
+        allocated_to_yield:
+          type: integer
+          minimum: 0
+        allocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiYieldAllocation'
+        assigned_org:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApiFundOrganization'
+        authority:
+          type: string
+        base_asset_token_account:
+          type: string
+        base_asset_token_decimals:
+          type: integer
+          format: int32
+          minimum: 0
+        base_asset_token_mint:
+          type: string
+        bump:
+          type: integer
+          format: int32
+          minimum: 0
+        constraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiFundConstraint'
+        current_value:
+          type: integer
+          minimum: 0
+        fund_id:
+          type: string
+        has_fees:
+          type: boolean
+        index_number:
+          type: integer
+          format: int64
+          minimum: 0
+        last_rebalance_slot:
+          type: integer
+          format: int64
+          minimum: 0
+        last_value_tracked_at:
+          type: integer
+          format: int64
+          minimum: 0
+        lookup_table:
+          type: string
+        protocol_options:
+          $ref: '#/components/schemas/ApiProtocolOptions'
+        risk_aversion_bps:
+          type: integer
+          format: int64
+          minimum: 0
+        risk_max:
+          type: integer
+          format: int64
+          minimum: 0
+        share_price:
+          type: integer
+          format: int64
+          minimum: 0
+        status:
+          $ref: '#/components/schemas/ApiLendFundStatus'
+        token_account_bump:
+          type: integer
+          format: int32
+          minimum: 0
+        total_deposits:
+          type: integer
+          minimum: 0
+        total_shares:
+          type: integer
+          minimum: 0
+        total_users:
+          type: integer
+          minimum: 0
+        unallocated_amount:
+          type: integer
+          minimum: 0
+        updated_at_slot:
+          type: integer
+          format: int64
+          minimum: 0
+        updated_at_timestamp:
+          type: integer
+          format: int64
+          minimum: 0
+        withdraw_authority:
+          type:
+          - string
+          - 'null'
+    ProtocolYieldSources:
+      type: object
+      required:
+      - protocol
+      - yield_sources
+      - count
+      properties:
+        count:
+          type: integer
+          description: Number of yield sources in this protocol
+          minimum: 0
+        protocol:
+          type: string
+          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
+        yield_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiYieldSource'
+          description: List of yield sources for this protocol
+    ApiFundMetrics:
+      type: object
+      required:
+      - start
+      - end
+      - aggregation_window
+      - fund_id
+      - data
+      properties:
+        aggregation_window:
+          type: string
+          description: Aggregation window (e.g., "1h", "1d", "5m") representing time between data points
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiFundMetricDataPoint'
+          description: Array of aggregated metric data points
+        end:
+          type: string
+          description: End timestamp of the data range
+        fund_id:
+          type: string
+          description: Fund ID for the metrics
+        start:
+          type: string
+          description: Start timestamp of the data range
+    ApiFundResolverResponse:
+      type: object
+      required:
+      - fund_id
+      properties:
+        fund_id:
+          type: string
+    ApiRiskAversion:
+      type: string
+      enum:
+      - LOW
+      - MEDIUM
+      - HIGH
+    ApiFundRequestListResponse:
+      type: object
+      required:
+      - requests
+      properties:
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiFundRequest'
+    ApiLendFundStatus:
+      type: string
+      enum:
+      - Live
+      - Paused
+      - WithdrawOnly
+    ApiConstraintType:
+      type: string
+      enum:
+      - MaxPercentage
+      - MaxBaseAssetAmount
+    PaginationMeta:
+      type: object
+      description: Pagination metadata
+      required:
+      - page
+      - per_page
+      - total
+      - total_pages
+      - has_more
+      properties:
+        has_more:
+          type: boolean
+          description: Whether there are more pages
+        page:
+          type: integer
+          format: int32
+          description: Current page number
+          minimum: 0
+        per_page:
+          type: integer
+          format: int32
+          description: Number of items per page
+          minimum: 0
+        total:
+          type: integer
+          format: int64
+          description: Total number of items
+          minimum: 0
+        total_pages:
+          type: integer
+          format: int32
+          description: Total number of pages
+          minimum: 0
+    ApiFundFee:
+      type: object
+      required:
+      - fee_type
+      - fee_bps
+      - recipient
+      properties:
+        fee_bps:
+          type: integer
+          format: int32
+          minimum: 0
+        fee_type:
+          type: string
+        recipient:
+          type: string
+    ApiInputForFundResolver:
+      type: object
+      required:
+      - strategy_id
+      - base_asset
+      properties:
+        base_asset:
+          type: string
+        strategy_id:
+          type: string
+    ApiFundConstraint:
+      type: object
+      required:
+      - yield_source_target
+      - constraint_type
+      - value
+      properties:
+        constraint_type:
+          $ref: '#/components/schemas/ApiConstraintType'
+        value:
+          type: integer
+          format: int64
+          minimum: 0
+        yield_source_target:
+          $ref: '#/components/schemas/ApiYieldSourceTarget'
+    ApiFundMetricDataPoint:
+      type: object
+      required:
+      - time
+      - allocated_to_yield
+      - current_value
+      - current_value_usd
+      - unallocated_amount
+      - unallocated_amount_usd
+      - allocation_count
+      - user_count
+      - total_deposits
+      - current_apy
+      - risk_level
+      - share_price
+      - base_asset_price_usd
+      properties:
+        allocated_to_yield:
+          type: integer
+          minimum: 0
+        allocation_count:
+          type: integer
+          minimum: 0
+        base_asset_price_usd:
+          type: number
+          format: double
+        current_apy:
+          type: number
+          format: double
+        current_value:
+          type: integer
+          minimum: 0
+        current_value_usd:
+          type: number
+          format: double
+        risk_level:
+          type: integer
+          format: int64
+          minimum: 0
+        share_price:
+          type: integer
+          format: int64
+          minimum: 0
+        time:
+          type: string
+        total_deposits:
+          type: integer
+          minimum: 0
+        unallocated_amount:
+          type: integer
+          minimum: 0
+        unallocated_amount_usd:
+          type: number
+          format: double
+        user_count:
+          type: integer
+          format: int64
+          minimum: 0
+    ApiFundOrganization:
+      type: object
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: x-api-key
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,66 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/breeze-openapi-original.json
+notes: >-
+  Entity graph derived from OpenAPI operations, path parameters, and id-reference
+  fields (fund_id, strategy_id, organization_id, yield_source_id, api_key_id,
+  fund_user/user_id). 169 component schemas.
+entities:
+- name: Organization
+  id_field: organization_id
+  description: Partner/customer tenant that owns strategies, funds, and API keys.
+- name: Strategy
+  id_field: strategy_id
+  description: A yield strategy template/instance defining supported assets and allocation across yield sources.
+- name: Fund
+  id_field: fund_id
+  description: An on-chain fund instance realizing a strategy for an organization; holds user positions.
+- name: YieldSource
+  id_field: yield_source_id
+  description: An underlying Solana yield venue/protocol a strategy can allocate to.
+- name: UserPosition
+  id_field: fund_user
+  description: A user's balance/position and earned yield within a fund.
+- name: ApiKey
+  id_field: api_key_id
+  description: An organization-scoped API key credential.
+- name: StrategyTemplate
+  id_field: template_id
+  description: Reusable strategy template used to instantiate strategies.
+relationships:
+- from: Fund
+  type: belongs_to
+  to: Strategy
+  via: strategy_id
+- from: Fund
+  type: belongs_to
+  to: Organization
+  via: organization_id
+- from: Strategy
+  type: has_many
+  to: Fund
+  via: strategy_id
+- from: Strategy
+  type: has_many
+  to: YieldSource
+  via: selective-yield-sources
+- from: Organization
+  type: has_many
+  to: Strategy
+  via: organization_id
+- from: Organization
+  type: has_many
+  to: Fund
+  via: organization_id
+- from: Organization
+  type: has_many
+  to: ApiKey
+  via: organization_id
+- from: UserPosition
+  type: belongs_to
+  to: Fund
+  via: fund_user
+- from: Strategy
+  type: derived_from
+  to: StrategyTemplate
+  via: template_id

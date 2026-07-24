@@ -1,0 +1,50 @@
+# Breeze
+
+## Docs
+
+- [Breeze API Quickstart](https://docs.breeze.baby/breeze-api/breeze-api.md): Integrate Breeze yield functionality into your product with a simple REST API
+- [Get Breeze Balances](https://docs.breeze.baby/breeze-api/endpoints/get-breeze-balances.md): Retrieves detailed balance information for a user, including strategy details, token information, position values, deposited amounts, yield earned, APY, and last update timestamp.
+- [Get Close User Account Instructions](https://docs.breeze.baby/breeze-api/endpoints/get-close-user-account-instructions.md): Generates raw Solana instructions for closing a user's fund account. Use this endpoint for advanced use cases where you need more control over transaction construction. Identify the account either by user_account (fund ID) or by user_pubkey + strategy_id + mint.
+- [Get Close User Account Transaction](https://docs.breeze.baby/breeze-api/endpoints/get-close-user-account-transaction.md): Generates a complete, versioned, serialized unsigned Solana transaction for closing a user's fund account. The returned base64-encoded transaction can be deserialized, signed by the user's wallet, and submitted to the Solana network. Identify the account either by user_account (fund ID) or by user_p…
+- [Get Deposit Instructions](https://docs.breeze.baby/breeze-api/endpoints/get-deposit-instructions.md): Generates raw Solana instructions for depositing funds into a strategy. Use this endpoint for advanced use cases where you need more control over transaction construction.
+- [Get Deposit Transaction](https://docs.breeze.baby/breeze-api/endpoints/get-deposit-transaction.md): Generates a complete, versioned, serialized unsigned Solana transaction for depositing funds into a strategy. The returned base64-encoded transaction can be deserialized, signed by the user's wallet, and submitted to the Solana network.
+- [Health Check](https://docs.breeze.baby/breeze-api/endpoints/get-health.md): Checks if the API service is healthy and responding. Returns 'OK' if the service is operational.
+- [Get Strategy Info](https://docs.breeze.baby/breeze-api/endpoints/get-strategy-info.md): Retrieves detailed information about a strategy, including the strategy name, list of supported assets, overall APY, and per-asset APY breakdown.
+- [Get User Balances](https://docs.breeze.baby/breeze-api/endpoints/get-user-balances.md): Retrieves balance information for a user with optional filtering by asset. Returns position values and deposit amounts with pagination support.
+- [Get User Yield](https://docs.breeze.baby/breeze-api/endpoints/get-user-yield.md): Retrieves the total yield earned by a user across all their positions. Supports optional currency conversion and filtering by balance or base asset.
+- [Get Withdraw Instructions](https://docs.breeze.baby/breeze-api/endpoints/get-withdraw-instruction.md): Generates raw Solana instructions for withdrawing funds from a strategy. Use this endpoint for advanced use cases where you need more control over transaction construction.
+- [Get Withdraw Transaction](https://docs.breeze.baby/breeze-api/endpoints/get-withdraw-transaction.md): Generates a complete, versioned, serialized unsigned Solana transaction for withdrawing funds from a strategy. The returned base64-encoded transaction can be deserialized, signed by the user's wallet, and submitted to the Solana network.
+- [Integration Flow](https://docs.breeze.baby/breeze-api/integration-flow.md): Step-by-step guide for integrating Breeze API into your application
+- [Breeze SDK Introduction](https://docs.breeze.baby/breeze-sdk/breeze-sdk.md): Short overview over Breeze SDK
+- [Quickstart](https://docs.breeze.baby/breeze-sdk/quickstart.md): Start with Breeze SDK within minutes
+- [Developer Tooling](https://docs.breeze.baby/breeze-sdk/tooling.md): Additional tools and resources for Breeze integration
+- [Get in touch](https://docs.breeze.baby/contact-us/contact-us.md): You have some questions left or you want to discuss your Breeze Integration Flow, then please reach us out
+- [Create a Strategy](https://docs.breeze.baby/customer-portal/create-strategy.md): Learn how to create and configure a yield strategy in the Breeze Customer Portal.
+- [Customer Portal Functionality](https://docs.breeze.baby/customer-portal/functionality.md): Comprehensive overview of Breeze Customer Portal features and capabilities
+- [Breeze Customer Portal](https://docs.breeze.baby/customer-portal/introduction.md): Generate API keys, get users data, add new users, set up strategies and more
+- [Quickstart](https://docs.breeze.baby/customer-portal/quickstart.md): Start with the Breeze Customer Portal within 5 minutes
+- [Get Your API Key](https://docs.breeze.baby/get-your-api-key/instruction.md): Get your API Key to unlock the power of Breeze
+- [Integration of Breeze UI Components](https://docs.breeze.baby/integration-guide/breeze-ui-components-integration-example.md): Explore how is it possible to integrate Breeze by using Breeze UI Components
+- [How to Integrate Breeze](https://docs.breeze.baby/integration-guide/integration-guide.md): Find out how to integrate Breeze
+- [Telegram Bot using Breeze API](https://docs.breeze.baby/integration-guide/integrationExampleTgBot.md): Explore of how to integrate Breeze using Breeze API: Telegram Bot
+- [Telegram Bot using Breeze SDK](https://docs.breeze.baby/integration-guide/inzegrationExampleTgBotBreezeSDK.md): Explore of how to integrate Breeze using Breeze SDK: Telegram Bot
+- [Breeze risk engine s five](https://docs.breeze.baby/introduction/breeze-risk-engine-s-five.md): Risk is Dynamic, Your System Should be as well
+- [Dynamic pool rebalancing mechanism](https://docs.breeze.baby/introduction/dynamic-pool-rebalancing-mechanism.md)
+- [Integration Benefits](https://docs.breeze.baby/introduction/integration-benefits.md): Discover the key advantages of integrating Breeze into your platform
+- [Introduction to Breeze](https://docs.breeze.baby/introduction/introduction.md): Welcome on the Breeze Side
+- [Key risk metrics and formulas](https://docs.breeze.baby/introduction/key-risk-metrics-and-formulas.md)
+- [S five](https://docs.breeze.baby/introduction/s-five.md)
+- [Welcome to Breeze](https://docs.breeze.baby/introduction/welcome.md)
+- [Breeze Agent Kit](https://docs.breeze.baby/mcp-server/quickstart.md): Solana yield strategies for AI agents — deposit, withdraw, and check balances through MCP, x402, and more.
+- [Get Started](https://docs.breeze.baby/ui-components-and-ui-playground/get-started.md): Learn how to integrate Breeze UI components into your application in minutes.
+- [Introduction](https://docs.breeze.baby/ui-components-and-ui-playground/introduction.md): Breeze UI Playground is a place to explore, test and customize Breeze UI Components that allows you to easily integrate Breeze functionality into your applications without touching the underlying code.
+
+## OpenAPI Specs
+
+- [openapi](https://docs.breeze.baby/breeze-api/openapi.json)
+
+## Optional
+
+- [Documentation](https://docs.breeze.baby/introduction/welcome)
+- [Support](https://t.me/breezedevs)
+- [Breeze Customer Portal](https://portal.breeze.baby)

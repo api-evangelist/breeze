@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: searched
+status: published
+source: https://docs.breeze.baby/mcp-server/quickstart
+server:
+  name: breeze
+  package: '@breezebaby/mcp-server'
+  transport: stdio
+  command: npx
+  args:
+  - -y
+  - '@breezebaby/mcp-server'
+  homepage: https://agent.breeze.baby
+  repository: https://github.com/anagrambuild/breeze-agent-kit
+  env:
+  - name: BREEZE_API_KEY
+    description: API key from portal.breeze.baby
+  - name: WALLET_PRIVATE_KEY
+    description: Solana wallet private key (base58) used to sign and send transactions
+tools:
+- name: get_strategy_info
+  description: Retrieve strategy metadata and per-asset APY breakdown.
+- name: check_balances
+  description: View wallet positions, total deposits, and earned yield across supported tokens.
+- name: get_deposit_tx
+  description: Generate an unsigned base64-encoded deposit transaction ready for signing.
+- name: get_withdraw_tx
+  description: Generate an unsigned base64-encoded withdrawal transaction ready for signing.
+- name: sign_and_send_tx
+  description: Sign a base64 transaction with the configured wallet and broadcast it to Solana.
+alternative_access:
+- name: x402
+  description: Pay-per-call HTTP API with automatic USDC micropayments via Faremeter — no API key needed.
+  host: https://x402.breeze.baby
+- name: mpp
+  description: Model Payment Protocol — pay-per-call access with on-chain Solana USDC payments, no API key.
+- name: skill
+  description: Drop-in SKILL.md (breeze-x402-payment-api) for agent frameworks, no server required.
+  file: skills/breeze-x402-payment-api-SKILL.md

@@ -1,0 +1,19 @@
+generated: '2026-07-18'
+method: searched
+host: https://api.breeze.baby
+documents:
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+notes: >-
+  No /.well-known/ discovery documents are published on api.breeze.baby,
+  www.breeze.baby, or docs.breeze.baby (all probed 404 on 2026-07-18). A
+  machine-readable llms.txt IS published at docs.breeze.baby/llms.txt (see
+  llms/breeze-llms.txt).

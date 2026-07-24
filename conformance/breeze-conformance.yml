@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/breeze-openapi-original.json
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: Provider publishes an OpenAPI 3.1.0 document at api.breeze.baby/openapi.json.
+- id: api-key-auth
+  conforms: true
+  evidence: securityScheme api_key (apiKey in header, x-api-key).
+- id: http-bearer-jwt
+  conforms: true
+  evidence: securityScheme bearer_auth (http bearer, bearerFormat JWT).
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 security scheme declared.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom {message} envelope, not application/problem+json.
+- id: pagination
+  conforms: true
+  evidence: List endpoints accept page/limit and return a meta block (page, per_page, total, total_pages, has_more).
+- id: mcp
+  conforms: true
+  evidence: Official MCP server published as @breezebaby/mcp-server (stdio).
+- id: x402
+  conforms: true
+  evidence: x402 pay-per-call HTTP API with USDC micropayments at x402.breeze.baby.

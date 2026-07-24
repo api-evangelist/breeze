@@ -1,0 +1,42 @@
+{
+  "provider": "breeze",
+  "sources": [
+    "breeze-admin-api-openapi.yml",
+    "breeze-deposits-api-openapi.yml",
+    "breeze-fund-api-openapi.yml",
+    "breeze-funds-api-openapi.yml",
+    "breeze-global-config-api-openapi.yml",
+    "breeze-organization-api-keys-api-openapi.yml",
+    "breeze-organization-api-openapi.yml",
+    "breeze-organization-funds-api-openapi.yml",
+    "breeze-organization-settings-api-openapi.yml",
+    "breeze-selective-yield-sources-api-openapi.yml",
+    "breeze-strategies-api-openapi.yml",
+    "breeze-strategy-api-openapi.yml",
+    "breeze-user-data-api-openapi.yml",
+    "breeze-withdrawals-api-openapi.yml",
+    "breeze-yield-sources-api-openapi.yml"
+  ],
+  "outputs": [
+    "breeze-admin-api-openapi.yml",
+    "breeze-deposits-api-openapi.yml",
+    "breeze-fund-api-openapi.yml",
+    "breeze-funds-api-openapi.yml",
+    "breeze-global-config-api-openapi.yml",
+    "breeze-organization-api-keys-api-openapi.yml",
+    "breeze-organization-api-openapi.yml",
+    "breeze-organization-funds-api-openapi.yml",
+    "breeze-organization-settings-api-openapi.yml",
+    "breeze-selective-yield-sources-api-openapi.yml",
+    "breeze-strategies-api-openapi.yml",
+    "breeze-strategy-api-openapi.yml",
+    "breeze-user-data-api-openapi.yml",
+    "breeze-withdrawals-api-openapi.yml",
+    "breeze-yield-sources-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

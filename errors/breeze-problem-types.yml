@@ -1,0 +1,27 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/breeze-openapi-original.json
+format: custom
+envelope:
+  schema: ErrorResponse
+  fields:
+  - name: message
+    type: string
+    required: true
+    description: Human-readable error message.
+notes: >-
+  Breeze returns a simple JSON error envelope ({"message": "..."}), not RFC 9457
+  problem+json. HTTP status carries the error class.
+problems:
+- status: 400
+  title: Bad request
+  description: Invalid or malformed request parameters/body.
+- status: 403
+  title: Forbidden
+  description: Authentication failed or the caller lacks access to the resource.
+- status: 404
+  title: Not found
+  description: The requested strategy, fund, organization, or user was not found.
+- status: 500
+  title: Internal server error
+  description: Unexpected server-side error.

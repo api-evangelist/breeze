@@ -1,0 +1,19 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.breeze.baby/ui-components-and-ui-playground/introduction
+summary: >-
+  Breeze UI Components are prebuilt, customizable client-side surfaces that let a
+  product embed Breeze yield functionality (deposit, withdraw, balances, yield)
+  without touching the underlying API. A UI Playground lets developers explore,
+  test, and customize the components before integrating.
+families:
+- name: Breeze UI Components
+  description: Embeddable yield UI surfaces (deposit/withdraw/balance/yield widgets) for wallets, payment apps, and trading products.
+  docs:
+  - https://docs.breeze.baby/ui-components-and-ui-playground/introduction
+  - https://docs.breeze.baby/ui-components-and-ui-playground/get-started
+  - https://docs.breeze.baby/integration-guide/breeze-ui-components-integration-example
+playground: https://docs.breeze.baby/ui-components-and-ui-playground/introduction
+notes: >-
+  Component package/loader names are not published in the documentation index;
+  captured as a documented component family rather than a specific npm loader.

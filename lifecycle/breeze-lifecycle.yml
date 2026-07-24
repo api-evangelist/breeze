@@ -1,0 +1,19 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.breeze.baby/
+versioning:
+  scheme: unversioned-single
+  current: 1.0.0
+  notes: OpenAPI info.version is 1.0.0; no version segment in the base path or host.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No published deprecation policy or Sunset/Deprecation header support found.
+sla:
+  url: null
+status_page: null
+deprecated_operations: []
+notes: >-
+  No dedicated status page, changelog, or deprecation policy was found in the
+  documentation index (docs.breeze.baby/llms.txt) as of 2026-07-18. Support runs
+  through the Telegram channel t.me/breezedevs.

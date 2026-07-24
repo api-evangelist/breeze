@@ -1,0 +1,25 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.npmjs.com/org/breezebaby
+packages:
+- language: typescript
+  registry: npm
+  name: '@breezebaby/breeze-sdk'
+  version: 2.0.4
+  url: https://www.npmjs.com/package/@breezebaby/breeze-sdk
+  install: npm install @breezebaby/breeze-sdk
+  repository: https://github.com/anagrambuild/breeze-sdk
+  license: MIT
+  description: TypeScript SDK over the Breeze API — user yield tracking, balance
+    management, deposit/withdraw transaction handling.
+  official: true
+- language: typescript
+  registry: npm
+  name: '@breezebaby/mcp-server'
+  version: 1.0.0
+  url: https://www.npmjs.com/package/@breezebaby/mcp-server
+  install: npx -y @breezebaby/mcp-server
+  repository: https://github.com/anagrambuild/breeze-agent-kit
+  description: Breeze yield aggregator MCP server for Claude and other AI agents
+    (stdio transport).
+  official: true

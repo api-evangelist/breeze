@@ -1,0 +1,16 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Breeze API
+  version: 1.0.0
+extends: openapi/breeze-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-rating: 4
+    x-apievangelist-notes: >-
+      89 operations; API key (x-api-key) for integration endpoints, JWT bearer for
+      organization/admin. Live production host is https://api.breeze.baby (the
+      original spec lists https://api.breeze.com and localhost:8080).
+- target: $.servers
+  update:
+    x-apievangelist-production-host: https://api.breeze.baby

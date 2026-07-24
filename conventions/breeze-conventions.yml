@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.breeze.baby/breeze-api/breeze-api
+authentication:
+  style: api-key + jwt-bearer
+  api_key_header: x-api-key
+  bearer: JWT (organization/admin endpoints)
+  see: authentication/breeze-authentication.yml
+pagination:
+  style: page-number
+  request_params:
+  - page
+  - limit
+  response_field: meta
+  response_fields:
+  - page
+  - per_page
+  - total
+  - total_pages
+  - has_more
+idempotency:
+  supported: false
+  notes: >-
+    No idempotency-key header/parameter is documented or present in the OpenAPI.
+    Write operations return unsigned Solana transactions/instructions; on-chain
+    idempotency is enforced by Solana signature/blockhash, not an API key.
+amounts:
+  notes: Token amounts are expressed in raw base units (e.g. USDC 6 decimals, SOL 9 decimals).
+transactions:
+  notes: >-
+    Deposit/withdraw/close endpoints return either a base64-encoded versioned
+    unsigned transaction (/tx) or raw Solana instructions (/ix) for the caller to
+    sign with the user's wallet and submit to Solana.
+error_envelope:
+  shape: '{"message": string}'
+  format: custom
+  see: errors/breeze-problem-types.yml
+versioning:
+  see: lifecycle/breeze-lifecycle.yml

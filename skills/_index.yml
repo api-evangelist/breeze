@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: generated
+skills:
+- file: breeze-x402-payment-api-SKILL.md
+  name: breeze-x402-payment-api
+  description: Provider-published skill — operate Breeze x402 payment-gated endpoints (balances, deposits, withdrawals) with USDC micropayments.
+  method: searched
+  source: https://github.com/anagrambuild/breeze-agent-kit/blob/main/apps/skills/breeze-x402-payment-api/SKILL.md
+- file: breeze-embed-yield.md
+  name: breeze-embed-yield
+  api: openapi/breeze-openapi-original.json
+  operations: [get_strategy, get_strategy_apy, process_for_deposit_with_transaction, get_user_balances, get_user_yield]
+- file: breeze-withdraw-yield.md
+  name: breeze-withdraw-yield
+  api: openapi/breeze-openapi-original.json
+  operations: [get_user_balances, process_for_withdraw_with_transaction, get_user_yield]

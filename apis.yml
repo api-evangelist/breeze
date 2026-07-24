@@ -1,22 +1,199 @@
 aid: breeze
 name: Breeze
-description: 'Breeze is a company surfaced as a portfolio company of multicoin-capital and added to the
-  API Evangelist network as a stub for enrichment. Sector: crypto-web3. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Breeze is instant, non-custodial yield infrastructure for Solana. Any Solana app
+  — wallets, payment products, trading platforms, Telegram bots, and AI agents — can
+  embed automated yield for its users with a few lines of code via the Breeze REST
+  API, a TypeScript SDK, prebuilt UI components, and an Agent Kit (MCP server, x402
+  and MPP pay-per-call access, and a drop-in Agent Skill). Yield is generated on
+  USDC, USDT, USDS, SOL and Solana LSTs (JitoSOL, mSOL, JupSOL) plus JLP while
+  custody stays with the user and positions remain liquid and composable. Breeze was
+  built by Anagram and is backed by Multicoin Capital.
 url: https://raw.githubusercontent.com/api-evangelist/breeze/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - multicoin-capital
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: portfolio-lead-enriched-2026-07-18
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.breeze.baby/favicon.ico
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
 - Crypto Web3
-apis: []
+- Solana
+- Yield
+- DeFi
+- Payments
+- Blockchain
+- API
+- AI Agents
+apis:
+- aid: breeze:breeze-admin-api
+  name: Breeze Admin API
+  description: Administrative operations
+  humanURL: https://docs.breeze.baby/breeze-api/breeze-api
+  baseURL: https://api.breeze.baby
+  tags:
+  - Admin
+  properties:
+  - type: OpenAPI
+    url: openapi/breeze-admin-api-openapi.yml
+- aid: breeze:breeze-deposits-api
+  name: Breeze Deposits API
+  description: Deposit operations
+  humanURL: https://docs.breeze.baby/breeze-api/breeze-api
+  baseURL: https://api.breeze.baby
+  tags:
+  - Deposits
+  properties:
+  - type: OpenAPI
+    url: openapi/breeze-deposits-api-openapi.yml
+- aid: breeze:breeze-fund-api
+  name: Breeze fund API
+  description: The fund API from Breeze — 1 operation(s) for fund.
+  humanURL: https://docs.breeze.baby/breeze-api/breeze-api
+  baseURL: https://api.breeze.baby
+  tags:
+  - fund
+  properties:
+  - type: OpenAPI
+    url: openapi/breeze-fund-api-openapi.yml
+- aid: breeze:breeze-funds-api
+  name: Breeze Funds API
+  description: Fund management operations
+  humanURL: https://docs.breeze.baby/breeze-api/breeze-api
+  baseURL: https://api.breeze.baby
+  tags:
+  - Funds
+  properties:
+  - type: OpenAPI
+    url: openapi/breeze-funds-api-openapi.yml
+- aid: breeze:breeze-global-config-api
+  name: Breeze Global Config API
+  description: Global configuration and supported assets
+  humanURL: https://docs.breeze.baby/breeze-api/breeze-api
+  baseURL: https://api.breeze.baby
+  tags:
+  - Global Config
+  properties:
+  - type: OpenAPI
+    url: openapi/breeze-global-config-api-openapi.yml
+- aid: breeze:breeze-organization-api-keys-api
+  name: Breeze Organization API Keys API
+  description: Organization API key management
+  humanURL: https://docs.breeze.baby/breeze-api/breeze-api
+  baseURL: https://api.breeze.baby
+  tags:
+  - Organization API Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/breeze-organization-api-keys-api-openapi.yml
+- aid: breeze:breeze-organization-api
+  name: Breeze Organization API
+  description: Organization onboarding and status
+  humanURL: https://docs.breeze.baby/breeze-api/breeze-api
+  baseURL: https://api.breeze.baby
+  tags:
+  - Organization
+  properties:
+  - type: OpenAPI
+    url: openapi/breeze-organization-api-openapi.yml
+- aid: breeze:breeze-organization-funds-api
+  name: Breeze Organization Funds API
+  description: The Organization Funds API from Breeze — 1 operation(s) for organization funds.
+  humanURL: https://docs.breeze.baby/breeze-api/breeze-api
+  baseURL: https://api.breeze.baby
+  tags:
+  - Organization Funds
+  properties:
+  - type: OpenAPI
+    url: openapi/breeze-organization-funds-api-openapi.yml
+- aid: breeze:breeze-organization-settings-api
+  name: Breeze Organization Settings API
+  description: The Organization Settings API from Breeze — 1 operation(s) for organization settings.
+  humanURL: https://docs.breeze.baby/breeze-api/breeze-api
+  baseURL: https://api.breeze.baby
+  tags:
+  - Organization Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/breeze-organization-settings-api-openapi.yml
+- aid: breeze:breeze-selective-yield-sources-api
+  name: Breeze Selective Yield Sources API
+  description: >-
+    The Selective Yield Sources API from Breeze — 1 operation(s) for selective yield sources.
+  humanURL: https://docs.breeze.baby/breeze-api/breeze-api
+  baseURL: https://api.breeze.baby
+  tags:
+  - Selective Yield Sources
+  properties:
+  - type: OpenAPI
+    url: openapi/breeze-selective-yield-sources-api-openapi.yml
+- aid: breeze:breeze-strategies-api
+  name: Breeze Strategies API
+  description: The Strategies API from Breeze — 14 operation(s) for strategies.
+  humanURL: https://docs.breeze.baby/breeze-api/breeze-api
+  baseURL: https://api.breeze.baby
+  tags:
+  - Strategies
+  properties:
+  - type: OpenAPI
+    url: openapi/breeze-strategies-api-openapi.yml
+- aid: breeze:breeze-strategy-api
+  name: Breeze Strategy API
+  description: The Strategy API from Breeze — 1 operation(s) for strategy.
+  humanURL: https://docs.breeze.baby/breeze-api/breeze-api
+  baseURL: https://api.breeze.baby
+  tags:
+  - Strategy
+  properties:
+  - type: OpenAPI
+    url: openapi/breeze-strategy-api-openapi.yml
+- aid: breeze:breeze-user-data-api
+  name: Breeze User Data API
+  description: User balance and yield data
+  humanURL: https://docs.breeze.baby/breeze-api/breeze-api
+  baseURL: https://api.breeze.baby
+  tags:
+  - User Data
+  properties:
+  - type: OpenAPI
+    url: openapi/breeze-user-data-api-openapi.yml
+- aid: breeze:breeze-withdrawals-api
+  name: Breeze Withdrawals API
+  description: Withdrawal operations
+  humanURL: https://docs.breeze.baby/breeze-api/breeze-api
+  baseURL: https://api.breeze.baby
+  tags:
+  - Withdrawals
+  properties:
+  - type: OpenAPI
+    url: openapi/breeze-withdrawals-api-openapi.yml
+- aid: breeze:breeze-yield-sources-api
+  name: Breeze Yield Sources API
+  description: Yield source information and statistics
+  humanURL: https://docs.breeze.baby/breeze-api/breeze-api
+  baseURL: https://api.breeze.baby
+  tags:
+  - Yield Sources
+  properties:
+  - type: OpenAPI
+    url: openapi/breeze-yield-sources-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -24,4 +201,55 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://breeze.com
+  url: https://www.breeze.baby
+- type: DeveloperPortal
+  url: https://portal.breeze.baby
+- type: SignUp
+  url: https://portal.breeze.baby
+- type: Documentation
+  url: https://docs.breeze.baby
+- type: APIReference
+  url: https://docs.breeze.baby/breeze-api/breeze-api
+- type: GettingStarted
+  url: https://docs.breeze.baby/get-your-api-key/instruction
+- type: Support
+  url: https://t.me/breezedevs
+- type: GitHubOrganization
+  url: https://github.com/anagrambuild
+- type: OpenAPI
+  url: openapi/breeze-openapi-original.json
+- type: Overlay
+  url: overlays/breeze-openapi-overlay.yaml
+- type: Packages
+  url: packages/breeze-packages.yml
+- type: SDKs
+  url: packages/breeze-packages.yml
+- type: MCPServer
+  url: mcp/breeze-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/breeze-llms.txt
+- type: Authentication
+  url: authentication/breeze-authentication.yml
+- type: Conventions
+  url: conventions/breeze-conventions.yml
+- type: ErrorCatalog
+  url: errors/breeze-problem-types.yml
+- type: Conformance
+  url: conformance/breeze-conformance.yml
+- type: Lifecycle
+  url: lifecycle/breeze-lifecycle.yml
+- type: DataModel
+  url: data-model/breeze-data-model.yml
+- type: Components
+  url: components/breeze-components.yml
+- type: DomainSecurity
+  url: security/breeze-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/breeze-agentic-access.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

@@ -217,7 +217,7 @@ common:
 - type: GitHubOrganization
   url: https://github.com/anagrambuild
 - type: OpenAPI
-  url: openapi/breeze-openapi-original.json
+  url: openapi/_original/breeze-openapi-original.json
 - type: Overlay
   url: overlays/breeze-openapi-overlay.yaml
 - type: Packages

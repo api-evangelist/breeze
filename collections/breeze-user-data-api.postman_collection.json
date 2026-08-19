@@ -1,0 +1,610 @@
+{
+  "item": [
+    {
+      "id": "2810b055-0c87-426a-9303-ef32aeadb6a7",
+      "name": "User Data",
+      "description": {
+        "content": "User balance and yield data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bf903bb6-930b-44a9-8647-2ea4ea0fcac2",
+          "name": "get user balances",
+          "request": {
+            "name": "get user balances",
+            "description": {},
+            "url": {
+              "path": [
+                "user-balances",
+                ":fund_user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "asset",
+                  "value": "<string>",
+                  "description": "Filter by specific asset"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Sort by balance"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Sort order: 'asc' or 'desc'"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Items per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fund_user",
+                  "description": "(Required) Fund user identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c3c6403a-4e31-42c3-a7ca-143f91731a14",
+              "name": "User balances retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-balances",
+                    ":fund_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_user",
+                      "description": "(Required) Fund user identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"protocol\": \"string\",\n      \"yield_sources\": [\n        {\n          \"pubkey\": \"string\",\n          \"source\": \"string\",\n          \"yield_type\": \"string\",\n          \"current_apy\": 774.3434826266727,\n          \"risk\": 3535,\n          \"updated_at_timestamp\": 113,\n          \"base_assets\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"pubkey\": \"string\",\n          \"source\": \"string\",\n          \"yield_type\": \"string\",\n          \"current_apy\": 1785.8598293363082,\n          \"risk\": 2387,\n          \"updated_at_timestamp\": 7546,\n          \"base_assets\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"count\": 2966\n    },\n    {\n      \"protocol\": \"string\",\n      \"yield_sources\": [\n        {\n          \"pubkey\": \"string\",\n          \"source\": \"string\",\n          \"yield_type\": \"string\",\n          \"current_apy\": 7052.247883641003,\n          \"risk\": 9491,\n          \"updated_at_timestamp\": 4468,\n          \"base_assets\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"pubkey\": \"string\",\n          \"source\": \"string\",\n          \"yield_type\": \"string\",\n          \"current_apy\": 8845.611773097899,\n          \"risk\": 5317,\n          \"updated_at_timestamp\": 1681,\n          \"base_assets\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"count\": 8561\n    }\n  ],\n  \"meta\": {\n    \"page\": 231,\n    \"per_page\": 5039,\n    \"total\": 350,\n    \"total_pages\": 5463,\n    \"has_more\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03bc0b88-8cb5-4b88-ae83-d93096d205f1",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-balances",
+                    ":fund_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_user",
+                      "description": "(Required) Fund user identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4759634e-180e-499a-b6af-56a36e39c3ad",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-balances",
+                    ":fund_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_user",
+                      "description": "(Required) Fund user identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91c49fe9-b0f7-4624-bf01-b8d9403cb03d",
+          "name": "get user yield",
+          "request": {
+            "name": "get user yield",
+            "description": {},
+            "url": {
+              "path": [
+                "user-yield",
+                ":fund_user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fund_id",
+                  "value": "<string>",
+                  "description": "Filter by specific fund"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Items per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fund_user",
+                  "description": "(Required) Fund user identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e3bdaf95-0ecb-456f-b671-9f0ae24fbcb6",
+              "name": "User yield data retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-yield",
+                    ":fund_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fund_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_user",
+                      "description": "(Required) Fund user identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"protocol\": \"string\",\n      \"yield_sources\": [\n        {\n          \"pubkey\": \"string\",\n          \"source\": \"string\",\n          \"yield_type\": \"string\",\n          \"current_apy\": 774.3434826266727,\n          \"risk\": 3535,\n          \"updated_at_timestamp\": 113,\n          \"base_assets\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"pubkey\": \"string\",\n          \"source\": \"string\",\n          \"yield_type\": \"string\",\n          \"current_apy\": 1785.8598293363082,\n          \"risk\": 2387,\n          \"updated_at_timestamp\": 7546,\n          \"base_assets\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"count\": 2966\n    },\n    {\n      \"protocol\": \"string\",\n      \"yield_sources\": [\n        {\n          \"pubkey\": \"string\",\n          \"source\": \"string\",\n          \"yield_type\": \"string\",\n          \"current_apy\": 7052.247883641003,\n          \"risk\": 9491,\n          \"updated_at_timestamp\": 4468,\n          \"base_assets\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"pubkey\": \"string\",\n          \"source\": \"string\",\n          \"yield_type\": \"string\",\n          \"current_apy\": 8845.611773097899,\n          \"risk\": 5317,\n          \"updated_at_timestamp\": 1681,\n          \"base_assets\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"count\": 8561\n    }\n  ],\n  \"meta\": {\n    \"page\": 231,\n    \"per_page\": 5039,\n    \"total\": 350,\n    \"total_pages\": 5463,\n    \"has_more\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85942554-f022-4ef8-b748-2800725aff22",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-yield",
+                    ":fund_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fund_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_user",
+                      "description": "(Required) Fund user identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b397c60-1b6b-4565-95a4-f0533e30560e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-yield",
+                    ":fund_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fund_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_user",
+                      "description": "(Required) Fund user identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7c248f64-92bb-4e96-9838-0dabd401b955",
+    "name": "Breeze Admin User Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A comprehensive API for managing yield farming operations, funds, and user authentication\n\nContact Support:\n Name: Breeze Team\n Email: support@breeze.com",
+      "type": "text/plain"
+    }
+  }
+}

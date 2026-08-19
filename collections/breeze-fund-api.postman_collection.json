@@ -1,0 +1,101 @@
+{
+  "item": [
+    {
+      "id": "5584e03f-f6b8-4aeb-a3b8-2fffe1423ef1",
+      "name": "fund",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "22ca38ab-0243-48e8-93c6-92fb50115218",
+          "name": "get organization stats",
+          "request": {
+            "name": "get organization stats",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11058d5c-b8de-43e2-9e5d-2076ab4c4a85",
+              "name": "Organization stats retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_funds\": 5167,\n  \"total_deposits\": [\n    {\n      \"token_mint\": \"string\",\n      \"amount\": 833\n    },\n    {\n      \"token_mint\": \"string\",\n      \"amount\": 3815\n    }\n  ],\n  \"total_users\": 4903,\n  \"total_values\": [\n    {\n      \"token_mint\": \"string\",\n      \"amount\": 1164\n    },\n    {\n      \"token_mint\": \"string\",\n      \"amount\": 9400\n    }\n  ],\n  \"total_currencies\": 2539\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8104f2e3-4641-4713-ac36-aaf002b3d96a",
+    "name": "Breeze Admin fund API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A comprehensive API for managing yield farming operations, funds, and user authentication\n\nContact Support:\n Name: Breeze Team\n Email: support@breeze.com",
+      "type": "text/plain"
+    }
+  }
+}

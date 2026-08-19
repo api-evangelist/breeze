@@ -1,0 +1,399 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Breeze Admin Strategies API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Strategies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "create_new_strategy_template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/organization/create-strategy-template",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "create_new_strategy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/organization/create-strategy/:organization_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_organization_strategies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/organization/strategies",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_strategies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/organization/:organization_id/strategies",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Get available strategy assets with their yield sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/strategy-available-assets",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get available strategy assets with their yield sources"
+        },
+        {
+          "info": {
+            "name": "get_strategy_apy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/strategy/apy",
+            "params": [
+              {
+                "name": "all",
+                "value": "",
+                "type": "query",
+                "description": "To calculate combined apy for all the strategy belongs to an org"
+              },
+              {
+                "name": "strategy_id",
+                "value": "",
+                "type": "query",
+                "description": "To calculate apy of a single strategy"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "close_strategy_funds",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/strategy/close-funds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_strategy_metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/strategy/metrics",
+            "params": [
+              {
+                "name": "time_frame",
+                "value": "",
+                "type": "query",
+                "description": "Simplified time selector: '24h', '7d', '30d', 'all'. Backend derives start/end/aggregation automatically. Takes precedence over legacy params."
+              },
+              {
+                "name": "all",
+                "value": "",
+                "type": "query",
+                "description": "To calculate full overview metrics or calculate individual metrics"
+              },
+              {
+                "name": "strategy_id",
+                "value": "",
+                "type": "query",
+                "description": "Strategy id for getting single strategy metrics"
+              },
+              {
+                "name": "start_timestamp",
+                "value": "",
+                "type": "query",
+                "description": "Legacy: ISO 8601 start. Use time_frame instead."
+              },
+              {
+                "name": "end_timestamp",
+                "value": "",
+                "type": "query",
+                "description": "Legacy: ISO 8601 end. Use time_frame instead."
+              },
+              {
+                "name": "aggregation_window",
+                "value": "",
+                "type": "query",
+                "description": "Legacy: aggregation window. Use time_frame instead."
+              },
+              {
+                "name": "all_time",
+                "value": "",
+                "type": "query",
+                "description": "Legacy: fetch full history. Use time_frame='all' instead."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Returns current aggregate metrics (TVL, deposits, fees, yield, per-protocol breakdowns)\nfor all or a single strategy belonging to the authenticated organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/strategy/metrics/current-data",
+            "params": [
+              {
+                "name": "all",
+                "value": "",
+                "type": "query",
+                "description": "To get combied current data for all the strategy that belongs to an org"
+              },
+              {
+                "name": "strategy_id",
+                "value": "",
+                "type": "query",
+                "description": "Strategy id for getting current data of an individual strategy"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "All monetary values are returned in USD. Fee amounts are converted from raw token units\nusing per-fund decimals and current asset prices."
+        },
+        {
+          "info": {
+            "name": "get_strategy_latest_rebalance_history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/strategy/strategy-latest-top-rebalance-history",
+            "params": [
+              {
+                "name": "all",
+                "value": "",
+                "type": "query",
+                "description": "To include all organization strategies to get the latest top 5 rebalance hisotry of the highest allocated fund per base asset"
+              },
+              {
+                "name": "strategy_id",
+                "value": "",
+                "type": "query",
+                "description": "To inlcude only a particular strategy to get the latest top 5 rebalance hisotry of the highest allocated fund per base asset"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "update_withdraw_delegate_authority",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/strategy/update-delegated-withdrawer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_strategy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/strategy/:strategy_id",
+            "params": [
+              {
+                "name": "strategy_id",
+                "value": "",
+                "type": "path",
+                "description": "Strategy identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "update_strategy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:8080/strategy/:strategy_id",
+            "params": [
+              {
+                "name": "strategy_id",
+                "value": "",
+                "type": "path",
+                "description": "Strategy identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_strategy_metrics_old",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/strategy/:strategy_id/metrics-old",
+            "params": [
+              {
+                "name": "start_timestamp",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp for metrics range (ISO 8601 format)"
+              },
+              {
+                "name": "end_timestamp",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp for metrics range (ISO 8601 format)"
+              },
+              {
+                "name": "aggregation_window",
+                "value": "",
+                "type": "query",
+                "description": "Optional aggregation window (e.g., '1h', '1d', '5m') - if not provided, database will choose optimal window"
+              },
+              {
+                "name": "strategy_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/template/:template_id",
+            "params": [
+              {
+                "name": "template_id",
+                "value": "",
+                "type": "path",
+                "description": "Strategy template identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

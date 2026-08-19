@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Breeze Admin Global Config API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Global Config",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the global configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/global-config",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the global configuration"
+        },
+        {
+          "info": {
+            "name": "Get only the supported base assets from global configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/global-config/supported-assets",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get only the supported base assets from global configuration"
+        },
+        {
+          "info": {
+            "name": "Get supported base assets grouped by venue.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/global-config/supported-assets-by-venue",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get supported base assets grouped by venue."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

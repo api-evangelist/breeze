@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Breeze Admin Yield Sources API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Yield Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get maximum APY for a list of asset mints",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/assets/apy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get maximum APY for a list of asset mints"
+        },
+        {
+          "info": {
+            "name": "Get a specific yield source by its ID with basic stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/yield-source/:yield_source_id",
+            "params": [
+              {
+                "name": "yield_source_id",
+                "value": "",
+                "type": "path",
+                "description": "Yield source identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a specific yield source by its ID with basic stats"
+        },
+        {
+          "info": {
+            "name": "Get yield sources with optional base asset filter and pagination",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/yield-sources",
+            "params": [
+              {
+                "name": "base_asset",
+                "value": "",
+                "type": "query",
+                "description": "Base asset identifier to filter by (e.g., USDC, SOL, ETH)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination (default: 1)"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page (default: 20, max: 100)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get yield sources with optional base asset filter and pagination"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

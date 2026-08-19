@@ -1,0 +1,1700 @@
+{
+  "item": [
+    {
+      "id": "b84bf608-f007-4f6e-ad98-605abe69d497",
+      "name": "Funds",
+      "description": {
+        "content": "Fund management operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "75526c15-b041-4338-99ad-f3bed787846e",
+          "name": "get fund",
+          "request": {
+            "name": "get fund",
+            "description": {},
+            "url": {
+              "path": [
+                "fund",
+                ":fund_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fund_id",
+                  "description": "(Required) Fund identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "aa211ba1-0cbc-462d-9472-668a67ade71a",
+              "name": "Fund retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) Fund identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fund_id\": \"string\",\n  \"base_asset_token_mint\": \"string\",\n  \"base_asset_token_decimals\": 531,\n  \"base_asset_token_account\": \"string\",\n  \"total_deposits\": 6476,\n  \"total_users\": 5358,\n  \"last_value_tracked_at\": 7820,\n  \"total_shares\": 4231,\n  \"share_price\": 9195,\n  \"current_value\": 6160,\n  \"authority\": \"string\",\n  \"updated_at_timestamp\": 1314,\n  \"updated_at_slot\": 1488,\n  \"risk_max\": 8639,\n  \"risk_aversion_bps\": 7679,\n  \"allocated_to_yield\": 422,\n  \"unallocated_amount\": 4955,\n  \"bump\": 3012,\n  \"token_account_bump\": 9931,\n  \"index_number\": 9207,\n  \"lookup_table\": \"string\",\n  \"has_fees\": true,\n  \"constraints\": [\n    {\n      \"yield_source_target\": {\n        \"yield_source_type\": \"string\",\n        \"protocol\": \"string\"\n      },\n      \"constraint_type\": \"MaxBaseAssetAmount\",\n      \"value\": 26\n    },\n    {\n      \"yield_source_target\": {\n        \"yield_source_type\": \"string\",\n        \"protocol\": \"string\"\n      },\n      \"constraint_type\": \"MaxPercentage\",\n      \"value\": 3620\n    }\n  ],\n  \"allocations\": [\n    {\n      \"index\": 9801,\n      \"yield_source_type\": \"string\",\n      \"protocol\": \"string\",\n      \"protocol_id\": \"string\",\n      \"position_id\": \"string\",\n      \"deposit_amount\": 1491,\n      \"deposit_timestamp\": 8789,\n      \"current_value\": 6859,\n      \"time_weighted_value\": 1282\n    },\n    {\n      \"index\": 7829,\n      \"yield_source_type\": \"string\",\n      \"protocol\": \"string\",\n      \"protocol_id\": \"string\",\n      \"position_id\": \"string\",\n      \"deposit_amount\": 246,\n      \"deposit_timestamp\": 2080,\n      \"current_value\": 9472,\n      \"time_weighted_value\": 4828\n    }\n  ],\n  \"protocol_options\": {\n    \"kamino_reserve\": \"string\",\n    \"marginfi_bank\": \"string\",\n    \"drift_market\": \"string\",\n    \"jup_lend_market\": \"string\",\n    \"jup_lend_reserve\": \"string\"\n  },\n  \"last_rebalance_slot\": 2950,\n  \"status\": \"Paused\",\n  \"assigned_org\": null,\n  \"withdraw_authority\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34d3a20e-e49f-4afa-be20-46815d94a9a4",
+              "name": "Fund not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) Fund identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60dc54e5-722d-4a9c-9d0b-ac3a525d61c9",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) Fund identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83268d00-a059-4c03-a632-122f1c408cbd",
+          "name": "get fund apy",
+          "request": {
+            "name": "get fund apy",
+            "description": {},
+            "url": {
+              "path": [
+                "fund",
+                ":fund_id",
+                "apy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fund_id",
+                  "description": "(Required) Fund identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d05b0b20-0848-49b2-97f7-1d41fda56e45",
+              "name": "Fund APY retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id",
+                    "apy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) Fund identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "4274.470511131238",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ceb4a9e-6a23-4c52-ad50-cca794e6dde7",
+              "name": "Fund not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id",
+                    "apy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) Fund identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40e1b9d2-0d58-4e58-9139-64fbb813ac96",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id",
+                    "apy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) Fund identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68541eed-b63c-4718-87ac-26e70b068e34",
+          "name": "get fund fees",
+          "request": {
+            "name": "get fund fees",
+            "description": {},
+            "url": {
+              "path": [
+                "fund",
+                ":fund_id",
+                "fees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fund_id",
+                  "description": "(Required) Fund identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "86250086-a589-497c-88d6-8177e2b8dd41",
+              "name": "Fund fees retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id",
+                    "fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) Fund identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ba9501a-3b77-41b0-b418-25533c36a53d",
+              "name": "Fund not found or no fees configured",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id",
+                    "fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) Fund identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d51b02b-66e1-4282-aa58-b944d066ea45",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id",
+                    "fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) Fund identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eab547df-021e-4311-8c19-b609b754bbc9",
+          "name": "get fund metrics",
+          "request": {
+            "name": "get fund metrics",
+            "description": {},
+            "url": {
+              "path": [
+                "fund",
+                ":fund_id",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_timestamp",
+                  "value": "<string>",
+                  "description": "(Required) Start timestamp for metrics range (ISO 8601 format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_timestamp",
+                  "value": "<string>",
+                  "description": "(Required) End timestamp for metrics range (ISO 8601 format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "aggregation_window",
+                  "value": "<string>",
+                  "description": "Optional aggregation window (e.g., '1h', '1d', '5m') - if not provided, database will choose optimal window"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fund_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3f20321d-bf94-426c-8d50-f226fdf7ebab",
+              "name": "Fund metrics retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation_window",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"start\": \"string\",\n  \"end\": \"string\",\n  \"aggregation_window\": \"string\",\n  \"fund_id\": \"string\",\n  \"data\": [\n    {\n      \"time\": \"string\",\n      \"allocated_to_yield\": 9732,\n      \"current_value\": 4083,\n      \"current_value_usd\": 7774.243996323361,\n      \"unallocated_amount\": 374,\n      \"unallocated_amount_usd\": 3566.0288905552407,\n      \"allocation_count\": 1521,\n      \"user_count\": 4021,\n      \"total_deposits\": 9734,\n      \"current_apy\": 1316.3192169707838,\n      \"risk_level\": 198,\n      \"share_price\": 2644,\n      \"base_asset_price_usd\": 890.376298209995\n    },\n    {\n      \"time\": \"string\",\n      \"allocated_to_yield\": 8807,\n      \"current_value\": 3613,\n      \"current_value_usd\": 6566.055954446139,\n      \"unallocated_amount\": 2366,\n      \"unallocated_amount_usd\": 5551.790784055399,\n      \"allocation_count\": 7101,\n      \"user_count\": 6743,\n      \"total_deposits\": 5656,\n      \"current_apy\": 3141.581552608582,\n      \"risk_level\": 4872,\n      \"share_price\": 7566,\n      \"base_asset_price_usd\": 4697.706722955784\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc3adc3a-db48-49ef-b2cc-e8a50c0b2f35",
+              "name": "Invalid time range",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation_window",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e8257e7-1661-40b1-b2f3-4890cb9c304d",
+              "name": "Fund not found or no data available",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation_window",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5997af51-7c3d-4690-89b2-03fb24d6069f",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation_window",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "222bec1f-8e1b-4ae8-9aa6-33d1ecf3c3b5",
+          "name": "get fund rebalance history",
+          "request": {
+            "name": "get fund rebalance history",
+            "description": {},
+            "url": {
+              "path": [
+                "fund",
+                ":fund_id",
+                "rebalance-history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<long>",
+                  "description": "(Required) Limit of records to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<long>",
+                  "description": "(Required) Offset of records to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_failed",
+                  "value": "<boolean>",
+                  "description": "(Required) Include failed rebalance history"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fund_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "933aeb3b-469d-4418-befe-9a30858fb787",
+              "name": "Fund rebalance history retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id",
+                    "rebalance-history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "include_failed",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"protocol\": \"string\",\n      \"yield_sources\": [\n        {\n          \"pubkey\": \"string\",\n          \"source\": \"string\",\n          \"yield_type\": \"string\",\n          \"current_apy\": 1754.687838715675,\n          \"risk\": 936,\n          \"updated_at_timestamp\": 4551,\n          \"base_assets\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"pubkey\": \"string\",\n          \"source\": \"string\",\n          \"yield_type\": \"string\",\n          \"current_apy\": 6685.5776095580895,\n          \"risk\": 6146,\n          \"updated_at_timestamp\": 6652,\n          \"base_assets\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"count\": 6480\n    },\n    {\n      \"protocol\": \"string\",\n      \"yield_sources\": [\n        {\n          \"pubkey\": \"string\",\n          \"source\": \"string\",\n          \"yield_type\": \"string\",\n          \"current_apy\": 5097.747260946589,\n          \"risk\": 4141,\n          \"updated_at_timestamp\": 2553,\n          \"base_assets\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"pubkey\": \"string\",\n          \"source\": \"string\",\n          \"yield_type\": \"string\",\n          \"current_apy\": 554.1751128782535,\n          \"risk\": 6704,\n          \"updated_at_timestamp\": 2768,\n          \"base_assets\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"count\": 3378\n    }\n  ],\n  \"meta\": {\n    \"page\": 4573,\n    \"per_page\": 7154,\n    \"total\": 4046,\n    \"total_pages\": 1214,\n    \"has_more\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cef9f03c-cd34-4199-b42b-d6578cee71a8",
+              "name": "Fund not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id",
+                    "rebalance-history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "include_failed",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5014edb4-78f4-4cb8-b957-6cfbef744d7b",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fund",
+                    ":fund_id",
+                    "rebalance-history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "include_failed",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fund_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92364f98-5ae5-4d78-adbc-5b8a5dba627d",
+          "name": "get organization request funds",
+          "request": {
+            "name": "get organization request funds",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "fund-requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bbb53218-9fb9-47b9-9cbf-59ae0f663fec",
+              "name": "Fund requests retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "fund-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requests\": [\n    {\n      \"id\": \"string\",\n      \"organization_id\": \"string\",\n      \"yield_target\": 9748.254443801385,\n      \"risk_aversion\": \"LOW\",\n      \"base_assets\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fund_type\": \"Staking\",\n      \"status\": \"REJECTED\"\n    },\n    {\n      \"id\": \"string\",\n      \"organization_id\": \"string\",\n      \"yield_target\": 7199.413349065805,\n      \"risk_aversion\": \"LOW\",\n      \"base_assets\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fund_type\": \"Mixed\",\n      \"status\": \"APPROVED\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14cafc63-ba5f-40f4-8f2b-ed28abbc0b7b",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "fund-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41bc5184-2d16-47d7-9cb6-5dd6bcbaad7e",
+          "name": "fund resolver",
+          "request": {
+            "name": "fund resolver",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "fund-resolver"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"strategy_id\": \"<string>\",\n  \"base_asset\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "907cdd6b-fed4-484b-a932-5469d9934ef7",
+              "name": "Fund requested successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "fund-resolver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"strategy_id\": \"<string>\",\n  \"base_asset\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fund_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fb3d954-03d7-4bc3-af12-0bf53051e3f7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "fund-resolver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"strategy_id\": \"<string>\",\n  \"base_asset\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ec11c77-4710-40ac-b1c4-5ebed93a13d7",
+          "name": "request new fund",
+          "request": {
+            "name": "request new fund",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "request-fund"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"base_assets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fund_type\": \"<string>\",\n  \"yield_target\": \"<double>\",\n  \"risk_aversion\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "df2e946c-9652-449a-9911-04edad80d633",
+              "name": "Fund requested successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "request-fund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"base_assets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fund_type\": \"LendBorrow\",\n  \"yield_target\": \"<double>\",\n  \"risk_aversion\": \"MEDIUM\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"organization_id\": \"string\",\n  \"yield_target\": 9096.397875853894,\n  \"risk_aversion\": \"HIGH\",\n  \"base_assets\": [\n    \"string\",\n    \"string\"\n  ],\n  \"fund_type\": \"Staking\",\n  \"status\": \"PENDING\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb82fde3-74fa-41a4-8639-351c6d5e61c1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "request-fund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"base_assets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fund_type\": \"LendBorrow\",\n  \"yield_target\": \"<double>\",\n  \"risk_aversion\": \"MEDIUM\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8dee8eff-605e-4d1c-8bd4-329ec5c83498",
+    "name": "Breeze Admin Funds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A comprehensive API for managing yield farming operations, funds, and user authentication\n\nContact Support:\n Name: Breeze Team\n Email: support@breeze.com",
+      "type": "text/plain"
+    }
+  }
+}

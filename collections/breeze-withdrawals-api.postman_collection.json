@@ -1,0 +1,460 @@
+{
+  "item": [
+    {
+      "id": "abf1b947-7e1f-489a-81cd-104e1282704a",
+      "name": "Withdrawals",
+      "description": {
+        "content": "Withdrawal operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6532f8f0-659d-4a8f-8d22-714bb6ca3db2",
+          "name": "process for withdraw with instruction",
+          "request": {
+            "name": "process for withdraw with instruction",
+            "description": {},
+            "url": {
+              "path": [
+                "withdraw",
+                "ix"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"params\": {\n    \"all\": \"<boolean,null>\",\n    \"amount\": \"<integer,null-int64>\",\n    \"base_asset\": \"<string,null>\",\n    \"create_wsol_ata\": \"<boolean,null>\",\n    \"detect_wsol_ata\": \"<boolean,null>\",\n    \"exclude_fees\": \"<boolean,null>\",\n    \"fund_id\": \"<string,null>\",\n    \"is_agent\": \"<boolean,null>\",\n    \"no_balance_checks\": \"<boolean,null>\",\n    \"payer_key\": \"<string,null>\",\n    \"strategy_id\": \"<string,null>\",\n    \"unwrap_wsol_ata\": \"<boolean,null>\",\n    \"user_key\": \"<string,null>\",\n    \"user_token_account\": \"<string,null>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9b4e1670-09a4-4d3e-8081-65ff32e55de1",
+              "name": "Withdraw instruction prepared successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "withdraw",
+                    "ix"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"params\": {\n    \"all\": false,\n    \"amount\": 3122,\n    \"base_asset\": \"string\",\n    \"create_wsol_ata\": false,\n    \"detect_wsol_ata\": true,\n    \"exclude_fees\": false,\n    \"fund_id\": \"string\",\n    \"is_agent\": false,\n    \"no_balance_checks\": false,\n    \"payer_key\": \"string\",\n    \"strategy_id\": \"string\",\n    \"unwrap_wsol_ata\": false,\n    \"user_key\": \"string\",\n    \"user_token_account\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bed127eb-cc89-4d9b-9245-598eebcbf161",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "withdraw",
+                    "ix"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"params\": {\n    \"all\": false,\n    \"amount\": 3122,\n    \"base_asset\": \"string\",\n    \"create_wsol_ata\": false,\n    \"detect_wsol_ata\": true,\n    \"exclude_fees\": false,\n    \"fund_id\": \"string\",\n    \"is_agent\": false,\n    \"no_balance_checks\": false,\n    \"payer_key\": \"string\",\n    \"strategy_id\": \"string\",\n    \"unwrap_wsol_ata\": false,\n    \"user_key\": \"string\",\n    \"user_token_account\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11dd1151-6160-4c17-9d24-71d40ff97c64",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "withdraw",
+                    "ix"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"params\": {\n    \"all\": false,\n    \"amount\": 3122,\n    \"base_asset\": \"string\",\n    \"create_wsol_ata\": false,\n    \"detect_wsol_ata\": true,\n    \"exclude_fees\": false,\n    \"fund_id\": \"string\",\n    \"is_agent\": false,\n    \"no_balance_checks\": false,\n    \"payer_key\": \"string\",\n    \"strategy_id\": \"string\",\n    \"unwrap_wsol_ata\": false,\n    \"user_key\": \"string\",\n    \"user_token_account\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a081142-91a3-4b2d-be1d-5963cf6bce69",
+          "name": "process for withdraw with transaction",
+          "request": {
+            "name": "process for withdraw with transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "withdraw",
+                "tx"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"params\": {\n    \"all\": \"<boolean,null>\",\n    \"amount\": \"<integer,null-int64>\",\n    \"base_asset\": \"<string,null>\",\n    \"create_wsol_ata\": \"<boolean,null>\",\n    \"detect_wsol_ata\": \"<boolean,null>\",\n    \"exclude_fees\": \"<boolean,null>\",\n    \"fund_id\": \"<string,null>\",\n    \"is_agent\": \"<boolean,null>\",\n    \"no_balance_checks\": \"<boolean,null>\",\n    \"payer_key\": \"<string,null>\",\n    \"strategy_id\": \"<string,null>\",\n    \"unwrap_wsol_ata\": \"<boolean,null>\",\n    \"user_key\": \"<string,null>\",\n    \"user_token_account\": \"<string,null>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0ee5299a-6aaf-48ae-b9f8-f0fec90098cc",
+              "name": "Withdraw transaction prepared successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "withdraw",
+                    "tx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"params\": {\n    \"all\": false,\n    \"amount\": 3122,\n    \"base_asset\": \"string\",\n    \"create_wsol_ata\": false,\n    \"detect_wsol_ata\": true,\n    \"exclude_fees\": false,\n    \"fund_id\": \"string\",\n    \"is_agent\": false,\n    \"no_balance_checks\": false,\n    \"payer_key\": \"string\",\n    \"strategy_id\": \"string\",\n    \"unwrap_wsol_ata\": false,\n    \"user_key\": \"string\",\n    \"user_token_account\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "56bba48f-587d-43d7-bbe5-a03949eaab86",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "withdraw",
+                    "tx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"params\": {\n    \"all\": false,\n    \"amount\": 3122,\n    \"base_asset\": \"string\",\n    \"create_wsol_ata\": false,\n    \"detect_wsol_ata\": true,\n    \"exclude_fees\": false,\n    \"fund_id\": \"string\",\n    \"is_agent\": false,\n    \"no_balance_checks\": false,\n    \"payer_key\": \"string\",\n    \"strategy_id\": \"string\",\n    \"unwrap_wsol_ata\": false,\n    \"user_key\": \"string\",\n    \"user_token_account\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a728c69e-6120-4343-ad6d-6a62a8b8ae73",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "withdraw",
+                    "tx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"params\": {\n    \"all\": false,\n    \"amount\": 3122,\n    \"base_asset\": \"string\",\n    \"create_wsol_ata\": false,\n    \"detect_wsol_ata\": true,\n    \"exclude_fees\": false,\n    \"fund_id\": \"string\",\n    \"is_agent\": false,\n    \"no_balance_checks\": false,\n    \"payer_key\": \"string\",\n    \"strategy_id\": \"string\",\n    \"unwrap_wsol_ata\": false,\n    \"user_key\": \"string\",\n    \"user_token_account\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "505dd135-df6f-464e-9e31-3a67fb7423c1",
+    "name": "Breeze Admin Withdrawals API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A comprehensive API for managing yield farming operations, funds, and user authentication\n\nContact Support:\n Name: Breeze Team\n Email: support@breeze.com",
+      "type": "text/plain"
+    }
+  }
+}

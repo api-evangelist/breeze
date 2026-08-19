@@ -33,7 +33,17 @@ alternative_access:
   description: Pay-per-call HTTP API with automatic USDC micropayments via Faremeter — no API key needed.
   host: https://x402.breeze.baby
 - name: mpp
-  description: Model Payment Protocol — pay-per-call access with on-chain Solana USDC payments, no API key.
+  description: Model Payment Protocol — pay-per-call access with on-chain Solana USDC payments, no API
+    key.
 - name: skill
   description: Drop-in SKILL.md (breeze-x402-payment-api) for agent frameworks, no server required.
   file: skills/breeze-x402-payment-api-SKILL.md
+deployment:
+  mode: none
+  endpoint: https://agent.breeze.baby
+  verified: probed
+  probe: dead
+  note: the endpoint this manifest claimed did not answer; recorded as none rather than deleted so the
+    claim stays auditable
+  checked: '2026-08-12'
+  source: catalog MCP census

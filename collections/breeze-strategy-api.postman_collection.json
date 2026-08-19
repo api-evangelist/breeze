@@ -1,0 +1,242 @@
+{
+  "item": [
+    {
+      "id": "477c39f4-01b0-47a8-8df5-f0ac5de6d270",
+      "name": "Strategy",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1b264597-c364-410b-834c-f2e09e2633b5",
+          "name": "get strategy template by tags",
+          "request": {
+            "name": "get strategy template by tags",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "get-strategy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8cb859b2-cca9-475b-87a1-8e657402bd05",
+              "name": "Strategy template requests retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "get-strategy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"apy\": 3369.671832157153,\n    \"created_at\": 4966,\n    \"fee_info\": [\n      {\n        \"fee_bps\": 5672,\n        \"fee_recipient\": \"string\",\n        \"frequency_seconds\": 4692,\n        \"fee_type\": \"string\"\n      },\n      {\n        \"fee_bps\": 9106,\n        \"fee_recipient\": \"string\",\n        \"frequency_seconds\": 7848,\n        \"fee_type\": \"string\"\n      }\n    ],\n    \"funds\": [\n      {\n        \"mint\": \"string\",\n        \"fund_id\": \"string\",\n        \"allocation_percent\": 5452.765039511795\n      },\n      {\n        \"mint\": \"string\",\n        \"fund_id\": \"string\",\n        \"allocation_percent\": 385.76023086253855\n      }\n    ],\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"template_id\": \"string\",\n    \"total_users\": 8025,\n    \"updated_at\": 2354,\n    \"description\": \"string\",\n    \"status\": \"pending\"\n  },\n  {\n    \"apy\": 7789.962593353968,\n    \"created_at\": 3899,\n    \"fee_info\": [\n      {\n        \"fee_bps\": 5016,\n        \"fee_recipient\": \"string\",\n        \"frequency_seconds\": 8759,\n        \"fee_type\": \"string\"\n      },\n      {\n        \"fee_bps\": 8997,\n        \"fee_recipient\": \"string\",\n        \"frequency_seconds\": 1894,\n        \"fee_type\": \"string\"\n      }\n    ],\n    \"funds\": [\n      {\n        \"mint\": \"string\",\n        \"fund_id\": \"string\",\n        \"allocation_percent\": 3685.1840527946765\n      },\n      {\n        \"mint\": \"string\",\n        \"fund_id\": \"string\",\n        \"allocation_percent\": 9285.623353628847\n      }\n    ],\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"template_id\": \"string\",\n    \"total_users\": 4095,\n    \"updated_at\": 8106,\n    \"description\": \"string\",\n    \"status\": \"active\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13038312-e59e-4ad4-88c4-b51f9c7634fd",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "get-strategy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "693329f1-3975-427d-b824-485bbdf864ec",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "get-strategy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c4e0d2bd-02c6-4afc-b59e-22a01617c5e9",
+    "name": "Breeze Admin Strategy API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A comprehensive API for managing yield farming operations, funds, and user authentication\n\nContact Support:\n Name: Breeze Team\n Email: support@breeze.com",
+      "type": "text/plain"
+    }
+  }
+}

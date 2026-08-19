@@ -1,0 +1,3715 @@
+{
+  "item": [
+    {
+      "id": "185eca4a-3518-4f1d-aae5-91e2f17f17df",
+      "name": "Strategies",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "193368d2-364f-4eb2-9587-a1fb3491d8d4",
+          "name": "create new strategy template",
+          "request": {
+            "name": "create new strategy template",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "create-strategy-template"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"visibility_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"assets\": [\n    {\n      \"mint\": \"<string>\",\n      \"yield_sources\": {\n        \"drift_lending\": \"<string,null>\",\n        \"jup_lend\": \"<string,null>\",\n        \"kamino\": \"<string,null>\",\n        \"marginfiv2\": \"<string,null>\"\n      }\n    },\n    {\n      \"mint\": \"<string>\",\n      \"yield_sources\": {\n        \"drift_lending\": \"<string,null>\",\n        \"jup_lend\": \"<string,null>\",\n        \"kamino\": \"<string,null>\",\n        \"marginfiv2\": \"<string,null>\"\n      }\n    }\n  ],\n  \"fees\": [\n    {\n      \"fee_type\": \"<string>\",\n      \"percentage\": \"<double>\",\n      \"recipient\": \"<string>\",\n      \"frequency_seconds\": \"<long>\"\n    },\n    {\n      \"fee_type\": \"<string>\",\n      \"percentage\": \"<double>\",\n      \"recipient\": \"<string>\",\n      \"frequency_seconds\": \"<long>\"\n    }\n  ],\n  \"description\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c1d5bec7-0868-4510-bd36-d4d8b80d1eb5",
+              "name": "Strategy created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "create-strategy-template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"visibility_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"assets\": [\n    {\n      \"mint\": \"string\",\n      \"yield_sources\": {\n        \"drift_lending\": \"string\",\n        \"jup_lend\": \"string\",\n        \"kamino\": \"string\",\n        \"marginfiv2\": \"string\"\n      }\n    },\n    {\n      \"mint\": \"string\",\n      \"yield_sources\": {\n        \"drift_lending\": \"string\",\n        \"jup_lend\": \"string\",\n        \"kamino\": \"string\",\n        \"marginfiv2\": \"string\"\n      }\n    }\n  ],\n  \"fees\": [\n    {\n      \"fee_type\": \"string\",\n      \"percentage\": 9198.249592663384,\n      \"recipient\": \"string\",\n      \"frequency_seconds\": 6531\n    },\n    {\n      \"fee_type\": \"string\",\n      \"percentage\": 2276.458639215795,\n      \"recipient\": \"string\",\n      \"frequency_seconds\": 3580\n    }\n  ],\n  \"description\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"strategy_name\": \"string\",\n  \"template_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af0d3421-e2ea-46e6-88bd-d4c314409f2f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "create-strategy-template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"visibility_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"assets\": [\n    {\n      \"mint\": \"string\",\n      \"yield_sources\": {\n        \"drift_lending\": \"string\",\n        \"jup_lend\": \"string\",\n        \"kamino\": \"string\",\n        \"marginfiv2\": \"string\"\n      }\n    },\n    {\n      \"mint\": \"string\",\n      \"yield_sources\": {\n        \"drift_lending\": \"string\",\n        \"jup_lend\": \"string\",\n        \"kamino\": \"string\",\n        \"marginfiv2\": \"string\"\n      }\n    }\n  ],\n  \"fees\": [\n    {\n      \"fee_type\": \"string\",\n      \"percentage\": 9198.249592663384,\n      \"recipient\": \"string\",\n      \"frequency_seconds\": 6531\n    },\n    {\n      \"fee_type\": \"string\",\n      \"percentage\": 2276.458639215795,\n      \"recipient\": \"string\",\n      \"frequency_seconds\": 3580\n    }\n  ],\n  \"description\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c218bad2-fa63-4f97-9842-1e9fe4ebf1d5",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "create-strategy-template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"visibility_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"assets\": [\n    {\n      \"mint\": \"string\",\n      \"yield_sources\": {\n        \"drift_lending\": \"string\",\n        \"jup_lend\": \"string\",\n        \"kamino\": \"string\",\n        \"marginfiv2\": \"string\"\n      }\n    },\n    {\n      \"mint\": \"string\",\n      \"yield_sources\": {\n        \"drift_lending\": \"string\",\n        \"jup_lend\": \"string\",\n        \"kamino\": \"string\",\n        \"marginfiv2\": \"string\"\n      }\n    }\n  ],\n  \"fees\": [\n    {\n      \"fee_type\": \"string\",\n      \"percentage\": 9198.249592663384,\n      \"recipient\": \"string\",\n      \"frequency_seconds\": 6531\n    },\n    {\n      \"fee_type\": \"string\",\n      \"percentage\": 2276.458639215795,\n      \"recipient\": \"string\",\n      \"frequency_seconds\": 3580\n    }\n  ],\n  \"description\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a15ef5f1-b6a3-4a06-9b11-af05fa19b8db",
+          "name": "create new strategy",
+          "request": {
+            "name": "create new strategy",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "create-strategy",
+                ":organization_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"template_id\": \"<string>\",\n  \"fee_recipient\": \"<string>\",\n  \"fee_percentage\": \"<double>\",\n  \"frequency_seconds\": \"<long>\",\n  \"delegated_withdrawer\": \"<string,null>\",\n  \"description\": \"<string,null>\",\n  \"squads_usage\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f83205ed-936c-4323-82b3-8d427d8eab98",
+              "name": "Fund created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "create-strategy",
+                    ":organization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"template_id\": \"<string>\",\n  \"fee_recipient\": \"<string>\",\n  \"fee_percentage\": \"<double>\",\n  \"frequency_seconds\": \"<long>\",\n  \"delegated_withdrawer\": \"<string,null>\",\n  \"description\": \"<string,null>\",\n  \"squads_usage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"task_id_for_creating_all_funds\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"strategy_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f56a365e-eccd-401f-903a-54e54e27d203",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "create-strategy",
+                    ":organization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"template_id\": \"<string>\",\n  \"fee_recipient\": \"<string>\",\n  \"fee_percentage\": \"<double>\",\n  \"frequency_seconds\": \"<long>\",\n  \"delegated_withdrawer\": \"<string,null>\",\n  \"description\": \"<string,null>\",\n  \"squads_usage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c2e2949-a452-4cce-a9ba-d906bb12b729",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "create-strategy",
+                    ":organization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"template_id\": \"<string>\",\n  \"fee_recipient\": \"<string>\",\n  \"fee_percentage\": \"<double>\",\n  \"frequency_seconds\": \"<long>\",\n  \"delegated_withdrawer\": \"<string,null>\",\n  \"description\": \"<string,null>\",\n  \"squads_usage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fdc59f02-e7e3-4b2b-8aca-67ab853e2851",
+          "name": "get organization strategies",
+          "request": {
+            "name": "get organization strategies",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "strategies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dc9af28e-b9da-4d7f-8956-1dcaaecd6b11",
+              "name": "Strategies with list metrics retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"apy\": 7140.824440232147,\n    \"created_at\": 3047,\n    \"fee_info\": [\n      {\n        \"fee_bps\": 9750,\n        \"fee_recipient\": \"string\",\n        \"frequency_seconds\": 943,\n        \"fee_type\": \"string\"\n      },\n      {\n        \"fee_bps\": 3793,\n        \"fee_recipient\": \"string\",\n        \"frequency_seconds\": 5299,\n        \"fee_type\": \"string\"\n      }\n    ],\n    \"fees_collected_usd\": 4993.644049538972,\n    \"funds\": [\n      {\n        \"mint\": \"string\",\n        \"fund_id\": \"string\",\n        \"allocation_percent\": 9683.8733937095\n      },\n      {\n        \"mint\": \"string\",\n        \"fund_id\": \"string\",\n        \"allocation_percent\": 7692.949903421448\n      }\n    ],\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"template_id\": \"string\",\n    \"total_users\": 6679,\n    \"tvl_usd\": 3921.2151109090532,\n    \"updated_at\": 7036,\n    \"description\": \"string\",\n    \"status\": \"active\"\n  },\n  {\n    \"apy\": 5906.294361232806,\n    \"created_at\": 50,\n    \"fee_info\": [\n      {\n        \"fee_bps\": 9182,\n        \"fee_recipient\": \"string\",\n        \"frequency_seconds\": 9248,\n        \"fee_type\": \"string\"\n      },\n      {\n        \"fee_bps\": 6311,\n        \"fee_recipient\": \"string\",\n        \"frequency_seconds\": 9264,\n        \"fee_type\": \"string\"\n      }\n    ],\n    \"fees_collected_usd\": 8629.78404064836,\n    \"funds\": [\n      {\n        \"mint\": \"string\",\n        \"fund_id\": \"string\",\n        \"allocation_percent\": 9729.743851885609\n      },\n      {\n        \"mint\": \"string\",\n        \"fund_id\": \"string\",\n        \"allocation_percent\": 5569.658795243065\n      }\n    ],\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"template_id\": \"string\",\n    \"total_users\": 7722,\n    \"tvl_usd\": 9339.199000172166,\n    \"updated_at\": 2479,\n    \"description\": \"string\",\n    \"status\": \"active\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d2d5e68-0ce3-4ea9-8457-ceb7f8f9798f",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac2efacd-2f47-4a7f-a94a-8169bfd06b3d",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1afe289-a514-47b2-a20e-efcab3b89d93",
+          "name": "get strategies",
+          "request": {
+            "name": "get strategies",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                ":organization_id",
+                "strategies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "21cbf92e-820c-4c46-b353-6350c53e4c6b",
+              "name": "Strategies with metrics retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    ":organization_id",
+                    "strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"apy\": 5279.24147911182,\n    \"created_at\": 3442,\n    \"fee_info\": [\n      {\n        \"fee_bps\": 5966,\n        \"fee_recipient\": \"string\",\n        \"frequency_seconds\": 6464,\n        \"fee_type\": \"string\"\n      },\n      {\n        \"fee_bps\": 1425,\n        \"fee_recipient\": \"string\",\n        \"frequency_seconds\": 7185,\n        \"fee_type\": \"string\"\n      }\n    ],\n    \"funds\": [\n      {\n        \"mint\": \"string\",\n        \"fund_id\": \"string\",\n        \"allocation_percent\": 2928.340351926839\n      },\n      {\n        \"mint\": \"string\",\n        \"fund_id\": \"string\",\n        \"allocation_percent\": 5373.476645568348\n      }\n    ],\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"template_id\": \"string\",\n    \"total_users\": 3756,\n    \"updated_at\": 1773,\n    \"description\": \"string\",\n    \"status\": \"failed\"\n  },\n  {\n    \"apy\": 5448.996521893563,\n    \"created_at\": 3617,\n    \"fee_info\": [\n      {\n        \"fee_bps\": 7901,\n        \"fee_recipient\": \"string\",\n        \"frequency_seconds\": 2735,\n        \"fee_type\": \"string\"\n      },\n      {\n        \"fee_bps\": 4656,\n        \"fee_recipient\": \"string\",\n        \"frequency_seconds\": 3528,\n        \"fee_type\": \"string\"\n      }\n    ],\n    \"funds\": [\n      {\n        \"mint\": \"string\",\n        \"fund_id\": \"string\",\n        \"allocation_percent\": 6520.85513138196\n      },\n      {\n        \"mint\": \"string\",\n        \"fund_id\": \"string\",\n        \"allocation_percent\": 169.90067357617988\n      }\n    ],\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"template_id\": \"string\",\n    \"total_users\": 3533,\n    \"updated_at\": 9087,\n    \"description\": \"string\",\n    \"status\": \"pending\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca21721a-f104-4d10-ab57-8d3b9612544e",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    ":organization_id",
+                    "strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e501f14-c678-45d7-b6e7-2ea0c6047e7b",
+              "name": "Organization not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    ":organization_id",
+                    "strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9eb2a654-46d9-47aa-a00c-26e3a6261ff5",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    ":organization_id",
+                    "strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "740d3b71-2044-4580-b8fa-17b9689dfe60",
+          "name": "Get available strategy assets with their yield sources",
+          "request": {
+            "name": "Get available strategy assets with their yield sources",
+            "description": {},
+            "url": {
+              "path": [
+                "strategy-available-assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c45b9f60-41cf-49a8-a77e-226c9b90ed82",
+              "name": "Available strategy assets with yield sources retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy-available-assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assets\": [\n    {\n      \"token_info\": {\n        \"address\": \"string\",\n        \"symbol\": \"string\",\n        \"name\": \"string\",\n        \"decimals\": 4601,\n        \"logo_uri\": \"string\"\n      },\n      \"yield_sources\": null\n    },\n    {\n      \"token_info\": {\n        \"address\": \"string\",\n        \"symbol\": \"string\",\n        \"name\": \"string\",\n        \"decimals\": 5180,\n        \"logo_uri\": \"string\"\n      },\n      \"yield_sources\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e39461e8-67fa-4f70-911d-2e57a2652b4d",
+              "name": "Global configuration not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy-available-assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "adb81758-4104-4661-b291-62073a4ee58b",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy-available-assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4e0f0ac-fd8d-4373-b758-bec0fe1875e3",
+          "name": "get strategy apy",
+          "request": {
+            "name": "get strategy apy",
+            "description": {},
+            "url": {
+              "path": [
+                "strategy",
+                "apy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "all",
+                  "value": "<boolean>",
+                  "description": "(Required) To calculate combined apy for all the strategy belongs to an org"
+                },
+                {
+                  "disabled": false,
+                  "key": "strategy_id",
+                  "value": "<string>",
+                  "description": "To calculate apy of a single strategy"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e2554f29-d872-4320-a18b-36c7fd6443dd",
+              "name": "Strategy apy retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "apy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "strategy_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8ceff965-3825-41db-b53d-82e1d9a28361",
+              "name": "Strategy not found or no data available",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "apy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "strategy_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "096edaa7-56db-427b-b1ba-00e137638e23",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "apy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "strategy_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b5f18a0-6ed3-426c-9d8b-c1c25c41c70f",
+          "name": "close strategy funds",
+          "request": {
+            "name": "close strategy funds",
+            "description": {},
+            "url": {
+              "path": [
+                "strategy",
+                "close-funds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"strategy_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "65652788-9263-408a-b8e9-7acdd2063fc3",
+              "name": "Close fund jobs submitted successfully for all funds in strategy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "close-funds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"strategy_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d382143e-c281-40ea-9b81-ffa94646e653",
+              "name": "Invalid strategy id",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "close-funds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"strategy_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24a129e8-c398-4cc2-8f35-b0d49c69cbcc",
+              "name": "Organization access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "close-funds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"strategy_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3111dae4-e2c9-4ae8-a9cf-a38cbdd37a9f",
+              "name": "Strategy not found or access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "close-funds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"strategy_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ff4fc39-92b6-480f-9b86-a88e388c2e8c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "close-funds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"strategy_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "293e5409-0849-4640-babd-e1705b3dc34e",
+          "name": "get strategy metrics",
+          "request": {
+            "name": "get strategy metrics",
+            "description": {},
+            "url": {
+              "path": [
+                "strategy",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "time_frame",
+                  "value": "<string>",
+                  "description": "Simplified time selector: '24h', '7d', '30d', 'all'. Backend derives start/end/aggregation automatically. Takes precedence over legacy params."
+                },
+                {
+                  "disabled": false,
+                  "key": "all",
+                  "value": "<boolean>",
+                  "description": "(Required) To calculate full overview metrics or calculate individual metrics"
+                },
+                {
+                  "disabled": false,
+                  "key": "strategy_id",
+                  "value": "<string>",
+                  "description": "Strategy id for getting single strategy metrics"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_timestamp",
+                  "value": "<string>",
+                  "description": "Legacy: ISO 8601 start. Use time_frame instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_timestamp",
+                  "value": "<string>",
+                  "description": "Legacy: ISO 8601 end. Use time_frame instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "aggregation_window",
+                  "value": "<string>",
+                  "description": "Legacy: aggregation window. Use time_frame instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "all_time",
+                  "value": "<boolean>",
+                  "description": "Legacy: fetch full history. Use time_frame='all' instead."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4b838842-6e4b-4f6e-864a-ac58f76e016a",
+              "name": "Strategy metrics retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_frame",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "strategy_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation_window",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "all_time",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"start\": \"string\",\n  \"end\": \"string\",\n  \"aggregation_window\": \"string\",\n  \"strategy_id\": [\n    \"string\",\n    \"string\"\n  ],\n  \"data\": [\n    {\n      \"time\": \"string\",\n      \"allocated_to_yield_usd\": 1139.1996660351833,\n      \"current_value_usd\": 5211.825764941778,\n      \"number_of_snapshots\": 9104.26186806853,\n      \"total_deposits_usd\": 3357.9326617590323,\n      \"unallocated_amount_usd\": 1056.7687115731794,\n      \"organization_cumulative_earnings\": 9362.614502747127,\n      \"deposits_usd\": 4357.547848281035,\n      \"withdrawals_usd\": 5939.523147516311,\n      \"current_apy\": 2786.0113030640587,\n      \"risk_level\": 822.2420670891928\n    },\n    {\n      \"time\": \"string\",\n      \"allocated_to_yield_usd\": 4467.601408311036,\n      \"current_value_usd\": 6362.636308171948,\n      \"number_of_snapshots\": 882.2538224686283,\n      \"total_deposits_usd\": 6981.064411206433,\n      \"unallocated_amount_usd\": 6861.232974470626,\n      \"organization_cumulative_earnings\": 7549.549195171281,\n      \"deposits_usd\": 4818.114562545361,\n      \"withdrawals_usd\": 645.3691898035296,\n      \"current_apy\": 5214.950687868572,\n      \"risk_level\": 2019.1268872170588\n    }\n  ],\n  \"combined_asset_value_over_time\": [\n    {\n      \"time\": \"string\",\n      \"assets\": {\n        \"key_0\": 6985.533006289137,\n        \"key_1\": 3063.149693953028\n      }\n    },\n    {\n      \"time\": \"string\",\n      \"assets\": {\n        \"key_0\": 719.4485820595942,\n        \"key_1\": 1753.8299748894083,\n        \"key_2\": 3362.112301918946\n      }\n    }\n  ],\n  \"per_asset_value_over_time\": {\n    \"key_0\": [\n      {\n        \"time\": \"string\",\n        \"asset\": \"string\",\n        \"usd_value\": 5867.230170315368,\n        \"value_in_base_asset\": 3593.0759709001536,\n        \"fund_id\": \"string\"\n      },\n      {\n        \"time\": \"string\",\n        \"asset\": \"string\",\n        \"usd_value\": 7755.173382097582,\n        \"value_in_base_asset\": 6157.975874961134,\n        \"fund_id\": null\n      }\n    ]\n  },\n  \"fee_distribution_metrics\": [\n    {\n      \"time\": \"string\",\n      \"total_amount_distributed\": 8550.391440461783\n    },\n    {\n      \"time\": \"string\",\n      \"total_amount_distributed\": 9273.735034076726\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc1b5a24-d5e2-4df5-856a-0d487c91eb7c",
+              "name": "Invalid time range",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_frame",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "strategy_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation_window",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "all_time",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9ae6db9-c6f6-479e-b426-2708b02d9f9a",
+              "name": "Fund not found or no data available",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_frame",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "strategy_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation_window",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "all_time",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78eaf36e-4e54-4c4d-afde-f7d9be258c70",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_frame",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "strategy_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation_window",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "all_time",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43d6e1b5-311f-424b-9525-e9601c8d7c3f",
+          "name": "Returns current aggregate metrics (TVL, deposits, fees, yield, per-protocol breakdowns)\nfor all or a single strategy belonging to the authenticated organization.",
+          "request": {
+            "name": "Returns current aggregate metrics (TVL, deposits, fees, yield, per-protocol breakdowns)\nfor all or a single strategy belonging to the authenticated organization.",
+            "description": {
+              "content": "All monetary values are returned in USD. Fee amounts are converted from raw token units\nusing per-fund decimals and current asset prices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "strategy",
+                "metrics",
+                "current-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "all",
+                  "value": "<boolean>",
+                  "description": "(Required) To get combied current data for all the strategy that belongs to an org"
+                },
+                {
+                  "disabled": false,
+                  "key": "strategy_id",
+                  "value": "<string>",
+                  "description": "Strategy id for getting current data of an individual strategy"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "36940c9d-d6bc-4b58-bee1-7a8722200eb0",
+              "name": "Strategy current data retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "metrics",
+                    "current-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "strategy_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_deposit\": 4696.469506986807,\n  \"total_strategy\": 1694,\n  \"tvl\": 7262.239730401523,\n  \"yield_earnings\": 1919.644221385335,\n  \"strategy_user_count\": 2808,\n  \"total_deposits_in_karmino\": 8771.573510328157,\n  \"total_deposits_in_drift_lending\": 335.2723662492829,\n  \"total_deposits_in_marginfi\": 2843.1354859166404,\n  \"total_deposits_in_jup_lend\": 2374.6539582384485,\n  \"total_earnings_in_fees\": 8130.922002314619\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70792804-f03d-4c03-b054-bff4cd4392f1",
+              "name": "Strategy not found or no data available",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "metrics",
+                    "current-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "strategy_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2264fc1-6e2c-4c34-8309-5ce5e25420cb",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "metrics",
+                    "current-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "strategy_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "611c4c85-7c93-4b4b-9e9d-b3032adfb171",
+          "name": "get strategy latest rebalance history",
+          "request": {
+            "name": "get strategy latest rebalance history",
+            "description": {},
+            "url": {
+              "path": [
+                "strategy",
+                "strategy-latest-top-rebalance-history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "all",
+                  "value": "<boolean>",
+                  "description": "(Required) To include all organization strategies to get the latest top 5 rebalance hisotry of the highest allocated fund per base asset"
+                },
+                {
+                  "disabled": false,
+                  "key": "strategy_id",
+                  "value": "<string>",
+                  "description": "To inlcude only a particular strategy to get the latest top 5 rebalance hisotry of the highest allocated fund per base asset"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "30bd7c55-97af-467e-ad4d-36bef39a73d5",
+              "name": "Strategy latest rebalance history retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "strategy-latest-top-rebalance-history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "strategy_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": [\n    {\n      \"audit_id\": \"string\",\n      \"fund_id\": \"string\",\n      \"timestamp\": 1049,\n      \"rebalance_status\": \"string\",\n      \"fee_amount\": 3074,\n      \"pre_rebalance_current_value\": 6510,\n      \"pre_rebalance_unallocated_amount\": 6114,\n      \"pre_rebalance_current_risk\": 8944,\n      \"pre_rebalance_allocations\": [\n        {\n          \"protocol_id\": \"string\",\n          \"position_id\": \"string\",\n          \"current_value\": 2705,\n          \"yield_source_type\": \"string\",\n          \"protocol\": \"string\"\n        },\n        {\n          \"protocol_id\": \"string\",\n          \"position_id\": \"string\",\n          \"current_value\": 1774,\n          \"yield_source_type\": \"string\",\n          \"protocol\": \"string\"\n        }\n      ],\n      \"target_allocations\": [\n        {\n          \"yield_source_pubkey\": \"string\",\n          \"yield_source_type\": \"string\",\n          \"protocol\": \"string\",\n          \"target_amount\": 8500,\n          \"objective_function_score\": 4030.2069854414644\n        },\n        {\n          \"yield_source_pubkey\": \"string\",\n          \"yield_source_type\": \"string\",\n          \"protocol\": \"string\",\n          \"target_amount\": 6657,\n          \"objective_function_score\": 3110.3951541350116\n        }\n      ],\n      \"rebalance_instructions\": [\n        {\n          \"yield_source_type\": \"string\",\n          \"protocol\": \"string\",\n          \"position_id\": \"string\",\n          \"amount\": 3596\n        },\n        {\n          \"yield_source_type\": \"string\",\n          \"protocol\": \"string\",\n          \"position_id\": \"string\",\n          \"amount\": 3532\n        }\n      ],\n      \"error_message\": \"string\",\n      \"execution_slot\": null,\n      \"transaction_id\": null\n    },\n    {\n      \"audit_id\": \"string\",\n      \"fund_id\": \"string\",\n      \"timestamp\": 2624,\n      \"rebalance_status\": \"string\",\n      \"fee_amount\": 4169,\n      \"pre_rebalance_current_value\": 1652,\n      \"pre_rebalance_unallocated_amount\": 4874,\n      \"pre_rebalance_current_risk\": 9079,\n      \"pre_rebalance_allocations\": [\n        {\n          \"protocol_id\": \"string\",\n          \"position_id\": \"string\",\n          \"current_value\": 8173,\n          \"yield_source_type\": \"string\",\n          \"protocol\": \"string\"\n        },\n        {\n          \"protocol_id\": \"string\",\n          \"position_id\": \"string\",\n          \"current_value\": 2275,\n          \"yield_source_type\": \"string\",\n          \"protocol\": \"string\"\n        }\n      ],\n      \"target_allocations\": [\n        {\n          \"yield_source_pubkey\": \"string\",\n          \"yield_source_type\": \"string\",\n          \"protocol\": \"string\",\n          \"target_amount\": 7973,\n          \"objective_function_score\": 4627.668333980708\n        },\n        {\n          \"yield_source_pubkey\": \"string\",\n          \"yield_source_type\": \"string\",\n          \"protocol\": \"string\",\n          \"target_amount\": 6135,\n          \"objective_function_score\": 7443.456916368811\n        }\n      ],\n      \"rebalance_instructions\": [\n        {\n          \"yield_source_type\": \"string\",\n          \"protocol\": \"string\",\n          \"position_id\": \"string\",\n          \"amount\": 8710\n        },\n        {\n          \"yield_source_type\": \"string\",\n          \"protocol\": \"string\",\n          \"position_id\": \"string\",\n          \"amount\": 7274\n        }\n      ],\n      \"error_message\": \"string\",\n      \"execution_slot\": null,\n      \"transaction_id\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c602a426-5870-40dd-a050-b6a9e2b8166a",
+              "name": "Strategy not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "strategy-latest-top-rebalance-history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "strategy_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12ecae59-fe8d-4afe-9350-c0f02edb8359",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "strategy-latest-top-rebalance-history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "all",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "strategy_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a648cb2-05bc-48c0-aef6-e73a9cfc26d3",
+          "name": "update withdraw delegate authority",
+          "request": {
+            "name": "update withdraw delegate authority",
+            "description": {},
+            "url": {
+              "path": [
+                "strategy",
+                "update-delegated-withdrawer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"strategy_id\": \"<string>\",\n  \"delegated_withdrawer\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "68b02999-ab10-4a3e-97e3-8b7833a59ab1",
+              "name": "Delegated withdrawer update jobs submitted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "update-delegated-withdrawer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"strategy_id\": \"<string>\",\n  \"delegated_withdrawer\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "53131fd8-73d3-4830-88b6-b58200429a4a",
+              "name": "Invalid strategy or delegated withdrawer pubkey",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "update-delegated-withdrawer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"strategy_id\": \"<string>\",\n  \"delegated_withdrawer\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f028b17-3fff-44ce-92e8-5d4780460fcd",
+              "name": "Organization access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "update-delegated-withdrawer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"strategy_id\": \"<string>\",\n  \"delegated_withdrawer\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cac95173-818e-4e22-82f5-c15d08370b2b",
+              "name": "Strategy not found or access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "update-delegated-withdrawer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"strategy_id\": \"<string>\",\n  \"delegated_withdrawer\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eeba5a93-c042-4f4c-a3fe-f25e4ca5f6ee",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    "update-delegated-withdrawer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"strategy_id\": \"<string>\",\n  \"delegated_withdrawer\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99352174-cc28-489d-9de5-0a5ff5b46375",
+          "name": "get strategy",
+          "request": {
+            "name": "get strategy",
+            "description": {},
+            "url": {
+              "path": [
+                "strategy",
+                ":strategy_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "strategy_id",
+                  "description": "(Required) Strategy identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bd9859f2-c297-4b2a-81b2-6e84ec2a2e7d",
+              "name": "Strategy with detailed metrics retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    ":strategy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "strategy_id",
+                      "description": "(Required) Strategy identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apy\": 4111.003777774768,\n  \"created_at\": 1822,\n  \"fee_info\": [\n    {\n      \"fee_bps\": 3869,\n      \"fee_recipient\": \"string\",\n      \"frequency_seconds\": 7625,\n      \"fee_type\": \"string\"\n    },\n    {\n      \"fee_bps\": 9600,\n      \"fee_recipient\": \"string\",\n      \"frequency_seconds\": 9838,\n      \"fee_type\": \"string\"\n    }\n  ],\n  \"funds\": [\n    {\n      \"mint\": \"string\",\n      \"fund_id\": \"string\",\n      \"allocation_percent\": 8854.585568857892\n    },\n    {\n      \"mint\": \"string\",\n      \"fund_id\": \"string\",\n      \"allocation_percent\": 5193.648578861539\n    }\n  ],\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"org_id\": \"string\",\n  \"protocol_allocations\": [\n    {\n      \"asset\": \"string\",\n      \"usd_value\": 4626.801173936424,\n      \"protocol\": \"string\",\n      \"apy\": 7248.744431932028\n    },\n    {\n      \"asset\": \"string\",\n      \"usd_value\": 2122.7642474116083,\n      \"protocol\": \"string\",\n      \"apy\": 5761.36881688679\n    }\n  ],\n  \"template_id\": \"string\",\n  \"updated_at\": 4825,\n  \"description\": \"string\",\n  \"status\": \"pending\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f3b4ead-3d78-41e4-80b7-7c890a4dbfaa",
+              "name": "Strategy not found or access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    ":strategy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "strategy_id",
+                      "description": "(Required) Strategy identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de3a7354-add1-4121-86a3-7e9d5d0b9be4",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    ":strategy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "strategy_id",
+                      "description": "(Required) Strategy identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b14891b2-cdc0-4945-9c53-4c780bfc67ad",
+          "name": "update strategy",
+          "request": {
+            "name": "update strategy",
+            "description": {},
+            "url": {
+              "path": [
+                "strategy",
+                ":strategy_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "strategy_id",
+                  "description": "(Required) Strategy identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "68c627fe-4cdb-4ab2-bf0d-c149fba6e1bb",
+              "name": "Strategy updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    ":strategy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "strategy_id",
+                      "description": "(Required) Strategy identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"org_id\": \"string\",\n  \"name\": \"string\",\n  \"template_id\": \"string\",\n  \"funds\": [\n    {\n      \"mint\": \"string\",\n      \"fund_id\": \"string\",\n      \"allocation_percent\": 6365.28709259729\n    },\n    {\n      \"mint\": \"string\",\n      \"fund_id\": \"string\",\n      \"allocation_percent\": 1722.7767814824012\n    }\n  ],\n  \"fee_info\": [\n    {\n      \"fee_bps\": 4759,\n      \"fee_recipient\": \"string\",\n      \"frequency_seconds\": 3896,\n      \"fee_type\": \"string\"\n    },\n    {\n      \"fee_bps\": 40,\n      \"fee_recipient\": \"string\",\n      \"frequency_seconds\": 4852,\n      \"fee_type\": \"string\"\n    }\n  ],\n  \"created_at\": 1714,\n  \"updated_at\": 7449,\n  \"description\": \"string\",\n  \"status\": \"failed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5fa0112-ae14-4c7d-af00-b28c14b009e5",
+              "name": "Strategy not found or access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    ":strategy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "strategy_id",
+                      "description": "(Required) Strategy identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50695e4a-bc69-4088-b5c7-dc3526d79abb",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    ":strategy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "strategy_id",
+                      "description": "(Required) Strategy identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c25ec7d2-666d-4dd4-a494-b6ed55cb8719",
+          "name": "get strategy metrics old",
+          "request": {
+            "name": "get strategy metrics old",
+            "description": {},
+            "url": {
+              "path": [
+                "strategy",
+                ":strategy_id",
+                "metrics-old"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_timestamp",
+                  "value": "<string>",
+                  "description": "(Required) Start timestamp for metrics range (ISO 8601 format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_timestamp",
+                  "value": "<string>",
+                  "description": "(Required) End timestamp for metrics range (ISO 8601 format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "aggregation_window",
+                  "value": "<string>",
+                  "description": "Optional aggregation window (e.g., '1h', '1d', '5m') - if not provided, database will choose optimal window"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "strategy_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "76bdd193-25b3-4000-bb39-8689b609b704",
+              "name": "Strategy metrics retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    ":strategy_id",
+                    "metrics-old"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation_window",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "strategy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"start\": \"string\",\n  \"end\": \"string\",\n  \"aggregation_window\": \"string\",\n  \"strategy_id\": \"string\",\n  \"current_data\": {\n    \"current_usd_value\": 8422.236395323955,\n    \"total_users\": 2766,\n    \"apy\": 888.8119357327573,\n    \"net_yield\": 7439.817635069169,\n    \"total_deposits_usd\": 7000.763160108498,\n    \"current_earnings_usd\": 218.8988226938282,\n    \"risk\": 1658.4228954285363,\n    \"protocol_values\": [\n      {\n        \"asset\": \"string\",\n        \"usd_value\": 54.36301918932185,\n        \"protocol\": \"string\",\n        \"apy\": 3321.2503137483227\n      },\n      {\n        \"asset\": \"string\",\n        \"usd_value\": 3343.1438258135713,\n        \"protocol\": \"string\",\n        \"apy\": 7886.550288872497\n      }\n    ],\n    \"average_strategy_rebalance_cadence\": 4662\n  },\n  \"data\": [\n    {\n      \"time\": \"string\",\n      \"usd_value\": 5498.212928726451,\n      \"asset_value_pairs\": [\n        {\n          \"time\": \"string\",\n          \"asset\": \"string\",\n          \"usd_value\": 5658.04968213583,\n          \"value_in_base_asset\": 3452.7797274374516,\n          \"fund_id\": \"string\"\n        },\n        {\n          \"time\": \"string\",\n          \"asset\": \"string\",\n          \"usd_value\": 6560.296450509909,\n          \"value_in_base_asset\": 1637.9850776098892,\n          \"fund_id\": \"string\"\n        }\n      ],\n      \"total_users\": 4458,\n      \"apy\": 3578.407113733747,\n      \"organization_cumulative_earnings\": 6876.134511771168,\n      \"deposits_usd\": 6046.468410022105,\n      \"withdrawals_usd\": 7810.358031900919\n    },\n    {\n      \"time\": \"string\",\n      \"usd_value\": 9428.409474802713,\n      \"asset_value_pairs\": [\n        {\n          \"time\": \"string\",\n          \"asset\": \"string\",\n          \"usd_value\": 7867.042352474973,\n          \"value_in_base_asset\": 1447.998515542247,\n          \"fund_id\": \"string\"\n        },\n        {\n          \"time\": \"string\",\n          \"asset\": \"string\",\n          \"usd_value\": 8160.991741171212,\n          \"value_in_base_asset\": 4821.135299777736,\n          \"fund_id\": \"string\"\n        }\n      ],\n      \"total_users\": 1742,\n      \"apy\": 8274.606784908332,\n      \"organization_cumulative_earnings\": 9776.866625981973,\n      \"deposits_usd\": 8501.07907422015,\n      \"withdrawals_usd\": 2282.989959705428\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4bb95ff-43ac-40a2-b343-84286a74dd1a",
+              "name": "Invalid time range",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    ":strategy_id",
+                    "metrics-old"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation_window",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "strategy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c82afcc-d14f-42d9-897b-720992577381",
+              "name": "Fund not found or no data available",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    ":strategy_id",
+                    "metrics-old"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation_window",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "strategy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc1c9261-2aec-4a5b-a31f-a318b4b85785",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strategy",
+                    ":strategy_id",
+                    "metrics-old"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation_window",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "strategy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0696ff15-7636-48ea-81d8-b40eebb195ea",
+          "name": "get template",
+          "request": {
+            "name": "get template",
+            "description": {},
+            "url": {
+              "path": [
+                "template",
+                ":template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) Strategy template identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "131d5a5e-804d-45a2-a3c7-c945fdca56f7",
+              "name": "Strategy template retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) Strategy template identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"visibility_tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"assets\": [\n    {\n      \"mint\": \"string\",\n      \"yield_sources\": {\n        \"drift_lending\": \"string\",\n        \"jup_lend\": \"string\",\n        \"kamino\": \"string\",\n        \"marginfiv2\": \"string\"\n      }\n    },\n    {\n      \"mint\": \"string\",\n      \"yield_sources\": {\n        \"drift_lending\": \"string\",\n        \"jup_lend\": \"string\",\n        \"kamino\": \"string\",\n        \"marginfiv2\": \"string\"\n      }\n    }\n  ],\n  \"fees\": [\n    {\n      \"fee_type\": \"string\",\n      \"percentage\": 165.4429123832557,\n      \"recipient\": \"string\",\n      \"frequency_seconds\": 3856\n    },\n    {\n      \"fee_type\": \"string\",\n      \"percentage\": 2505.923675863815,\n      \"recipient\": \"string\",\n      \"frequency_seconds\": 3888\n    }\n  ],\n  \"created_at\": 8656,\n  \"updated_at\": 4077,\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e3e17a4-539d-4393-b490-75b8e476a773",
+              "name": "Template not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) Strategy template identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0be0a432-2d47-4e49-ac95-f5a09557bdcb",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) Strategy template identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "89cc1f37-d590-4162-94c0-df6a0746205e",
+    "name": "Breeze Admin Strategies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A comprehensive API for managing yield farming operations, funds, and user authentication\n\nContact Support:\n Name: Breeze Team\n Email: support@breeze.com",
+      "type": "text/plain"
+    }
+  }
+}

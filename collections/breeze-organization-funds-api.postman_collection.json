@@ -1,0 +1,201 @@
+{
+  "item": [
+    {
+      "id": "7c594e67-e876-457e-9d46-9fe84fda6471",
+      "name": "Organization Funds",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c4bad697-2af9-4c5b-80de-d4f837ab508d",
+          "name": "get organization funds",
+          "request": {
+            "name": "get organization funds",
+            "description": {},
+            "url": {
+              "path": [
+                "funds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dbce7adc-6bb2-406a-8030-ff3e56822d7c",
+              "name": "Organization funds retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "funds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"funds\": [\n    {\n      \"fund\": {\n        \"fund_id\": \"string\",\n        \"base_asset_token_mint\": \"string\",\n        \"base_asset_token_decimals\": 6191,\n        \"base_asset_token_account\": \"string\",\n        \"total_deposits\": 5360,\n        \"total_users\": 6681,\n        \"last_value_tracked_at\": 7759,\n        \"total_shares\": 3969,\n        \"share_price\": 9656,\n        \"current_value\": 2167,\n        \"authority\": \"string\",\n        \"updated_at_timestamp\": 45,\n        \"updated_at_slot\": 676,\n        \"risk_max\": 2893,\n        \"risk_aversion_bps\": 3610,\n        \"allocated_to_yield\": 465,\n        \"unallocated_amount\": 2065,\n        \"bump\": 1139,\n        \"token_account_bump\": 1682,\n        \"index_number\": 2342,\n        \"lookup_table\": \"string\",\n        \"has_fees\": true,\n        \"constraints\": [\n          {\n            \"yield_source_target\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"constraint_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 3793\n          },\n          {\n            \"yield_source_target\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"constraint_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 4843\n          }\n        ],\n        \"allocations\": [\n          {\n            \"index\": 5489,\n            \"yield_source_type\": \"string\",\n            \"protocol\": \"string\",\n            \"protocol_id\": \"string\",\n            \"position_id\": \"string\",\n            \"deposit_amount\": 3525,\n            \"deposit_timestamp\": 8326,\n            \"current_value\": 8008,\n            \"time_weighted_value\": 1281\n          },\n          {\n            \"index\": 9244,\n            \"yield_source_type\": \"string\",\n            \"protocol\": \"string\",\n            \"protocol_id\": \"string\",\n            \"position_id\": \"string\",\n            \"deposit_amount\": 5013,\n            \"deposit_timestamp\": 4360,\n            \"current_value\": 6623,\n            \"time_weighted_value\": 5831\n          }\n        ],\n        \"protocol_options\": {\n          \"kamino_reserve\": \"string\",\n          \"marginfi_bank\": \"string\",\n          \"drift_market\": \"string\",\n          \"jup_lend_market\": \"string\",\n          \"jup_lend_reserve\": \"string\"\n        },\n        \"last_rebalance_slot\": 306,\n        \"status\": \"Paused\",\n        \"assigned_org\": null,\n        \"withdraw_authority\": \"string\"\n      },\n      \"assigned_org\": null,\n      \"strategy_name\": \"string\"\n    },\n    {\n      \"fund\": {\n        \"fund_id\": \"string\",\n        \"base_asset_token_mint\": \"string\",\n        \"base_asset_token_decimals\": 2028,\n        \"base_asset_token_account\": \"string\",\n        \"total_deposits\": 9920,\n        \"total_users\": 5766,\n        \"last_value_tracked_at\": 6215,\n        \"total_shares\": 3028,\n        \"share_price\": 2723,\n        \"current_value\": 1554,\n        \"authority\": \"string\",\n        \"updated_at_timestamp\": 3540,\n        \"updated_at_slot\": 2883,\n        \"risk_max\": 6504,\n        \"risk_aversion_bps\": 6204,\n        \"allocated_to_yield\": 4720,\n        \"unallocated_amount\": 366,\n        \"bump\": 8881,\n        \"token_account_bump\": 4948,\n        \"index_number\": 932,\n        \"lookup_table\": \"string\",\n        \"has_fees\": false,\n        \"constraints\": [\n          {\n            \"yield_source_target\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"constraint_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 8919\n          },\n          {\n            \"yield_source_target\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"constraint_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 5157\n          }\n        ],\n        \"allocations\": [\n          {\n            \"index\": 8346,\n            \"yield_source_type\": \"string\",\n            \"protocol\": \"string\",\n            \"protocol_id\": \"string\",\n            \"position_id\": \"string\",\n            \"deposit_amount\": 476,\n            \"deposit_timestamp\": 4427,\n            \"current_value\": 5013,\n            \"time_weighted_value\": 127\n          },\n          {\n            \"index\": 4117,\n            \"yield_source_type\": \"string\",\n            \"protocol\": \"string\",\n            \"protocol_id\": \"string\",\n            \"position_id\": \"string\",\n            \"deposit_amount\": 9845,\n            \"deposit_timestamp\": 4270,\n            \"current_value\": 721,\n            \"time_weighted_value\": 5945\n          }\n        ],\n        \"protocol_options\": {\n          \"kamino_reserve\": \"string\",\n          \"marginfi_bank\": \"string\",\n          \"drift_market\": \"string\",\n          \"jup_lend_market\": \"string\",\n          \"jup_lend_reserve\": \"string\"\n        },\n        \"last_rebalance_slot\": 934,\n        \"status\": \"Live\",\n        \"assigned_org\": null,\n        \"withdraw_authority\": \"string\"\n      },\n      \"assigned_org\": null,\n      \"strategy_name\": \"string\"\n    }\n  ],\n  \"is_admin\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "478586c5-4879-4c53-af9b-0890f98a4a78",
+              "name": "Organization access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "funds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dda3acb8-c9d8-41b5-99f3-8dc7819cfa6e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "funds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ca625a88-2d6b-4d6e-8481-0caf661540dd",
+    "name": "Breeze Admin Organization Funds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A comprehensive API for managing yield farming operations, funds, and user authentication\n\nContact Support:\n Name: Breeze Team\n Email: support@breeze.com",
+      "type": "text/plain"
+    }
+  }
+}

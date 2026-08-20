@@ -40,6 +40,15 @@ tags:
 - DeFi
 - Payments
 - Blockchain
+- AI Agents
+tags_raw:
+- Company
+- Crypto Web3
+- Solana
+- Yield
+- DeFi
+- Payments
+- Blockchain
 - API
 - AI Agents
 apis:
@@ -69,6 +78,8 @@ apis:
   humanURL: https://docs.breeze.baby/breeze-api/breeze-api
   baseURL: https://api.breeze.baby
   tags:
+  - Fund
+  tags_raw:
   - fund
   properties:
   - type: OpenAPI
@@ -89,6 +100,8 @@ apis:
   humanURL: https://docs.breeze.baby/breeze-api/breeze-api
   baseURL: https://api.breeze.baby
   tags:
+  - GLOBAL_CONFIG
+  tags_raw:
   - Global Config
   properties:
   - type: OpenAPI

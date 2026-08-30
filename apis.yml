@@ -90,7 +90,7 @@ apis:
   humanURL: https://docs.breeze.baby/breeze-api/breeze-api
   baseURL: https://api.breeze.baby
   tags:
-  - Fund
+  - fund
   tags_raw:
   - fund
   properties:
@@ -112,7 +112,7 @@ apis:
   humanURL: https://docs.breeze.baby/breeze-api/breeze-api
   baseURL: https://api.breeze.baby
   tags:
-  - GLOBAL_CONFIG
+  - Global Config
   tags_raw:
   - Global Config
   properties:

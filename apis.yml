@@ -103,6 +103,8 @@ apis:
   humanURL: https://docs.breeze.baby/breeze-api/breeze-api
   baseURL: https://api.breeze.baby
   tags:
+  - Fund
+  tags_raw:
   - Funds
   properties:
   - type: OpenAPI

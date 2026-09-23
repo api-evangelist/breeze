@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Breeze Admin Strategy API
+  title: Breeze Strategy API
   description: A comprehensive API for managing yield farming operations, funds, and user authentication
   contact:
     name: Breeze Team
@@ -49,28 +49,26 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - bearer_auth: []
+      summary: Get strategy template by tags
+      x-summary-source: derived
 components:
   schemas:
-    FeeInfoForStrategy:
+    ApiInputForGetStrategyByTags:
       type: object
       required:
-      - fee_bps
-      - fee_recipient
-      - frequency_seconds
-      - fee_type
+      - tags
       properties:
-        fee_bps:
-          type: integer
-          format: int32
-          minimum: 0
-        fee_recipient:
-          type: string
-        fee_type:
-          type: string
-        frequency_seconds:
-          type: integer
-          format: int64
-          minimum: 0
+        tags:
+          type: array
+          items:
+            type: string
+    StrategyInstanceStatus:
+      type: string
+      enum:
+      - active
+      - pending
+      - failed
+      - updating
     Vec:
       type: array
       items:
@@ -92,30 +90,21 @@ components:
               description: Total unique users in the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
               minimum: 0
         description: Strategy with pre-computed metrics for list views (avoids N+1 queries)
-    ErrorResponse:
+    FundRef:
       type: object
       required:
-      - message
+      - mint
+      - fund_id
       properties:
-        message:
+        allocation_percent:
+          type:
+          - number
+          - 'null'
+          format: double
+        fund_id:
           type: string
-          description: Error message description
-    StrategyInstanceStatus:
-      type: string
-      enum:
-      - active
-      - pending
-      - failed
-      - updating
-    ApiInputForGetStrategyByTags:
-      type: object
-      required:
-      - tags
-      properties:
-        tags:
-          type: array
-          items:
-            type: string
+        mint:
+          type: string
     StrategyInstance:
       type: object
       required:
@@ -158,21 +147,34 @@ components:
           type: integer
           format: int64
           minimum: 0
-    FundRef:
+    ErrorResponse:
       type: object
       required:
-      - mint
-      - fund_id
+      - message
       properties:
-        allocation_percent:
-          type:
-          - number
-          - 'null'
-          format: double
-        fund_id:
+        message:
           type: string
-        mint:
+          description: Error message description
+    FeeInfoForStrategy:
+      type: object
+      required:
+      - fee_bps
+      - fee_recipient
+      - frequency_seconds
+      - fee_type
+      properties:
+        fee_bps:
+          type: integer
+          format: int32
+          minimum: 0
+        fee_recipient:
           type: string
+        fee_type:
+          type: string
+        frequency_seconds:
+          type: integer
+          format: int64
+          minimum: 0
   securitySchemes:
     api_key:
       type: apiKey

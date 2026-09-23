@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Breeze Admin fund API
+  title: Breeze Fund API
   description: A comprehensive API for managing yield farming operations, funds, and user authentication
   contact:
     name: Breeze Team
@@ -15,12 +15,12 @@ servers:
 - url: https://api.breeze.com
   description: Production server
 tags:
-- name: fund
+- name: Fund
 paths:
   /organization/stats:
     get:
       tags:
-      - fund
+      - Fund
       operationId: get_organization_stats
       responses:
         '200':
@@ -29,6 +29,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiOrganizationFundStats'
+      summary: Get organization stats
+      x-summary-source: derived
 components:
   schemas:
     ApiTokenPair:

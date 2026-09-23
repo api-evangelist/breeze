@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Breeze Admin Withdrawals API
+  title: Breeze Withdrawals API
   description: A comprehensive API for managing yield farming operations, funds, and user authentication
   contact:
     name: Breeze Team
@@ -46,6 +46,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - api_key: []
+      summary: Process for withdraw with instruction
+      x-summary-source: derived
   /withdraw/tx:
     post:
       tags:
@@ -74,6 +76,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - api_key: []
+      summary: Process for withdraw with transaction
+      x-summary-source: derived
 components:
   schemas:
     InputForWithdraw:
@@ -171,6 +175,13 @@ components:
           type:
           - string
           - 'null'
+    StructuredInputForWithdraw:
+      type: object
+      required:
+      - params
+      properties:
+        params:
+          $ref: '#/components/schemas/InputForWithdraw'
     ErrorResponse:
       type: object
       required:
@@ -179,13 +190,6 @@ components:
         message:
           type: string
           description: Error message description
-    StructuredInputForWithdraw:
-      type: object
-      required:
-      - params
-      properties:
-        params:
-          $ref: '#/components/schemas/InputForWithdraw'
   securitySchemes:
     api_key:
       type: apiKey

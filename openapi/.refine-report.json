@@ -1,30 +1,15 @@
 {
   "provider": "breeze",
   "sources": [
-    "breeze-admin-api-openapi.yml",
-    "breeze-deposits-api-openapi.yml",
-    "breeze-fund-api-openapi.yml",
-    "breeze-funds-api-openapi.yml",
-    "breeze-global-config-api-openapi.yml",
-    "breeze-organization-api-keys-api-openapi.yml",
-    "breeze-organization-api-openapi.yml",
-    "breeze-organization-funds-api-openapi.yml",
-    "breeze-organization-settings-api-openapi.yml",
-    "breeze-selective-yield-sources-api-openapi.yml",
-    "breeze-strategies-api-openapi.yml",
-    "breeze-strategy-api-openapi.yml",
-    "breeze-user-data-api-openapi.yml",
-    "breeze-withdrawals-api-openapi.yml",
-    "breeze-yield-sources-api-openapi.yml"
+    "_original/breeze-openapi-original.json"
   ],
   "outputs": [
     "breeze-admin-api-openapi.yml",
     "breeze-deposits-api-openapi.yml",
-    "breeze-fund-api-openapi.yml",
     "breeze-funds-api-openapi.yml",
     "breeze-global-config-api-openapi.yml",
-    "breeze-organization-api-keys-api-openapi.yml",
     "breeze-organization-api-openapi.yml",
+    "breeze-organization-api-keys-api-openapi.yml",
     "breeze-organization-funds-api-openapi.yml",
     "breeze-organization-settings-api-openapi.yml",
     "breeze-selective-yield-sources-api-openapi.yml",
@@ -32,11 +17,38 @@
     "breeze-strategy-api-openapi.yml",
     "breeze-user-data-api-openapi.yml",
     "breeze-withdrawals-api-openapi.yml",
-    "breeze-yield-sources-api-openapi.yml"
+    "breeze-yield-sources-api-openapi.yml",
+    "breeze-fund-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "breeze-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "breeze-openapi-original.json: declared missing tag: Organization Funds",
+    "breeze-openapi-original.json: declared missing tag: Organization Settings",
+    "breeze-openapi-original.json: declared missing tag: Selective Yield Sources",
+    "breeze-openapi-original.json: declared missing tag: Strategies",
+    "breeze-openapi-original.json: declared missing tag: Strategy",
+    "breeze-openapi-original.json: declared missing tag: fund",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "breeze-admin-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "breeze-deposits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "breeze-fund-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "breeze-funds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "breeze-global-config-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "breeze-organization-api-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "breeze-organization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "breeze-organization-funds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "breeze-organization-settings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "breeze-selective-yield-sources-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "breeze-strategies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "breeze-strategy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "breeze-user-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "breeze-withdrawals-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "breeze-yield-sources-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

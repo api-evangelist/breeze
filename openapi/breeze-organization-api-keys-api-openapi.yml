@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Breeze Admin Organization API Keys API
+  title: Breeze Organization API Keys API
   description: A comprehensive API for managing yield farming operations, funds, and user authentication
   contact:
     name: Breeze Team
@@ -38,6 +38,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - bearer_auth: []
+      summary: Get organization api keys
+      x-summary-source: derived
     post:
       tags:
       - Organization API Keys
@@ -69,6 +71,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - bearer_auth: []
+      summary: Create organization api key
+      x-summary-source: derived
   /organization/api-keys/{api_key_id}:
     put:
       tags:
@@ -114,6 +118,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - bearer_auth: []
+      summary: Update organization api key
+      x-summary-source: derived
     delete:
       tags:
       - Organization API Keys
@@ -148,8 +154,67 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - bearer_auth: []
+      summary: Delete organization api key
+      x-summary-source: derived
 components:
   schemas:
+    PortalCreateApiKeyRequest:
+      type: object
+      properties:
+        expires_at:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Expiration timestamp (optional)
+          minimum: 0
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name/description for the API key
+        scopes:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Permissions or scopes for the API key
+    PortalUpdateApiKeyRequest:
+      type: object
+      properties:
+        active:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the API key is active
+        expires_at:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Expiration timestamp (optional)
+          minimum: 0
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name/description for the API key
+    ApiKeyListResponse:
+      type: object
+      required:
+      - api_keys
+      - total
+      properties:
+        api_keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiKey'
+          description: List of API keys for the organization
+        total:
+          type: integer
+          description: Total count of API keys
+          minimum: 0
     ApiKeyCreatedResponse:
       type: object
       required:
@@ -209,43 +274,6 @@ components:
           items:
             type: string
           description: Permissions or scopes for the API key
-    PortalCreateApiKeyRequest:
-      type: object
-      properties:
-        expires_at:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: Expiration timestamp (optional)
-          minimum: 0
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name/description for the API key
-        scopes:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Permissions or scopes for the API key
-    ApiKeyListResponse:
-      type: object
-      required:
-      - api_keys
-      - total
-      properties:
-        api_keys:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiKey'
-          description: List of API keys for the organization
-        total:
-          type: integer
-          description: Total count of API keys
-          minimum: 0
     ErrorResponse:
       type: object
       required:
@@ -254,26 +282,6 @@ components:
         message:
           type: string
           description: Error message description
-    PortalUpdateApiKeyRequest:
-      type: object
-      properties:
-        active:
-          type:
-          - boolean
-          - 'null'
-          description: Whether the API key is active
-        expires_at:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: Expiration timestamp (optional)
-          minimum: 0
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name/description for the API key
   securitySchemes:
     api_key:
       type: apiKey

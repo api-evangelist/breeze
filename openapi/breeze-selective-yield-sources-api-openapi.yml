@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Breeze Admin Selective Yield Sources API
+  title: Breeze Selective Yield Sources API
   description: A comprehensive API for managing yield farming operations, funds, and user authentication
   contact:
     name: Breeze Team
@@ -45,8 +45,17 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - bearer_auth: []
+      summary: Get selective yield sources
+      x-summary-source: derived
 components:
   schemas:
+    ApiInputToGetSelectiveYieldSources:
+      type: object
+      required:
+      - mint
+      properties:
+        mint:
+          type: string
     ErrorResponse:
       type: object
       required:
@@ -55,13 +64,6 @@ components:
         message:
           type: string
           description: Error message description
-    ApiInputToGetSelectiveYieldSources:
-      type: object
-      required:
-      - mint
-      properties:
-        mint:
-          type: string
   securitySchemes:
     api_key:
       type: apiKey

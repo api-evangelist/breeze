@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Breeze Admin Organization Funds API
+  title: Breeze Organization Funds API
   description: A comprehensive API for managing yield farming operations, funds, and user authentication
   contact:
     name: Breeze Team
@@ -43,19 +43,10 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - bearer_auth: []
+      summary: Get organization funds
+      x-summary-source: derived
 components:
   schemas:
-    ApiLendFundStatus:
-      type: string
-      enum:
-      - Live
-      - Paused
-      - WithdrawOnly
-    ApiConstraintType:
-      type: string
-      enum:
-      - MaxPercentage
-      - MaxBaseAssetAmount
     ApiYieldSourceTarget:
       type: object
       required:
@@ -66,21 +57,32 @@ components:
           type: string
         yield_source_type:
           type: string
-    ApiFundConstraint:
+    ApiConstraintType:
+      type: string
+      enum:
+      - MaxPercentage
+      - MaxBaseAssetAmount
+    ApiLendFundStatus:
+      type: string
+      enum:
+      - Live
+      - Paused
+      - WithdrawOnly
+    ApiFundWithStrategyInfo:
       type: object
       required:
-      - yield_source_target
-      - constraint_type
-      - value
+      - fund
       properties:
-        constraint_type:
-          $ref: '#/components/schemas/ApiConstraintType'
-        value:
-          type: integer
-          format: int64
-          minimum: 0
-        yield_source_target:
-          $ref: '#/components/schemas/ApiYieldSourceTarget'
+        assigned_org:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApiFundOrganization'
+        fund:
+          $ref: '#/components/schemas/ApiFund'
+        strategy_name:
+          type:
+          - string
+          - 'null'
     ApiProtocolOptions:
       type: object
       required:
@@ -100,53 +102,21 @@ components:
           type: string
         marginfi_bank:
           type: string
-    ApiYieldAllocation:
+    ApiFundConstraint:
       type: object
       required:
-      - index
-      - yield_source_type
-      - protocol
-      - protocol_id
-      - position_id
-      - deposit_amount
-      - deposit_timestamp
-      - current_value
-      - time_weighted_value
+      - yield_source_target
+      - constraint_type
+      - value
       properties:
-        current_value:
+        constraint_type:
+          $ref: '#/components/schemas/ApiConstraintType'
+        value:
           type: integer
           format: int64
           minimum: 0
-        deposit_amount:
-          type: integer
-          format: int64
-          minimum: 0
-        deposit_timestamp:
-          type: integer
-          format: int64
-        index:
-          type: integer
-          format: int32
-          minimum: 0
-        position_id:
-          type: string
-        protocol:
-          type: string
-        protocol_id:
-          type: string
-        time_weighted_value:
-          type: integer
-          minimum: 0
-        yield_source_type:
-          type: string
-    ErrorResponse:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Error message description
+        yield_source_target:
+          $ref: '#/components/schemas/ApiYieldSourceTarget'
     ApiFund:
       type: object
       required:
@@ -272,6 +242,16 @@ components:
           type:
           - string
           - 'null'
+    ApiFundOrganization:
+      type: object
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
     OrganizationFundsResponse:
       type: object
       description: Organization funds response with admin flag
@@ -285,30 +265,52 @@ components:
             $ref: '#/components/schemas/ApiFundWithStrategyInfo'
         is_admin:
           type: boolean
-    ApiFundWithStrategyInfo:
+    ErrorResponse:
       type: object
       required:
-      - fund
+      - message
       properties:
-        assigned_org:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/ApiFundOrganization'
-        fund:
-          $ref: '#/components/schemas/ApiFund'
-        strategy_name:
-          type:
-          - string
-          - 'null'
-    ApiFundOrganization:
-      type: object
-      required:
-      - id
-      - name
-      properties:
-        id:
+        message:
           type: string
-        name:
+          description: Error message description
+    ApiYieldAllocation:
+      type: object
+      required:
+      - index
+      - yield_source_type
+      - protocol
+      - protocol_id
+      - position_id
+      - deposit_amount
+      - deposit_timestamp
+      - current_value
+      - time_weighted_value
+      properties:
+        current_value:
+          type: integer
+          format: int64
+          minimum: 0
+        deposit_amount:
+          type: integer
+          format: int64
+          minimum: 0
+        deposit_timestamp:
+          type: integer
+          format: int64
+        index:
+          type: integer
+          format: int32
+          minimum: 0
+        position_id:
+          type: string
+        protocol:
+          type: string
+        protocol_id:
+          type: string
+        time_weighted_value:
+          type: integer
+          minimum: 0
+        yield_source_type:
           type: string
   securitySchemes:
     api_key:

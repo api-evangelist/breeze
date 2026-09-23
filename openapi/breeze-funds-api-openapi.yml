@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Breeze Admin Funds API
+  title: Breeze Funds API
   description: A comprehensive API for managing yield farming operations, funds, and user authentication
   contact:
     name: Breeze Team
@@ -51,6 +51,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - bearer_auth: []
+      summary: Get fund
+      x-summary-source: derived
   /fund/{fund_id}/apy:
     get:
       tags:
@@ -84,6 +86,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - bearer_auth: []
+      summary: Get fund apy
+      x-summary-source: derived
   /fund/{fund_id}/fees:
     get:
       tags:
@@ -117,6 +121,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - bearer_auth: []
+      summary: Get fund fees
+      x-summary-source: derived
   /fund/{fund_id}/metrics:
     get:
       tags:
@@ -173,6 +179,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - bearer_auth: []
+      summary: Get fund metrics
+      x-summary-source: derived
   /fund/{fund_id}/rebalance-history:
     get:
       tags:
@@ -227,6 +235,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - bearer_auth: []
+      summary: Get fund rebalance history
+      x-summary-source: derived
   /organization/fund-requests:
     get:
       tags:
@@ -247,6 +257,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - bearer_auth: []
+      summary: Get organization request funds
+      x-summary-source: derived
   /organization/fund-resolver:
     post:
       tags:
@@ -273,6 +285,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - bearer_auth: []
+      summary: Fund resolver
+      x-summary-source: derived
   /organization/request-fund:
     post:
       tags:
@@ -299,30 +313,10 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
       - bearer_auth: []
+      summary: Request new fund
+      x-summary-source: derived
 components:
   schemas:
-    f64:
-      type: number
-      format: double
-    ApiProtocolOptions:
-      type: object
-      required:
-      - kamino_reserve
-      - marginfi_bank
-      - drift_market
-      - jup_lend_market
-      - jup_lend_reserve
-      properties:
-        drift_market:
-          type: string
-        jup_lend_market:
-          type: string
-        jup_lend_reserve:
-          type: string
-        kamino_reserve:
-          type: string
-        marginfi_bank:
-          type: string
     ApiYieldSourceTarget:
       type: object
       required:
@@ -333,180 +327,43 @@ components:
           type: string
         yield_source_type:
           type: string
-    Option:
-      oneOf:
-      - type: 'null'
-      - type: object
-        required:
-        - fund_id
-        - fees
-        properties:
-          fees:
-            type: array
-            items:
-              $ref: '#/components/schemas/ApiFundFee'
-          fund_id:
-            type: string
-    ApiFundRequest:
-      type: object
-      required:
-      - id
-      - organization_id
-      - yield_target
-      - risk_aversion
-      - base_assets
-      - fund_type
-      - status
-      properties:
-        base_assets:
-          type: array
-          items:
-            type: string
-        fund_type:
-          $ref: '#/components/schemas/ApiFundType'
-        id:
-          type: string
-        organization_id:
-          type: string
-        risk_aversion:
-          $ref: '#/components/schemas/ApiRiskAversion'
-        status:
-          $ref: '#/components/schemas/ApiRequestStatus'
-        yield_target:
-          type: number
-          format: double
-    ApiInputsForRequestingFund:
-      type: object
-      required:
-      - base_assets
-      - fund_type
-      - yield_target
-      - risk_aversion
-      properties:
-        base_assets:
-          type: array
-          items:
-            type: string
-        fund_type:
-          $ref: '#/components/schemas/ApiFundType'
-        risk_aversion:
-          $ref: '#/components/schemas/ApiRiskAversion'
-        yield_target:
-          type: number
-          format: double
-    ApiFundType:
+    ApiConstraintType:
       type: string
       enum:
-      - LendBorrow
-      - LST
-      - Staking
-      - Mixed
-    ApiYieldSource:
-      type: object
-      required:
-      - pubkey
-      - source
-      - yield_type
-      - current_apy
-      - risk
-      - updated_at_timestamp
-      - base_assets
-      properties:
-        base_assets:
-          type: array
-          items:
-            type: string
-          description: List of supported base assets
-        current_apy:
-          type: number
-          format: double
-          description: Current annual percentage yield
-        pubkey:
-          type: string
-          description: Unique identifier for the yield source
-        risk:
-          type: integer
-          format: int32
-          description: Risk level (0-255, lower is safer)
-          minimum: 0
-        source:
-          type: string
-          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
-        updated_at_timestamp:
-          type: integer
-          format: int64
-          description: Timestamp when the data was last updated
-          minimum: 0
-        yield_type:
-          type: string
-          description: Type of yield source (e.g., "Lending", "TokenStaking", etc.)
-    ApiYieldAllocation:
-      type: object
-      required:
-      - index
-      - yield_source_type
-      - protocol
-      - protocol_id
-      - position_id
-      - deposit_amount
-      - deposit_timestamp
-      - current_value
-      - time_weighted_value
-      properties:
-        current_value:
-          type: integer
-          format: int64
-          minimum: 0
-        deposit_amount:
-          type: integer
-          format: int64
-          minimum: 0
-        deposit_timestamp:
-          type: integer
-          format: int64
-        index:
-          type: integer
-          format: int32
-          minimum: 0
-        position_id:
-          type: string
-        protocol:
-          type: string
-        protocol_id:
-          type: string
-        time_weighted_value:
-          type: integer
-          minimum: 0
-        yield_source_type:
-          type: string
-    ApiRequestStatus:
+      - MaxPercentage
+      - MaxBaseAssetAmount
+    ApiLendFundStatus:
       type: string
       enum:
-      - PENDING
-      - APPROVED
-      - REJECTED
-    ErrorResponse:
+      - Live
+      - Paused
+      - WithdrawOnly
+    ApiFundMetrics:
       type: object
       required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Error message description
-    PaginatedResponse:
-      type: object
-      description: Paginated response wrapper
-      required:
+      - start
+      - end
+      - aggregation_window
+      - fund_id
       - data
-      - meta
       properties:
+        aggregation_window:
+          type: string
+          description: Aggregation window (e.g., "1h", "1d", "5m") representing time between data points
         data:
           type: array
           items:
-            $ref: '#/components/schemas/ProtocolYieldSources'
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-          description: Pagination metadata
+            $ref: '#/components/schemas/ApiFundMetricDataPoint'
+          description: Array of aggregated metric data points
+        end:
+          type: string
+          description: End timestamp of the data range
+        fund_id:
+          type: string
+          description: Fund ID for the metrics
+        start:
+          type: string
+          description: Start timestamp of the data range
     ApiFund:
       type: object
       required:
@@ -632,51 +489,86 @@ components:
           type:
           - string
           - 'null'
-    ProtocolYieldSources:
+    ApiFundOrganization:
       type: object
       required:
-      - protocol
-      - yield_sources
-      - count
+      - id
+      - name
       properties:
-        count:
+        id:
+          type: string
+        name:
+          type: string
+    ApiFundFee:
+      type: object
+      required:
+      - fee_type
+      - fee_bps
+      - recipient
+      properties:
+        fee_bps:
           type: integer
-          description: Number of yield sources in this protocol
+          format: int32
           minimum: 0
-        protocol:
+        fee_type:
           type: string
-          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
-        yield_sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiYieldSource'
-          description: List of yield sources for this protocol
-    ApiFundMetrics:
+        recipient:
+          type: string
+    ApiRequestStatus:
+      type: string
+      enum:
+      - PENDING
+      - APPROVED
+      - REJECTED
+    ApiFundType:
+      type: string
+      enum:
+      - LendBorrow
+      - LST
+      - Staking
+      - Mixed
+    ApiInputsForRequestingFund:
       type: object
       required:
-      - start
-      - end
-      - aggregation_window
-      - fund_id
-      - data
+      - base_assets
+      - fund_type
+      - yield_target
+      - risk_aversion
       properties:
-        aggregation_window:
-          type: string
-          description: Aggregation window (e.g., "1h", "1d", "5m") representing time between data points
-        data:
+        base_assets:
           type: array
           items:
-            $ref: '#/components/schemas/ApiFundMetricDataPoint'
-          description: Array of aggregated metric data points
-        end:
-          type: string
-          description: End timestamp of the data range
-        fund_id:
-          type: string
-          description: Fund ID for the metrics
-        start:
-          type: string
-          description: Start timestamp of the data range
+            type: string
+        fund_type:
+          $ref: '#/components/schemas/ApiFundType'
+        risk_aversion:
+          $ref: '#/components/schemas/ApiRiskAversion'
+        yield_target:
+          type: number
+          format: double
+    Option:
+      oneOf:
+      - type: 'null'
+      - type: object
+        required:
+        - fund_id
+        - fees
+        properties:
+          fees:
+            type: array
+            items:
+              $ref: '#/components/schemas/ApiFundFee'
+          fund_id:
+            type: string
+    ApiFundRequestListResponse:
+      type: object
+      required:
+      - requests
+      properties:
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiFundRequest'
     ApiFundResolverResponse:
       type: object
       required:
@@ -690,26 +582,86 @@ components:
       - LOW
       - MEDIUM
       - HIGH
-    ApiFundRequestListResponse:
+    f64:
+      type: number
+      format: double
+    ApiFundRequest:
       type: object
       required:
-      - requests
+      - id
+      - organization_id
+      - yield_target
+      - risk_aversion
+      - base_assets
+      - fund_type
+      - status
       properties:
-        requests:
+        base_assets:
           type: array
           items:
-            $ref: '#/components/schemas/ApiFundRequest'
-    ApiLendFundStatus:
-      type: string
-      enum:
-      - Live
-      - Paused
-      - WithdrawOnly
-    ApiConstraintType:
-      type: string
-      enum:
-      - MaxPercentage
-      - MaxBaseAssetAmount
+            type: string
+        fund_type:
+          $ref: '#/components/schemas/ApiFundType'
+        id:
+          type: string
+        organization_id:
+          type: string
+        risk_aversion:
+          $ref: '#/components/schemas/ApiRiskAversion'
+        status:
+          $ref: '#/components/schemas/ApiRequestStatus'
+        yield_target:
+          type: number
+          format: double
+    ApiYieldSource:
+      type: object
+      required:
+      - pubkey
+      - source
+      - yield_type
+      - current_apy
+      - risk
+      - updated_at_timestamp
+      - base_assets
+      properties:
+        base_assets:
+          type: array
+          items:
+            type: string
+          description: List of supported base assets
+        current_apy:
+          type: number
+          format: double
+          description: Current annual percentage yield
+        pubkey:
+          type: string
+          description: Unique identifier for the yield source
+        risk:
+          type: integer
+          format: int32
+          description: Risk level (0-255, lower is safer)
+          minimum: 0
+        source:
+          type: string
+          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
+        updated_at_timestamp:
+          type: integer
+          format: int64
+          description: Timestamp when the data was last updated
+          minimum: 0
+        yield_type:
+          type: string
+          description: Type of yield source (e.g., "Lending", "TokenStaking", etc.)
+    ApiInputForFundResolver:
+      type: object
+      required:
+      - strategy_id
+      - base_asset
+      properties:
+        base_asset:
+          type: string
+        strategy_id:
+          type: string
     PaginationMeta:
       type: object
       description: Pagination metadata
@@ -743,30 +695,43 @@ components:
           format: int32
           description: Total number of pages
           minimum: 0
-    ApiFundFee:
+    ProtocolYieldSources:
       type: object
       required:
-      - fee_type
-      - fee_bps
-      - recipient
+      - protocol
+      - yield_sources
+      - count
       properties:
-        fee_bps:
+        count:
           type: integer
-          format: int32
+          description: Number of yield sources in this protocol
           minimum: 0
-        fee_type:
+        protocol:
           type: string
-        recipient:
-          type: string
-    ApiInputForFundResolver:
+          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
+        yield_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiYieldSource'
+          description: List of yield sources for this protocol
+    ApiProtocolOptions:
       type: object
       required:
-      - strategy_id
-      - base_asset
+      - kamino_reserve
+      - marginfi_bank
+      - drift_market
+      - jup_lend_market
+      - jup_lend_reserve
       properties:
-        base_asset:
+        drift_market:
           type: string
-        strategy_id:
+        jup_lend_market:
+          type: string
+        jup_lend_reserve:
+          type: string
+        kamino_reserve:
+          type: string
+        marginfi_bank:
           type: string
     ApiFundConstraint:
       type: object
@@ -841,15 +806,66 @@ components:
           type: integer
           format: int64
           minimum: 0
-    ApiFundOrganization:
+    PaginatedResponse:
+      type: object
+      description: Paginated response wrapper
+      required:
+      - data
+      - meta
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProtocolYieldSources'
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+          description: Pagination metadata
+    ErrorResponse:
       type: object
       required:
-      - id
-      - name
+      - message
       properties:
-        id:
+        message:
           type: string
-        name:
+          description: Error message description
+    ApiYieldAllocation:
+      type: object
+      required:
+      - index
+      - yield_source_type
+      - protocol
+      - protocol_id
+      - position_id
+      - deposit_amount
+      - deposit_timestamp
+      - current_value
+      - time_weighted_value
+      properties:
+        current_value:
+          type: integer
+          format: int64
+          minimum: 0
+        deposit_amount:
+          type: integer
+          format: int64
+          minimum: 0
+        deposit_timestamp:
+          type: integer
+          format: int64
+        index:
+          type: integer
+          format: int32
+          minimum: 0
+        position_id:
+          type: string
+        protocol:
+          type: string
+        protocol_id:
+          type: string
+        time_weighted_value:
+          type: integer
+          minimum: 0
+        yield_source_type:
           type: string
   securitySchemes:
     api_key:

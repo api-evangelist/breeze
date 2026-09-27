@@ -47,61 +47,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiYieldSourceTarget:
-      type: object
-      required:
-      - yield_source_type
-      - protocol
-      properties:
-        protocol:
-          type: string
-        yield_source_type:
-          type: string
-    ApiConstraintType:
-      type: string
-      enum:
-      - MaxPercentage
-      - MaxBaseAssetAmount
-    ApiLendFundStatus:
-      type: string
-      enum:
-      - Live
-      - Paused
-      - WithdrawOnly
-    ApiFundWithStrategyInfo:
-      type: object
-      required:
-      - fund
-      properties:
-        assigned_org:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/ApiFundOrganization'
-        fund:
-          $ref: '#/components/schemas/ApiFund'
-        strategy_name:
-          type:
-          - string
-          - 'null'
-    ApiProtocolOptions:
-      type: object
-      required:
-      - kamino_reserve
-      - marginfi_bank
-      - drift_market
-      - jup_lend_market
-      - jup_lend_reserve
-      properties:
-        drift_market:
-          type: string
-        jup_lend_market:
-          type: string
-        jup_lend_reserve:
-          type: string
-        kamino_reserve:
-          type: string
-        marginfi_bank:
-          type: string
     ApiFundConstraint:
       type: object
       required:
@@ -117,6 +62,46 @@ components:
           minimum: 0
         yield_source_target:
           $ref: '#/components/schemas/ApiYieldSourceTarget'
+    ApiFundOrganization:
+      type: object
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    ApiFundWithStrategyInfo:
+      type: object
+      required:
+      - fund
+      properties:
+        assigned_org:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApiFundOrganization'
+        fund:
+          $ref: '#/components/schemas/ApiFund'
+        strategy_name:
+          type:
+          - string
+          - 'null'
+    ApiYieldSourceTarget:
+      type: object
+      required:
+      - yield_source_type
+      - protocol
+      properties:
+        protocol:
+          type: string
+        yield_source_type:
+          type: string
+    ApiConstraintType:
+      type: string
+      enum:
+      - MaxPercentage
+      - MaxBaseAssetAmount
     ApiFund:
       type: object
       required:
@@ -242,37 +227,6 @@ components:
           type:
           - string
           - 'null'
-    ApiFundOrganization:
-      type: object
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-    OrganizationFundsResponse:
-      type: object
-      description: Organization funds response with admin flag
-      required:
-      - funds
-      - is_admin
-      properties:
-        funds:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiFundWithStrategyInfo'
-        is_admin:
-          type: boolean
-    ErrorResponse:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Error message description
     ApiYieldAllocation:
       type: object
       required:
@@ -312,6 +266,52 @@ components:
           minimum: 0
         yield_source_type:
           type: string
+    ApiLendFundStatus:
+      type: string
+      enum:
+      - Live
+      - Paused
+      - WithdrawOnly
+    OrganizationFundsResponse:
+      type: object
+      description: Organization funds response with admin flag
+      required:
+      - funds
+      - is_admin
+      properties:
+        funds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiFundWithStrategyInfo'
+        is_admin:
+          type: boolean
+    ApiProtocolOptions:
+      type: object
+      required:
+      - kamino_reserve
+      - marginfi_bank
+      - drift_market
+      - jup_lend_market
+      - jup_lend_reserve
+      properties:
+        drift_market:
+          type: string
+        jup_lend_market:
+          type: string
+        jup_lend_reserve:
+          type: string
+        kamino_reserve:
+          type: string
+        marginfi_bank:
+          type: string
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Error message description
   securitySchemes:
     api_key:
       type: apiKey

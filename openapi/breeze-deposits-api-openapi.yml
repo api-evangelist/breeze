@@ -125,6 +125,13 @@ components:
           type:
           - string
           - 'null'
+    StructuredInputForDeposit:
+      type: object
+      required:
+      - params
+      properties:
+        params:
+          $ref: '#/components/schemas/InputForDeposit'
     ErrorResponse:
       type: object
       required:
@@ -133,13 +140,6 @@ components:
         message:
           type: string
           description: Error message description
-    StructuredInputForDeposit:
-      type: object
-      required:
-      - params
-      properties:
-        params:
-          $ref: '#/components/schemas/InputForDeposit'
   securitySchemes:
     api_key:
       type: apiKey

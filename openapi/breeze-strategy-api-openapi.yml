@@ -53,15 +53,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiInputForGetStrategyByTags:
-      type: object
-      required:
-      - tags
-      properties:
-        tags:
-          type: array
-          items:
-            type: string
     StrategyInstanceStatus:
       type: string
       enum:
@@ -69,6 +60,21 @@ components:
       - pending
       - failed
       - updating
+    FundRef:
+      type: object
+      required:
+      - mint
+      - fund_id
+      properties:
+        allocation_percent:
+          type:
+          - number
+          - 'null'
+          format: double
+        fund_id:
+          type: string
+        mint:
+          type: string
     Vec:
       type: array
       items:
@@ -90,21 +96,6 @@ components:
               description: Total unique users in the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
               minimum: 0
         description: Strategy with pre-computed metrics for list views (avoids N+1 queries)
-    FundRef:
-      type: object
-      required:
-      - mint
-      - fund_id
-      properties:
-        allocation_percent:
-          type:
-          - number
-          - 'null'
-          format: double
-        fund_id:
-          type: string
-        mint:
-          type: string
     StrategyInstance:
       type: object
       required:
@@ -147,14 +138,6 @@ components:
           type: integer
           format: int64
           minimum: 0
-    ErrorResponse:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Error message description
     FeeInfoForStrategy:
       type: object
       required:
@@ -175,6 +158,23 @@ components:
           type: integer
           format: int64
           minimum: 0
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Error message description
+    ApiInputForGetStrategyByTags:
+      type: object
+      required:
+      - tags
+      properties:
+        tags:
+          type: array
+          items:
+            type: string
   securitySchemes:
     api_key:
       type: apiKey

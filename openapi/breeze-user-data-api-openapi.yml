@@ -146,64 +146,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiYieldSource:
-      type: object
-      required:
-      - pubkey
-      - source
-      - yield_type
-      - current_apy
-      - risk
-      - updated_at_timestamp
-      - base_assets
-      properties:
-        base_assets:
-          type: array
-          items:
-            type: string
-          description: List of supported base assets
-        current_apy:
-          type: number
-          format: double
-          description: Current annual percentage yield
-        pubkey:
-          type: string
-          description: Unique identifier for the yield source
-        risk:
-          type: integer
-          format: int32
-          description: Risk level (0-255, lower is safer)
-          minimum: 0
-        source:
-          type: string
-          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
-        updated_at_timestamp:
-          type: integer
-          format: int64
-          description: Timestamp when the data was last updated
-          minimum: 0
-        yield_type:
-          type: string
-          description: Type of yield source (e.g., "Lending", "TokenStaking", etc.)
-    ProtocolYieldSources:
-      type: object
-      required:
-      - protocol
-      - yield_sources
-      - count
-      properties:
-        count:
-          type: integer
-          description: Number of yield sources in this protocol
-          minimum: 0
-        protocol:
-          type: string
-          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
-        yield_sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiYieldSource'
-          description: List of yield sources for this protocol
     PaginationMeta:
       type: object
       description: Pagination metadata
@@ -251,6 +193,64 @@ components:
         meta:
           $ref: '#/components/schemas/PaginationMeta'
           description: Pagination metadata
+    ProtocolYieldSources:
+      type: object
+      required:
+      - protocol
+      - yield_sources
+      - count
+      properties:
+        count:
+          type: integer
+          description: Number of yield sources in this protocol
+          minimum: 0
+        protocol:
+          type: string
+          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
+        yield_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiYieldSource'
+          description: List of yield sources for this protocol
+    ApiYieldSource:
+      type: object
+      required:
+      - pubkey
+      - source
+      - yield_type
+      - current_apy
+      - risk
+      - updated_at_timestamp
+      - base_assets
+      properties:
+        base_assets:
+          type: array
+          items:
+            type: string
+          description: List of supported base assets
+        current_apy:
+          type: number
+          format: double
+          description: Current annual percentage yield
+        pubkey:
+          type: string
+          description: Unique identifier for the yield source
+        risk:
+          type: integer
+          format: int32
+          description: Risk level (0-255, lower is safer)
+          minimum: 0
+        source:
+          type: string
+          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
+        updated_at_timestamp:
+          type: integer
+          format: int64
+          description: Timestamp when the data was last updated
+          minimum: 0
+        yield_type:
+          type: string
+          description: Type of yield source (e.g., "Lending", "TokenStaking", etc.)
     ErrorResponse:
       type: object
       required:

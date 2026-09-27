@@ -86,7 +86,7 @@ apis:
   - type: OpenAPI
     url: openapi/breeze-deposits-api-openapi.yml
 - aid: breeze:breeze-fund-api
-  name: Breeze fund API
+  name: Breeze Fund API
   description: The fund API from Breeze — 1 operation(s) for fund.
   humanURL: https://docs.breeze.baby/breeze-api/breeze-api
   baseURL: https://api.breeze.baby

@@ -110,6 +110,13 @@ components:
           items:
             type: string
           description: Tags for the organization
+    ApiGetRequestBasedOrgTagsInput:
+      type: object
+      properties:
+        organization_id:
+          type:
+          - string
+          - 'null'
     ApiUpdateOrganizationSettingsRequest:
       type: object
       properties:
@@ -141,13 +148,6 @@ components:
         message:
           type: string
           description: Error message description
-    ApiGetRequestBasedOrgTagsInput:
-      type: object
-      properties:
-        organization_id:
-          type:
-          - string
-          - 'null'
   securitySchemes:
     api_key:
       type: apiKey

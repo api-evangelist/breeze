@@ -47,6 +47,41 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiLendFundStatus:
+      type: string
+      enum:
+      - Live
+      - Paused
+      - WithdrawOnly
+    ApiProtocolOptions:
+      type: object
+      required:
+      - kamino_reserve
+      - marginfi_bank
+      - drift_market
+      - jup_lend_market
+      - jup_lend_reserve
+      properties:
+        drift_market:
+          type: string
+        jup_lend_market:
+          type: string
+        jup_lend_reserve:
+          type: string
+        kamino_reserve:
+          type: string
+        marginfi_bank:
+          type: string
+    ApiFundOrganization:
+      type: object
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
     ApiFundConstraint:
       type: object
       required:
@@ -62,16 +97,6 @@ components:
           minimum: 0
         yield_source_target:
           $ref: '#/components/schemas/ApiYieldSourceTarget'
-    ApiFundOrganization:
-      type: object
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: string
-        name:
-          type: string
     ApiFundWithStrategyInfo:
       type: object
       required:
@@ -87,6 +112,11 @@ components:
           type:
           - string
           - 'null'
+    ApiConstraintType:
+      type: string
+      enum:
+      - MaxPercentage
+      - MaxBaseAssetAmount
     ApiYieldSourceTarget:
       type: object
       required:
@@ -97,11 +127,58 @@ components:
           type: string
         yield_source_type:
           type: string
-    ApiConstraintType:
-      type: string
-      enum:
-      - MaxPercentage
-      - MaxBaseAssetAmount
+    OrganizationFundsResponse:
+      type: object
+      description: Organization funds response with admin flag
+      required:
+      - funds
+      - is_admin
+      properties:
+        funds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiFundWithStrategyInfo'
+        is_admin:
+          type: boolean
+    ApiYieldAllocation:
+      type: object
+      required:
+      - index
+      - yield_source_type
+      - protocol
+      - protocol_id
+      - position_id
+      - deposit_amount
+      - deposit_timestamp
+      - current_value
+      - time_weighted_value
+      properties:
+        current_value:
+          type: integer
+          format: int64
+          minimum: 0
+        deposit_amount:
+          type: integer
+          format: int64
+          minimum: 0
+        deposit_timestamp:
+          type: integer
+          format: int64
+        index:
+          type: integer
+          format: int32
+          minimum: 0
+        position_id:
+          type: string
+        protocol:
+          type: string
+        protocol_id:
+          type: string
+        time_weighted_value:
+          type: integer
+          minimum: 0
+        yield_source_type:
+          type: string
     ApiFund:
       type: object
       required:
@@ -227,83 +304,6 @@ components:
           type:
           - string
           - 'null'
-    ApiYieldAllocation:
-      type: object
-      required:
-      - index
-      - yield_source_type
-      - protocol
-      - protocol_id
-      - position_id
-      - deposit_amount
-      - deposit_timestamp
-      - current_value
-      - time_weighted_value
-      properties:
-        current_value:
-          type: integer
-          format: int64
-          minimum: 0
-        deposit_amount:
-          type: integer
-          format: int64
-          minimum: 0
-        deposit_timestamp:
-          type: integer
-          format: int64
-        index:
-          type: integer
-          format: int32
-          minimum: 0
-        position_id:
-          type: string
-        protocol:
-          type: string
-        protocol_id:
-          type: string
-        time_weighted_value:
-          type: integer
-          minimum: 0
-        yield_source_type:
-          type: string
-    ApiLendFundStatus:
-      type: string
-      enum:
-      - Live
-      - Paused
-      - WithdrawOnly
-    OrganizationFundsResponse:
-      type: object
-      description: Organization funds response with admin flag
-      required:
-      - funds
-      - is_admin
-      properties:
-        funds:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiFundWithStrategyInfo'
-        is_admin:
-          type: boolean
-    ApiProtocolOptions:
-      type: object
-      required:
-      - kamino_reserve
-      - marginfi_bank
-      - drift_market
-      - jup_lend_market
-      - jup_lend_reserve
-      properties:
-        drift_market:
-          type: string
-        jup_lend_market:
-          type: string
-        jup_lend_reserve:
-          type: string
-        kamino_reserve:
-          type: string
-        marginfi_bank:
-          type: string
     ErrorResponse:
       type: object
       required:

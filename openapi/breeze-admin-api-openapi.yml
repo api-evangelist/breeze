@@ -1496,416 +1496,8 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiInputForUpdatingStrategy:
+    ApiFundFee:
       type: object
-      required:
-      - template_id
-      - name
-      - visibility_tags
-      - assets
-      - fees
-      properties:
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiTemplateAsset'
-        description:
-          type:
-          - string
-          - 'null'
-        fees:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiStrategyFee'
-        name:
-          type: string
-        template_id:
-          type: string
-        visibility_tags:
-          type: array
-          items:
-            type: string
-    AdminFundAllocation:
-      type: object
-      description: Fund allocation detail for admin
-      required:
-      - index
-      - yield_source_type
-      - protocol
-      - protocol_id
-      - position_id
-      - deposit_amount
-      - current_value
-      - deposit_timestamp
-      properties:
-        apy:
-          type:
-          - number
-          - 'null'
-          format: double
-          description: Current APY for the allocation (from yield source)
-        current_value:
-          type: integer
-          format: int64
-          description: Current value (raw)
-          minimum: 0
-        deposit_amount:
-          type: integer
-          format: int64
-          description: Deposit amount (raw)
-          minimum: 0
-        deposit_timestamp:
-          type: integer
-          format: int64
-          description: Deposit timestamp
-        index:
-          type: integer
-          format: int32
-          description: Allocation index
-          minimum: 0
-        position_id:
-          type: string
-          description: Position ID
-        protocol:
-          type: string
-          description: Protocol name
-        protocol_id:
-          type: string
-          description: Protocol ID (yield source pubkey)
-        yield_source_type:
-          type: string
-          description: Yield source type
-    AdminMetricsResponse:
-      type: object
-      description: 'Admin metrics response - aggregates ALL strategies/funds platform-wide
-
-        Same structure as strategy/metrics but for entire platform'
-      required:
-      - start
-      - end
-      - aggregation_window
-      - total_strategies
-      - total_funds
-      - data
-      - combined_asset_value_over_time
-      - per_asset_value_over_time
-      - fee_distribution_metrics
-      properties:
-        aggregation_window:
-          type: string
-          description: Aggregation window (e.g., "1h", "1d", "5m")
-        combined_asset_value_over_time:
-          type: array
-          items:
-            $ref: '#/components/schemas/CombinedAssetValueOverTime'
-          description: Combined asset value over time (all assets)
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/UniversalStrategyMetrics'
-          description: Array of aggregated metric data points over time
-        end:
-          type: string
-          description: End timestamp of the data range
-        fee_distribution_metrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiDailyFeeDistribution'
-          description: Fee distribution metrics over time
-        per_asset_value_over_time:
-          type: object
-          description: Per-asset value over time
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/AssetValuePair'
-          propertyNames:
-            type: string
-        start:
-          type: string
-          description: Start timestamp of the data range
-        total_funds:
-          type: integer
-          description: Total number of funds included
-          minimum: 0
-        total_strategies:
-          type: integer
-          description: Total number of strategies included
-          minimum: 0
-    ErrorResponse:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Error message description
-    PaginationMeta:
-      type: object
-      description: Pagination metadata
-      required:
-      - page
-      - per_page
-      - total
-      - total_pages
-      - has_more
-      properties:
-        has_more:
-          type: boolean
-          description: Whether there are more pages
-        page:
-          type: integer
-          format: int32
-          description: Current page number
-          minimum: 0
-        per_page:
-          type: integer
-          format: int32
-          description: Number of items per page
-          minimum: 0
-        total:
-          type: integer
-          format: int64
-          description: Total number of items
-          minimum: 0
-        total_pages:
-          type: integer
-          format: int32
-          description: Total number of pages
-          minimum: 0
-    RevokeOrganizationInviteRequest:
-      type: object
-      description: Request body for revoking an organization invitation
-      required:
-      - requesting_user_id
-      properties:
-        requesting_user_id:
-          type: string
-          description: User ID of the person requesting the revocation
-    ApiCreateFundRequest:
-      type: object
-      required:
-      - base_asset_mint
-      - yield_source_ids
-      - strategy_id
-      - risk_aversion_bps
-      - risk_max
-      properties:
-        base_asset_mint:
-          type: string
-          description: Base asset mint address (e.g., USDC mint)
-        constraints:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiFundConstraint'
-          description: Optional constraints for yield strategies
-        fees:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiFundFee'
-          description: Optional fees configuration
-        organization_id:
-          type:
-          - string
-          - 'null'
-          description: Optional organization ID to associate with the fund
-        rebalance_settings:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/ApiCreateFundRebalanceSettings'
-            description: Optional rebalance settings
-        risk_aversion_bps:
-          type: integer
-          format: int64
-          description: Risk aversion in basis points (0-10000)
-          minimum: 0
-        risk_max:
-          type: integer
-          format: int64
-          description: Maximum risk level (0-100)
-          minimum: 0
-        strategy_id:
-          type: string
-          description: Strategy instance ID this fund belongs to
-        yield_source_ids:
-          $ref: '#/components/schemas/ApiYieldSourceIds'
-          description: Yield source IDs - one per protocol, must match base asset mint
-    ApiSelectiveYieldSource:
-      type: object
-      properties:
-        drift_lending:
-          type:
-          - string
-          - 'null'
-        jup_lend:
-          type:
-          - string
-          - 'null'
-        kamino:
-          type:
-          - string
-          - 'null'
-        marginfiv2:
-          type:
-          - string
-          - 'null'
-    AdminFundConstraint:
-      type: object
-      description: Fund constraint detail for admin
-      required:
-      - yield_source_type
-      - protocol
-      - constraint_type
-      - value
-      properties:
-        constraint_type:
-          type: string
-          description: Constraint type ("MaxPercentage" or "MaxBaseAssetAllocation")
-        protocol:
-          type: string
-          description: Protocol name
-        value:
-          type: integer
-          format: int64
-          description: Constraint value
-          minimum: 0
-        yield_source_type:
-          type: string
-          description: Yield source type
-    AdminStrategyFundDetail:
-      type: object
-      description: Fund detail for admin strategy detail
-      required:
-      - fund_id
-      - base_asset_mint
-      - base_asset_decimals
-      - current_value
-      - current_value_usd
-      - deposits
-      - deposits_usd
-      - allocated_to_yield
-      - allocated_to_yield_usd
-      - unallocated
-      - unallocated_usd
-      - user_count
-      - asset_price_usd
-      properties:
-        allocated_to_yield:
-          type: integer
-          description: Allocated to yield in base asset
-          minimum: 0
-        allocated_to_yield_usd:
-          type: number
-          format: double
-          description: Allocated to yield in USD
-        asset_price_usd:
-          type: number
-          format: double
-          description: Current asset price (USD)
-        base_asset_decimals:
-          type: integer
-          format: int32
-          description: Base asset decimals
-          minimum: 0
-        base_asset_mint:
-          type: string
-          description: Base asset token mint
-        current_value:
-          type: integer
-          description: Current value in base asset
-          minimum: 0
-        current_value_usd:
-          type: number
-          format: double
-          description: Current value in USD
-        deposits:
-          type: integer
-          description: Total deposits in base asset
-          minimum: 0
-        deposits_usd:
-          type: number
-          format: double
-          description: Total deposits in USD
-        fund_id:
-          type: string
-          description: Fund ID
-        unallocated:
-          type: integer
-          description: Unallocated in base asset
-          minimum: 0
-        unallocated_usd:
-          type: number
-          format: double
-          description: Unallocated in USD
-        user_count:
-          type: integer
-          format: int64
-          description: User count for this fund
-          minimum: 0
-    ApiUpdateFundConstraintsSettings:
-      type: object
-      description: Constraints and risk settings for updating a fund (without fund_id since it's in the path)
-      properties:
-        constraints:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiFundConstraint'
-          description: Fund constraints (yield strategy limits)
-        risk_aversion_bps:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: Risk aversion in basis points (0-10000)
-          minimum: 0
-        risk_max:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: Maximum risk level (0-100)
-          minimum: 0
-    CreateOrganizationRequest:
-      type: object
-      description: Request body for creating a new organization via Clerk
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Organization name
-        slug:
-          type:
-          - string
-          - 'null'
-          description: Optional slug override
-        tags:
-          type: array
-          items:
-            type: string
-          description: Optional tags to set for the organization
-    RevokeOrganizationInviteResponse:
-      type: object
-      description: Response for revoking an organization invitation
-      required:
-      - invitation
-      - message
-      properties:
-        invitation:
-          $ref: '#/components/schemas/AdminOrganizationInvitation'
-          description: The revoked invitation details
-        message:
-          type: string
-          description: Success message
-    AdminFundFee:
-      type: object
-      description: Fund fee detail for admin
       required:
       - fee_type
       - fee_bps
@@ -1914,1192 +1506,35 @@ components:
         fee_bps:
           type: integer
           format: int32
-          description: Fee in basis points (100 = 1%)
           minimum: 0
         fee_type:
           type: string
-          description: Fee type (e.g., "ProtocolBase", "App", "Performance")
         recipient:
           type: string
-          description: Fee recipient address
-    ApiInputForUpdatingStrategyInstance:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: New name for the strategy (optional)
-    FeeInfoForStrategy:
-      type: object
-      required:
-      - fee_bps
-      - fee_recipient
-      - frequency_seconds
-      - fee_type
-      properties:
-        fee_bps:
-          type: integer
-          format: int32
-          minimum: 0
-        fee_recipient:
-          type: string
-        fee_type:
-          type: string
-        frequency_seconds:
-          type: integer
-          format: int64
-          minimum: 0
-    AdminOrganizationInvitation:
-      type: object
-      description: Organization invitation from Clerk
-      required:
-      - id
-      - email_address
-      - role
-      - status
-      - created_at
-      properties:
-        created_at:
-          type: integer
-          format: int64
-          description: When the invitation was created (Unix timestamp)
-          minimum: 0
-        email_address:
-          type: string
-          description: Email address the invitation was sent to
-        id:
-          type: string
-          description: Invitation ID
-        role:
-          type: string
-          description: Role assigned to the invitation
-        status:
-          type: string
-          description: Status of the invitation (pending, accepted, revoked)
-    AdminOrganizationMember:
-      type: object
-      description: Organization member from Clerk
-      required:
-      - id
-      - user_id
-      - identifier
-      - role
-      - created_at
-      properties:
-        created_at:
-          type: integer
-          format: int64
-          description: When the membership was created (Unix timestamp)
-          minimum: 0
-        first_name:
-          type:
-          - string
-          - 'null'
-          description: User's first name
-        id:
-          type: string
-          description: Membership ID
-        identifier:
-          type: string
-          description: User's email or identifier
-        image_url:
-          type:
-          - string
-          - 'null'
-          description: User's profile image URL
-        last_name:
-          type:
-          - string
-          - 'null'
-          description: User's last name
-        role:
-          type: string
-          description: Role in the organization (e.g., "org:admin", "org:member")
-        user_id:
-          type: string
-          description: User ID
-    ApiFundConstraint:
-      type: object
-      required:
-      - yield_source_target
-      - constraint_type
-      - value
-      properties:
-        constraint_type:
-          $ref: '#/components/schemas/ApiConstraintType'
-        value:
-          type: integer
-          format: int64
-          minimum: 0
-        yield_source_target:
-          $ref: '#/components/schemas/ApiYieldSourceTarget'
-    AdminStrategyCurrentData:
-      type: object
-      description: Current live data for admin strategy detail
-      required:
-      - tvl_usd
-      - total_deposits_usd
-      - yield_earnings_usd
-      - total_users
-      - total_fees_distributed_usd
-      - apy
-      - allocated_usd
-      - unallocated_usd
-      - protocol_allocations
-      properties:
-        allocated_usd:
-          type: number
-          format: double
-          description: Allocated to yield (USD)
-        apy:
-          type: number
-          format: double
-          description: Weighted APY
-        protocol_allocations:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProtocolValues'
-          description: Protocol breakdown
-        total_deposits_usd:
-          type: number
-          format: double
-          description: Total deposits (USD) - from user_fund table
-        total_fees_distributed_usd:
-          type: number
-          format: double
-          description: Total fees distributed (USD)
-        total_users:
-          type: integer
-          format: int64
-          description: Total unique users
-          minimum: 0
-        tvl_usd:
-          type: number
-          format: double
-          description: Total value locked (USD)
-        unallocated_usd:
-          type: number
-          format: double
-          description: Unallocated amount (USD)
-        yield_earnings_usd:
-          type: number
-          format: double
-          description: 'Yield earnings: TVL - deposits'
-    ApiInputForMigratingToStrategy:
-      type: object
-      required:
-      - strategy_name
-      - org_id
-      - breeze_fee_recipient_key
-      - breeze_fee_percentage
-      - fee_payout_frequency_seconds
-      properties:
-        breeze_fee_percentage:
-          type: number
-          format: double
-        breeze_fee_recipient_key:
-          type: string
-        fee_payout_frequency_seconds:
-          type: string
-        org_id:
-          type: string
-        strategy_name:
-          type: string
-    CreateOrganizationInviteResponse:
-      type: object
-      description: Response for creating an organization invitation
-      required:
-      - invitation
-      - message
-      properties:
-        invitation:
-          $ref: '#/components/schemas/AdminOrganizationInvitation'
-          description: The created invitation details
-        message:
-          type: string
-          description: Success message
-    ApiInputForDeletingStrategy:
-      type: object
-      required:
-      - strategy_id
-      properties:
-        strategy_id:
-          type: string
-    ApiRetryJobResult:
-      type: object
-      required:
-      - message
-      - job_id
-      - previous_state
-      - new_state
-      properties:
-        job_id:
-          type: string
-        message:
-          type: string
-        new_state:
-          type: string
-        previous_state:
-          type: string
-    ApiYieldSourceIds:
-      type: object
-      required:
-      - drift
-      - kamino
-      - marginfi
-      - jupiter_lend
-      properties:
-        drift:
-          type: string
-          description: Drift protocol yield source ID (Put the Pubkey::default() if not used)
-        jupiter_lend:
-          type: string
-          description: Jupiter Lend protocol yield source ID (Put the Pubkey::default() if not used)
-        kamino:
-          type: string
-          description: Kamino protocol yield source ID (Put the Pubkey::default() if not used)
-        marginfi:
-          type: string
-          description: MarginFi protocol yield source ID (Put the Pubkey::default() if not used)
-    FundRef:
-      type: object
-      required:
-      - mint
-      - fund_id
-      properties:
-        allocation_percent:
-          type:
-          - number
-          - 'null'
-          format: double
-        fund_id:
-          type: string
-        mint:
-          type: string
-    ApiYieldSourceTarget:
-      type: object
-      required:
-      - yield_source_type
-      - protocol
-      properties:
-        protocol:
-          type: string
-        yield_source_type:
-          type: string
-    AdminAgentAssetMetrics:
-      type: object
-      required:
-      - mint
-      - deposit_interactions
-      - withdraw_interactions
-      - deposits
-      - withdrawals
-      - user_fund_deposits
-      properties:
-        deposit_interactions:
-          type: integer
-          format: int64
-          description: Sum of agent deposit interactions for this asset
-          minimum: 0
-        deposits:
-          type: integer
-          description: Sum of tracked agent deposit amounts for this asset from `agent_data.tokens[*].deposits`
-          minimum: 0
-        mint:
-          type: string
-          description: Asset mint address
-        user_fund_deposits:
-          type: integer
-          description: Sum of `user_fund.deposit` for tracked agents for this asset
-          minimum: 0
-        withdraw_interactions:
-          type: integer
-          format: int64
-          description: Sum of agent withdraw interactions for this asset
-          minimum: 0
-        withdrawals:
-          type: integer
-          description: Sum of tracked agent withdraw amounts for this asset from `agent_data.tokens[*].withdrawals`
-          minimum: 0
-    AdminStrategyDetail:
-      type: object
-      description: Detailed admin strategy response with current live data
-      required:
-      - id
-      - name
-      - template_id
-      - organization_id
-      - organization_name
-      - status
-      - created_at
-      - updated_at
-      - fees
-      - current_data
-      - funds
-      properties:
-        created_at:
-          type: integer
-          format: int64
-          description: Created timestamp
-          minimum: 0
-        current_data:
-          $ref: '#/components/schemas/AdminStrategyCurrentData'
-          description: Current live metrics
-        description:
-          type:
-          - string
-          - 'null'
-          description: Strategy description
-        fees:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdminStrategyFee'
-          description: Fee configuration
-        funds:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdminStrategyFundDetail'
-          description: Fund details
-        id:
-          type: string
-          description: Strategy ID
-        name:
-          type: string
-          description: Strategy name
-        organization_id:
-          type: string
-          description: Organization ID that owns this strategy
-        organization_name:
-          type: string
-          description: Organization name (from Breeze DB or Clerk)
-        status:
-          type: string
-          description: Strategy status
-        template_id:
-          type: string
-          description: Template ID this strategy was created from
-        updated_at:
-          type: integer
-          format: int64
-          description: Updated timestamp
-          minimum: 0
-    AdminOrganizationDetailResponse:
-      type: object
-      description: Response for single organization detail endpoint
-      required:
-      - id
-      - name
-      - created_at
-      - updated_at
-      - tags
-      - strategy_count
-      - fund_count
-      - members
-      - invitations
-      properties:
-        created_at:
-          type: integer
-          format: int64
-          description: When the organization was created (Unix timestamp)
-          minimum: 0
-        fee_distribution_key:
-          type:
-          - string
-          - 'null'
-          description: Fee distribution public key
-        fund_count:
-          type: integer
-          description: Number of funds in this organization
-          minimum: 0
-        id:
-          type: string
-          description: Organization ID
-        invitations:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdminOrganizationInvitation'
-          description: Pending invitations for this organization
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdminOrganizationMember'
-          description: Current members of this organization
-        name:
-          type: string
-          description: Organization name
-        slug:
-          type:
-          - string
-          - 'null'
-          description: Organization slug
-        strategy_count:
-          type: integer
-          description: Number of strategies in this organization
-          minimum: 0
-        tags:
-          type: array
-          items:
-            type: string
-          description: Tags associated with the organization
-        updated_at:
-          type: integer
-          format: int64
-          description: When the organization was last updated (Unix timestamp)
-          minimum: 0
-    ApiTemplateAsset:
-      type: object
-      required:
-      - mint
-      - yield_sources
-      properties:
-        mint:
-          type: string
-        yield_sources:
-          $ref: '#/components/schemas/ApiTemplateYieldSource'
-    ApiUpdateFundDelegatedWithdrawerRequest:
+    ApiFundUpdateRequest:
       type: object
       required:
       - fund_id
+      - constraints
       properties:
-        delegated_withdrawer:
-          type:
-          - string
-          - 'null'
-          description: Set to `null` to clear the delegated withdrawer.
+        constraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiFundConstraint'
         fund_id:
           type: string
-    CreateFundApiResult:
-      type: object
-      required:
-      - status
-      - task_id
-      - message
-      properties:
-        message:
-          type: string
-        status:
-          type: string
-        task_id:
-          type: string
-    AdminYieldSourcesResponse:
-      type: object
-      description: Response type for admin yield sources grouped by asset
-      required:
-      - total_assets
-      - assets
-      properties:
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdminAssetYieldSources'
-          description: Yield sources by asset
-        total_assets:
-          type: integer
-          description: Total number of assets with yield sources configured
-          minimum: 0
-    ApiUpdateFundRebalanceSettings:
-      type: object
-      description: Rebalance settings for updating a fund (without fund_id since it's in the path)
-      properties:
-        min_position_settle_time:
+        risk_aversion_bps:
           type:
           - integer
           - 'null'
           format: int64
-          description: Minimum time to wait before settling a position (in seconds)
           minimum: 0
-        min_rebalance_value:
+        risk_max:
           type:
           - integer
           - 'null'
           format: int64
-          description: Minimum value required to trigger a rebalance
           minimum: 0
-        rebalance_period:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: Rebalance period in seconds
-          minimum: 0
-        unallocated_threshold:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: Unallocated threshold amount
-          minimum: 0
-    Vec:
-      type: array
-      items:
-        allOf:
-        - $ref: '#/components/schemas/StrategyInstance'
-          description: The full strategy instance data
-        - type: object
-          required:
-          - apy
-          - total_users
-          properties:
-            apy:
-              type: number
-              format: double
-              description: Weighted APY of the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
-            total_users:
-              type: integer
-              format: int64
-              description: Total unique users in the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
-              minimum: 0
-        description: Strategy with pre-computed metrics for list views (avoids N+1 queries)
-    ProtocolValues:
-      type: object
-      required:
-      - asset
-      - usd_value
-      - protocol
-      - apy
-      properties:
-        apy:
-          type: number
-          format: double
-        asset:
-          type: string
-        protocol:
-          type: string
-        usd_value:
-          type: number
-          format: double
-    ApiSelectiveYieldSources:
-      type: object
-      required:
-      - mint
-      - yield_sources
-      properties:
-        mint:
-          type: string
-        yield_sources:
-          $ref: '#/components/schemas/ApiSelectiveYieldSource'
-    FundMetricDataPoint:
-      type: object
-      description: Single fund metric data point
-      required:
-      - time
-      - current_value_usd
-      - current_value
-      - allocated_to_yield_usd
-      - allocated_to_yield
-      - unallocated_amount_usd
-      - unallocated_amount
-      - total_deposits
-      - deposits_usd
-      - withdrawals_usd
-      - current_apy
-      - risk_level
-      - share_price
-      - base_asset_price_usd
-      - user_count
-      - allocation_count
-      properties:
-        allocated_to_yield:
-          type: number
-          format: double
-          description: Amount allocated to yield in base asset
-        allocated_to_yield_usd:
-          type: number
-          format: double
-          description: Amount allocated to yield in USD
-        allocation_count:
-          type: number
-          format: double
-          description: Number of allocations
-        base_asset_price_usd:
-          type: number
-          format: double
-          description: Base asset price in USD
-        current_apy:
-          type: number
-          format: double
-          description: Current APY
-        current_value:
-          type: number
-          format: double
-          description: Current value in base asset (with decimals applied)
-        current_value_usd:
-          type: number
-          format: double
-          description: Current value in USD
-        deposits_usd:
-          type: number
-          format: double
-          description: Deposits in USD
-        risk_level:
-          type: number
-          format: double
-          description: Risk level
-        share_price:
-          type: number
-          format: double
-          description: Share price
-        time:
-          type: string
-          description: Timestamp (ISO 8601)
-        total_deposits:
-          type: number
-          format: double
-          description: Total deposits in base asset
-        unallocated_amount:
-          type: number
-          format: double
-          description: Unallocated amount in base asset
-        unallocated_amount_usd:
-          type: number
-          format: double
-          description: Unallocated amount in USD
-        user_count:
-          type: number
-          format: double
-          description: User count
-        withdrawals_usd:
-          type: number
-          format: double
-          description: Withdrawals in USD
-    CombinedAssetValueOverTime:
-      type: object
-      required:
-      - time
-      - assets
-      properties:
-        assets:
-          type: object
-          additionalProperties:
-            type: number
-            format: double
-          propertyNames:
-            type: string
-        time:
-          type: string
-    ApiUpdateOrganizationAdminRequest:
-      type: object
-      description: Request body for updating an organization via admin endpoint
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Optional new name for the organization
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Optional tags to set for the organization (replaces existing tags)
-    UniversalStrategyMetrics:
-      type: object
-      required:
-      - time
-      - allocated_to_yield_usd
-      - current_value_usd
-      - number_of_snapshots
-      - total_deposits_usd
-      - unallocated_amount_usd
-      - organization_cumulative_earnings
-      - deposits_usd
-      - withdrawals_usd
-      - current_apy
-      - risk_level
-      properties:
-        allocated_to_yield_usd:
-          type: number
-          format: double
-        current_apy:
-          type: number
-          format: double
-        current_value_usd:
-          type: number
-          format: double
-        deposits_usd:
-          type: number
-          format: double
-        number_of_snapshots:
-          type: number
-          format: double
-        organization_cumulative_earnings:
-          type: number
-          format: double
-        risk_level:
-          type: number
-          format: double
-        time:
-          type: string
-        total_deposits_usd:
-          type: number
-          format: double
-        unallocated_amount_usd:
-          type: number
-          format: double
-        withdrawals_usd:
-          type: number
-          format: double
-    ApiFundFees:
-      type: object
-      required:
-      - fund_id
-      - fees
-      properties:
-        fees:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiFundFee'
-        fund_id:
-          type: string
-    StrategyInstance:
-      type: object
-      required:
-      - id
-      - org_id
-      - name
-      - template_id
-      - funds
-      - fee_info
-      - created_at
-      - updated_at
-      properties:
-        created_at:
-          type: integer
-          format: int64
-          minimum: 0
-        description:
-          type:
-          - string
-          - 'null'
-        fee_info:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeeInfoForStrategy'
-        funds:
-          type: array
-          items:
-            $ref: '#/components/schemas/FundRef'
-        id:
-          type: string
-        name:
-          type: string
-        org_id:
-          type: string
-        status:
-          $ref: '#/components/schemas/StrategyInstanceStatus'
-        template_id:
-          type: string
-        updated_at:
-          type: integer
-          format: int64
-          minimum: 0
-    ApiUnAssignFundFromOrganization:
-      type: object
-      required:
-      - organization_fund_id
-      properties:
-        organization_fund_id:
-          type: string
-    AdminFundListItem:
-      type: object
-      description: Fund list item for admin back-office views (minimal for fast listing)
-      required:
-      - fund_id
-      - base_asset_mint
-      - status
-      - current_value
-      properties:
-        base_asset_mint:
-          type: string
-          description: Base asset token mint address
-        current_value:
-          type: integer
-          description: Current value in base asset (raw)
-          minimum: 0
-        fund_id:
-          type: string
-          description: Fund ID
-        organization_id:
-          type:
-          - string
-          - 'null'
-          description: Organization ID (if known)
-        organization_name:
-          type:
-          - string
-          - 'null'
-          description: Organization name (if known)
-        status:
-          type: string
-          description: Fund status (Live, Paused, WithdrawOnly)
-        strategy_name:
-          type:
-          - string
-          - 'null'
-          description: Strategy name (if any)
-    AdminOrganization:
-      type: object
-      description: Admin organization item with Clerk info and platform data
-      required:
-      - id
-      - name
-      - slug
-      - created_at
-      - updated_at
-      - tags
-      - strategy_count
-      - fund_count
-      properties:
-        created_at:
-          type: integer
-          format: int64
-          description: Created timestamp (from Clerk)
-          minimum: 0
-        fee_distribution_key:
-          type:
-          - string
-          - 'null'
-          description: Fee distribution key (from Breeze DB)
-        fund_count:
-          type: integer
-          description: Number of funds for this organization
-          minimum: 0
-        id:
-          type: string
-          description: Organization ID (Clerk ID)
-        name:
-          type: string
-          description: Organization name
-        slug:
-          type: string
-          description: Organization slug
-        strategy_count:
-          type: integer
-          description: Number of strategies for this organization
-          minimum: 0
-        tags:
-          type: array
-          items:
-            type: string
-          description: Tags assigned to this organization (from Breeze DB)
-        updated_at:
-          type: integer
-          format: int64
-          description: Updated timestamp (from Clerk)
-          minimum: 0
-    ApiUpdateFundAdminRequest:
-      type: object
-      description: Request body for updating a fund via admin endpoint
-      properties:
-        delegated_withdrawer:
-          type:
-          - string
-          - 'null'
-          description: Optional delegated withdraw authority (submits an admin job). Set `null` to clear.
-        fees_settings:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/ApiUpdateFundFeesSettings'
-            description: Optional fee settings to update (submits an admin job)
-        fund_settings:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/ApiUpdateFundConstraintsSettings'
-            description: Optional fund constraints and risk settings to update (submits an admin job)
-        rebalance_settings:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/ApiUpdateFundRebalanceSettings'
-            description: Optional rebalance settings to update
-    ApiInputForDeletingEmptyStrategy:
-      type: object
-      required:
-      - org_id
-      - strategy_name
-      properties:
-        org_id:
-          type: string
-        strategy_name:
-          type: string
-    ApiCreateFundRebalanceSettings:
-      type: object
-      properties:
-        min_position_settle_time:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: Minimum position settle time in seconds
-          minimum: 0
-        min_rebalance_value:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: Minimum rebalance value in lamports
-          minimum: 0
-        rebalance_period:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: Rebalance period in seconds
-          minimum: 0
-        unallocated_threshold:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: Unallocated threshold in lamports
-          minimum: 0
-    ApiUpdateFundFeesSettings:
-      type: object
-      description: Fee settings for updating a fund (without fund_id since it's in the path)
-      required:
-      - fees
-      properties:
-        fees:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiFundFee'
-          description: List of fee configurations for the fund
-    ApiFundWithBaseAssetMapper:
-      type: object
-      required:
-      - fund_id
-      - mint
-      properties:
-        fund_id:
-          type: string
-        mint:
-          type: string
-    ApiCancelJobResult:
-      type: object
-      required:
-      - message
-      - job_id
-      - previous_state
-      - new_state
-      properties:
-        job_id:
-          type: string
-        message:
-          type: string
-        new_state:
-          type: string
-        previous_state:
-          type: string
-    ApiAssignFundToOrganization:
-      type: object
-      required:
-      - organization_id
-      - organization_fund_id
-      properties:
-        organization_fund_id:
-          type: string
-        organization_id:
-          type: string
-    ProtocolYieldSources:
-      type: object
-      required:
-      - protocol
-      - yield_sources
-      - count
-      properties:
-        count:
-          type: integer
-          description: Number of yield sources in this protocol
-          minimum: 0
-        protocol:
-          type: string
-          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
-        yield_sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiYieldSource'
-          description: List of yield sources for this protocol
-    AdminOrganizationsResponse:
-      type: object
-      description: Response for admin organizations endpoint
-      required:
-      - total
-      - organizations
-      properties:
-        organizations:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdminOrganization'
-          description: List of organizations
-        total:
-          type: integer
-          description: Total number of organizations
-          minimum: 0
-    ApiCreateStrategyTemplateResult:
-      type: object
-      required:
-      - message
-      - strategy_name
-      - template_id
-      properties:
-        message:
-          type: string
-        strategy_name:
-          type: string
-        template_id:
-          type: string
-    AdminStrategyFee:
-      type: object
-      description: Fee info for admin strategy detail
-      required:
-      - fee_bps
-      - fee_recipient
-      - fee_type
-      - frequency_seconds
-      properties:
-        fee_bps:
-          type: integer
-          format: int32
-          minimum: 0
-        fee_recipient:
-          type: string
-        fee_type:
-          type: string
-        frequency_seconds:
-          type: integer
-          format: int64
-          minimum: 0
-    AdminAssetYieldSources:
-      type: object
-      description: Yield source configuration for a specific asset (for admin endpoint)
-      required:
-      - mint
-      - yield_sources
-      properties:
-        mint:
-          type: string
-          description: Base asset mint address
-        yield_sources:
-          $ref: '#/components/schemas/ApiSelectiveYieldSource'
-          description: Yield sources configured for this asset by protocol
-    AssetValuePair:
-      type: object
-      required:
-      - time
-      - asset
-      - usd_value
-      - value_in_base_asset
-      properties:
-        asset:
-          type: string
-        fund_id:
-          type:
-          - string
-          - 'null'
-        time:
-          type: string
-        usd_value:
-          type: number
-          format: double
-        value_in_base_asset:
-          type: number
-          format: double
-    ApiStrategyMetricUniversal:
-      type: object
-      required:
-      - start
-      - end
-      - aggregation_window
-      - strategy_id
-      - data
-      - combined_asset_value_over_time
-      - per_asset_value_over_time
-      - fee_distribution_metrics
-      properties:
-        aggregation_window:
-          type: string
-          description: Aggregation window (e.g., "1h", "1d", "5m") representing time between data points
-        combined_asset_value_over_time:
-          type: array
-          items:
-            $ref: '#/components/schemas/CombinedAssetValueOverTime'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/UniversalStrategyMetrics'
-          description: Array of aggregated metric data points
-        end:
-          type: string
-          description: End timestamp of the data range
-        fee_distribution_metrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiDailyFeeDistribution'
-        per_asset_value_over_time:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/AssetValuePair'
-          propertyNames:
-            type: string
-        start:
-          type: string
-          description: Start timestamp of the data range
-        strategy_id:
-          type: array
-          items:
-            type: string
-          description: Strategy ID for the metrics
-    ApiDeleteStrategyOperationResult:
-      type: object
-      required:
-      - message
-      - strategy_id
-      properties:
-        message:
-          type: string
-        strategy_id:
-          type: string
-    StrategyInstanceStatus:
-      type: string
-      enum:
-      - active
-      - pending
-      - failed
-      - updating
-    ApiUpdateOrganizationTagsInputs:
-      type: object
-      required:
-      - organization_id
-      - tags
-      properties:
-        organization_id:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
-    ApiStrategyFee:
-      type: object
-      required:
-      - fee_type
-      - percentage
-      - recipient
-      - frequency_seconds
-      properties:
-        fee_type:
-          type: string
-        frequency_seconds:
-          type: integer
-          format: int64
-          minimum: 0
-        percentage:
-          type: number
-          format: double
-        recipient:
-          type: string
     PlatformSummary:
       type: object
       description: Platform-wide summary metrics
@@ -3156,58 +1591,6 @@ components:
           type: number
           format: double
           description: Total yield earned across all strategies (USD)
-    ApiYieldSource:
-      type: object
-      required:
-      - pubkey
-      - source
-      - yield_type
-      - current_apy
-      - risk
-      - updated_at_timestamp
-      - base_assets
-      properties:
-        base_assets:
-          type: array
-          items:
-            type: string
-          description: List of supported base assets
-        current_apy:
-          type: number
-          format: double
-          description: Current annual percentage yield
-        pubkey:
-          type: string
-          description: Unique identifier for the yield source
-        risk:
-          type: integer
-          format: int32
-          description: Risk level (0-255, lower is safer)
-          minimum: 0
-        source:
-          type: string
-          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
-        updated_at_timestamp:
-          type: integer
-          format: int64
-          description: Timestamp when the data was last updated
-          minimum: 0
-        yield_type:
-          type: string
-          description: Type of yield source (e.g., "Lending", "TokenStaking", etc.)
-    ApiAssignFundOperationResult:
-      type: object
-      required:
-      - message
-      - fund_id
-      - organization_id
-      properties:
-        fund_id:
-          type: string
-        message:
-          type: string
-        organization_id:
-          type: string
     AdminFundDetail:
       type: object
       description: Detailed fund information for admin back-office views
@@ -3470,21 +1853,405 @@ components:
           format: int64
           description: Updated at timestamp
           minimum: 0
-    ApiFundFee:
+    ApiCreateStrategyTemplateResult:
       type: object
       required:
-      - fee_type
-      - fee_bps
-      - recipient
+      - message
+      - strategy_name
+      - template_id
       properties:
-        fee_bps:
+        message:
+          type: string
+        strategy_name:
+          type: string
+        template_id:
+          type: string
+    AdminStrategyDetail:
+      type: object
+      description: Detailed admin strategy response with current live data
+      required:
+      - id
+      - name
+      - template_id
+      - organization_id
+      - organization_name
+      - status
+      - created_at
+      - updated_at
+      - fees
+      - current_data
+      - funds
+      properties:
+        created_at:
+          type: integer
+          format: int64
+          description: Created timestamp
+          minimum: 0
+        current_data:
+          $ref: '#/components/schemas/AdminStrategyCurrentData'
+          description: Current live metrics
+        description:
+          type:
+          - string
+          - 'null'
+          description: Strategy description
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminStrategyFee'
+          description: Fee configuration
+        funds:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminStrategyFundDetail'
+          description: Fund details
+        id:
+          type: string
+          description: Strategy ID
+        name:
+          type: string
+          description: Strategy name
+        organization_id:
+          type: string
+          description: Organization ID that owns this strategy
+        organization_name:
+          type: string
+          description: Organization name (from Breeze DB or Clerk)
+        status:
+          type: string
+          description: Strategy status
+        template_id:
+          type: string
+          description: Template ID this strategy was created from
+        updated_at:
+          type: integer
+          format: int64
+          description: Updated timestamp
+          minimum: 0
+    ApiSelectiveYieldSource:
+      type: object
+      properties:
+        drift_lending:
+          type:
+          - string
+          - 'null'
+        jup_lend:
+          type:
+          - string
+          - 'null'
+        kamino:
+          type:
+          - string
+          - 'null'
+        marginfiv2:
+          type:
+          - string
+          - 'null'
+    ApiFundConstraint:
+      type: object
+      required:
+      - yield_source_target
+      - constraint_type
+      - value
+      properties:
+        constraint_type:
+          $ref: '#/components/schemas/ApiConstraintType'
+        value:
+          type: integer
+          format: int64
+          minimum: 0
+        yield_source_target:
+          $ref: '#/components/schemas/ApiYieldSourceTarget'
+    ApiYieldSourceIds:
+      type: object
+      required:
+      - drift
+      - kamino
+      - marginfi
+      - jupiter_lend
+      properties:
+        drift:
+          type: string
+          description: Drift protocol yield source ID (Put the Pubkey::default() if not used)
+        jupiter_lend:
+          type: string
+          description: Jupiter Lend protocol yield source ID (Put the Pubkey::default() if not used)
+        kamino:
+          type: string
+          description: Kamino protocol yield source ID (Put the Pubkey::default() if not used)
+        marginfi:
+          type: string
+          description: MarginFi protocol yield source ID (Put the Pubkey::default() if not used)
+    ApiStrategyMetricUniversal:
+      type: object
+      required:
+      - start
+      - end
+      - aggregation_window
+      - strategy_id
+      - data
+      - combined_asset_value_over_time
+      - per_asset_value_over_time
+      - fee_distribution_metrics
+      properties:
+        aggregation_window:
+          type: string
+          description: Aggregation window (e.g., "1h", "1d", "5m") representing time between data points
+        combined_asset_value_over_time:
+          type: array
+          items:
+            $ref: '#/components/schemas/CombinedAssetValueOverTime'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UniversalStrategyMetrics'
+          description: Array of aggregated metric data points
+        end:
+          type: string
+          description: End timestamp of the data range
+        fee_distribution_metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiDailyFeeDistribution'
+        per_asset_value_over_time:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/AssetValuePair'
+          propertyNames:
+            type: string
+        start:
+          type: string
+          description: Start timestamp of the data range
+        strategy_id:
+          type: array
+          items:
+            type: string
+          description: Strategy ID for the metrics
+    ApiUpdateFundConstraintsSettings:
+      type: object
+      description: Constraints and risk settings for updating a fund (without fund_id since it's in the path)
+      properties:
+        constraints:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiFundConstraint'
+          description: Fund constraints (yield strategy limits)
+        risk_aversion_bps:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Risk aversion in basis points (0-10000)
+          minimum: 0
+        risk_max:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Maximum risk level (0-100)
+          minimum: 0
+    AdminFundAllocation:
+      type: object
+      description: Fund allocation detail for admin
+      required:
+      - index
+      - yield_source_type
+      - protocol
+      - protocol_id
+      - position_id
+      - deposit_amount
+      - current_value
+      - deposit_timestamp
+      properties:
+        apy:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: Current APY for the allocation (from yield source)
+        current_value:
+          type: integer
+          format: int64
+          description: Current value (raw)
+          minimum: 0
+        deposit_amount:
+          type: integer
+          format: int64
+          description: Deposit amount (raw)
+          minimum: 0
+        deposit_timestamp:
+          type: integer
+          format: int64
+          description: Deposit timestamp
+        index:
           type: integer
           format: int32
+          description: Allocation index
           minimum: 0
-        fee_type:
+        position_id:
           type: string
-        recipient:
+          description: Position ID
+        protocol:
           type: string
+          description: Protocol name
+        protocol_id:
+          type: string
+          description: Protocol ID (yield source pubkey)
+        yield_source_type:
+          type: string
+          description: Yield source type
+    StrategyInstanceStatus:
+      type: string
+      enum:
+      - active
+      - pending
+      - failed
+      - updating
+    ApiInputForMigratingToStrategy:
+      type: object
+      required:
+      - strategy_name
+      - org_id
+      - breeze_fee_recipient_key
+      - breeze_fee_percentage
+      - fee_payout_frequency_seconds
+      properties:
+        breeze_fee_percentage:
+          type: number
+          format: double
+        breeze_fee_recipient_key:
+          type: string
+        fee_payout_frequency_seconds:
+          type: string
+        org_id:
+          type: string
+        strategy_name:
+          type: string
+    AdminFundConstraint:
+      type: object
+      description: Fund constraint detail for admin
+      required:
+      - yield_source_type
+      - protocol
+      - constraint_type
+      - value
+      properties:
+        constraint_type:
+          type: string
+          description: Constraint type ("MaxPercentage" or "MaxBaseAssetAllocation")
+        protocol:
+          type: string
+          description: Protocol name
+        value:
+          type: integer
+          format: int64
+          description: Constraint value
+          minimum: 0
+        yield_source_type:
+          type: string
+          description: Yield source type
+    CreateFundApiResult:
+      type: object
+      required:
+      - status
+      - task_id
+      - message
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+        task_id:
+          type: string
+    ApiInputForUpdatingStrategyInstance:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: New name for the strategy (optional)
+    ApiTemplateYieldSource:
+      type: object
+      properties:
+        drift_lending:
+          type:
+          - string
+          - 'null'
+        jup_lend:
+          type:
+          - string
+          - 'null'
+        kamino:
+          type:
+          - string
+          - 'null'
+        marginfiv2:
+          type:
+          - string
+          - 'null'
+    ApiUpdateFundRebalanceSettings:
+      type: object
+      description: Rebalance settings for updating a fund (without fund_id since it's in the path)
+      properties:
+        min_position_settle_time:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Minimum time to wait before settling a position (in seconds)
+          minimum: 0
+        min_rebalance_value:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Minimum value required to trigger a rebalance
+          minimum: 0
+        rebalance_period:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Rebalance period in seconds
+          minimum: 0
+        unallocated_threshold:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Unallocated threshold amount
+          minimum: 0
+    ApiInputForDeletingEmptyStrategy:
+      type: object
+      required:
+      - org_id
+      - strategy_name
+      properties:
+        org_id:
+          type: string
+        strategy_name:
+          type: string
+    ApiUpdateOrganizationAdminRequest:
+      type: object
+      description: Request body for updating an organization via admin endpoint
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Optional new name for the organization
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Optional tags to set for the organization (replaces existing tags)
     AdminAgentMetricsResponse:
       type: object
       required:
@@ -3531,6 +2298,398 @@ components:
           format: int64
           description: Sum of all agent withdraw interactions
           minimum: 0
+    CombinedAssetValueOverTime:
+      type: object
+      required:
+      - time
+      - assets
+      properties:
+        assets:
+          type: object
+          additionalProperties:
+            type: number
+            format: double
+          propertyNames:
+            type: string
+        time:
+          type: string
+    ApiYieldSource:
+      type: object
+      required:
+      - pubkey
+      - source
+      - yield_type
+      - current_apy
+      - risk
+      - updated_at_timestamp
+      - base_assets
+      properties:
+        base_assets:
+          type: array
+          items:
+            type: string
+          description: List of supported base assets
+        current_apy:
+          type: number
+          format: double
+          description: Current annual percentage yield
+        pubkey:
+          type: string
+          description: Unique identifier for the yield source
+        risk:
+          type: integer
+          format: int32
+          description: Risk level (0-255, lower is safer)
+          minimum: 0
+        source:
+          type: string
+          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
+        updated_at_timestamp:
+          type: integer
+          format: int64
+          description: Timestamp when the data was last updated
+          minimum: 0
+        yield_type:
+          type: string
+          description: Type of yield source (e.g., "Lending", "TokenStaking", etc.)
+    ApiFundWithBaseAssetMapper:
+      type: object
+      required:
+      - fund_id
+      - mint
+      properties:
+        fund_id:
+          type: string
+        mint:
+          type: string
+    AdminOrganization:
+      type: object
+      description: Admin organization item with Clerk info and platform data
+      required:
+      - id
+      - name
+      - slug
+      - created_at
+      - updated_at
+      - tags
+      - strategy_count
+      - fund_count
+      properties:
+        created_at:
+          type: integer
+          format: int64
+          description: Created timestamp (from Clerk)
+          minimum: 0
+        fee_distribution_key:
+          type:
+          - string
+          - 'null'
+          description: Fee distribution key (from Breeze DB)
+        fund_count:
+          type: integer
+          description: Number of funds for this organization
+          minimum: 0
+        id:
+          type: string
+          description: Organization ID (Clerk ID)
+        name:
+          type: string
+          description: Organization name
+        slug:
+          type: string
+          description: Organization slug
+        strategy_count:
+          type: integer
+          description: Number of strategies for this organization
+          minimum: 0
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags assigned to this organization (from Breeze DB)
+        updated_at:
+          type: integer
+          format: int64
+          description: Updated timestamp (from Clerk)
+          minimum: 0
+    AdminStrategyCurrentData:
+      type: object
+      description: Current live data for admin strategy detail
+      required:
+      - tvl_usd
+      - total_deposits_usd
+      - yield_earnings_usd
+      - total_users
+      - total_fees_distributed_usd
+      - apy
+      - allocated_usd
+      - unallocated_usd
+      - protocol_allocations
+      properties:
+        allocated_usd:
+          type: number
+          format: double
+          description: Allocated to yield (USD)
+        apy:
+          type: number
+          format: double
+          description: Weighted APY
+        protocol_allocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProtocolValues'
+          description: Protocol breakdown
+        total_deposits_usd:
+          type: number
+          format: double
+          description: Total deposits (USD) - from user_fund table
+        total_fees_distributed_usd:
+          type: number
+          format: double
+          description: Total fees distributed (USD)
+        total_users:
+          type: integer
+          format: int64
+          description: Total unique users
+          minimum: 0
+        tvl_usd:
+          type: number
+          format: double
+          description: Total value locked (USD)
+        unallocated_usd:
+          type: number
+          format: double
+          description: Unallocated amount (USD)
+        yield_earnings_usd:
+          type: number
+          format: double
+          description: 'Yield earnings: TVL - deposits'
+    AdminMetricsResponse:
+      type: object
+      description: 'Admin metrics response - aggregates ALL strategies/funds platform-wide
+
+        Same structure as strategy/metrics but for entire platform'
+      required:
+      - start
+      - end
+      - aggregation_window
+      - total_strategies
+      - total_funds
+      - data
+      - combined_asset_value_over_time
+      - per_asset_value_over_time
+      - fee_distribution_metrics
+      properties:
+        aggregation_window:
+          type: string
+          description: Aggregation window (e.g., "1h", "1d", "5m")
+        combined_asset_value_over_time:
+          type: array
+          items:
+            $ref: '#/components/schemas/CombinedAssetValueOverTime'
+          description: Combined asset value over time (all assets)
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UniversalStrategyMetrics'
+          description: Array of aggregated metric data points over time
+        end:
+          type: string
+          description: End timestamp of the data range
+        fee_distribution_metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiDailyFeeDistribution'
+          description: Fee distribution metrics over time
+        per_asset_value_over_time:
+          type: object
+          description: Per-asset value over time
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/AssetValuePair'
+          propertyNames:
+            type: string
+        start:
+          type: string
+          description: Start timestamp of the data range
+        total_funds:
+          type: integer
+          description: Total number of funds included
+          minimum: 0
+        total_strategies:
+          type: integer
+          description: Total number of strategies included
+          minimum: 0
+    CreateOrganizationResponse:
+      type: object
+      description: Response for creating a new organization
+      required:
+      - organization
+      - message
+      properties:
+        message:
+          type: string
+          description: Success message
+        organization:
+          $ref: '#/components/schemas/AdminOrganization'
+          description: The created organization details
+    AdminOrganizationMember:
+      type: object
+      description: Organization member from Clerk
+      required:
+      - id
+      - user_id
+      - identifier
+      - role
+      - created_at
+      properties:
+        created_at:
+          type: integer
+          format: int64
+          description: When the membership was created (Unix timestamp)
+          minimum: 0
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: User's first name
+        id:
+          type: string
+          description: Membership ID
+        identifier:
+          type: string
+          description: User's email or identifier
+        image_url:
+          type:
+          - string
+          - 'null'
+          description: User's profile image URL
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: User's last name
+        role:
+          type: string
+          description: Role in the organization (e.g., "org:admin", "org:member")
+        user_id:
+          type: string
+          description: User ID
+    ApiAssignFundOperationResult:
+      type: object
+      required:
+      - message
+      - fund_id
+      - organization_id
+      properties:
+        fund_id:
+          type: string
+        message:
+          type: string
+        organization_id:
+          type: string
+    ApiCreateFundRebalanceSettings:
+      type: object
+      properties:
+        min_position_settle_time:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Minimum position settle time in seconds
+          minimum: 0
+        min_rebalance_value:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Minimum rebalance value in lamports
+          minimum: 0
+        rebalance_period:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Rebalance period in seconds
+          minimum: 0
+        unallocated_threshold:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Unallocated threshold in lamports
+          minimum: 0
+    AdminStrategyFundDetail:
+      type: object
+      description: Fund detail for admin strategy detail
+      required:
+      - fund_id
+      - base_asset_mint
+      - base_asset_decimals
+      - current_value
+      - current_value_usd
+      - deposits
+      - deposits_usd
+      - allocated_to_yield
+      - allocated_to_yield_usd
+      - unallocated
+      - unallocated_usd
+      - user_count
+      - asset_price_usd
+      properties:
+        allocated_to_yield:
+          type: integer
+          description: Allocated to yield in base asset
+          minimum: 0
+        allocated_to_yield_usd:
+          type: number
+          format: double
+          description: Allocated to yield in USD
+        asset_price_usd:
+          type: number
+          format: double
+          description: Current asset price (USD)
+        base_asset_decimals:
+          type: integer
+          format: int32
+          description: Base asset decimals
+          minimum: 0
+        base_asset_mint:
+          type: string
+          description: Base asset token mint
+        current_value:
+          type: integer
+          description: Current value in base asset
+          minimum: 0
+        current_value_usd:
+          type: number
+          format: double
+          description: Current value in USD
+        deposits:
+          type: integer
+          description: Total deposits in base asset
+          minimum: 0
+        deposits_usd:
+          type: number
+          format: double
+          description: Total deposits in USD
+        fund_id:
+          type: string
+          description: Fund ID
+        unallocated:
+          type: integer
+          description: Unallocated in base asset
+          minimum: 0
+        unallocated_usd:
+          type: number
+          format: double
+          description: Unallocated in USD
+        user_count:
+          type: integer
+          format: int64
+          description: User count for this fund
+          minimum: 0
     ApiFundRebalanceSettings:
       type: object
       required:
@@ -3562,20 +2721,112 @@ components:
           - 'null'
           format: int64
           minimum: 0
-    PaginatedResponse:
+    ApiFundFeeDistribution:
       type: object
-      description: Paginated response wrapper
+      description: Fee distribution data point for fund metrics
       required:
-      - data
-      - meta
+      - time
+      - total_amount_distributed
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProtocolYieldSources'
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-          description: Pagination metadata
+        time:
+          type: string
+          description: Timestamp (ISO 8601)
+        total_amount_distributed:
+          type: number
+          format: double
+          description: Total amount distributed
+    PaginationMeta:
+      type: object
+      description: Pagination metadata
+      required:
+      - page
+      - per_page
+      - total
+      - total_pages
+      - has_more
+      properties:
+        has_more:
+          type: boolean
+          description: Whether there are more pages
+        page:
+          type: integer
+          format: int32
+          description: Current page number
+          minimum: 0
+        per_page:
+          type: integer
+          format: int32
+          description: Number of items per page
+          minimum: 0
+        total:
+          type: integer
+          format: int64
+          description: Total number of items
+          minimum: 0
+        total_pages:
+          type: integer
+          format: int32
+          description: Total number of pages
+          minimum: 0
+    ApiUpdateFundDelegatedWithdrawerRequest:
+      type: object
+      required:
+      - fund_id
+      properties:
+        delegated_withdrawer:
+          type:
+          - string
+          - 'null'
+          description: Set to `null` to clear the delegated withdrawer.
+        fund_id:
+          type: string
+    UniversalStrategyMetrics:
+      type: object
+      required:
+      - time
+      - allocated_to_yield_usd
+      - current_value_usd
+      - number_of_snapshots
+      - total_deposits_usd
+      - unallocated_amount_usd
+      - organization_cumulative_earnings
+      - deposits_usd
+      - withdrawals_usd
+      - current_apy
+      - risk_level
+      properties:
+        allocated_to_yield_usd:
+          type: number
+          format: double
+        current_apy:
+          type: number
+          format: double
+        current_value_usd:
+          type: number
+          format: double
+        deposits_usd:
+          type: number
+          format: double
+        number_of_snapshots:
+          type: number
+          format: double
+        organization_cumulative_earnings:
+          type: number
+          format: double
+        risk_level:
+          type: number
+          format: double
+        time:
+          type: string
+        total_deposits_usd:
+          type: number
+          format: double
+        unallocated_amount_usd:
+          type: number
+          format: double
+        withdrawals_usd:
+          type: number
+          format: double
     ApiFundMetricsResponse:
       type: object
       description: Fund metrics response for admin back-office
@@ -3613,6 +2864,119 @@ components:
         start:
           type: string
           description: Start timestamp of the data range
+    AdminOrganizationsResponse:
+      type: object
+      description: Response for admin organizations endpoint
+      required:
+      - total
+      - organizations
+      properties:
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminOrganization'
+          description: List of organizations
+        total:
+          type: integer
+          description: Total number of organizations
+          minimum: 0
+    ProtocolYieldSources:
+      type: object
+      required:
+      - protocol
+      - yield_sources
+      - count
+      properties:
+        count:
+          type: integer
+          description: Number of yield sources in this protocol
+          minimum: 0
+        protocol:
+          type: string
+          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
+        yield_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiYieldSource'
+          description: List of yield sources for this protocol
+    Vec:
+      type: array
+      items:
+        allOf:
+        - $ref: '#/components/schemas/StrategyInstance'
+          description: The full strategy instance data
+        - type: object
+          required:
+          - apy
+          - total_users
+          properties:
+            apy:
+              type: number
+              format: double
+              description: Weighted APY of the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
+            total_users:
+              type: integer
+              format: int64
+              description: Total unique users in the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
+              minimum: 0
+        description: Strategy with pre-computed metrics for list views (avoids N+1 queries)
+    ApiYieldSourceTarget:
+      type: object
+      required:
+      - yield_source_type
+      - protocol
+      properties:
+        protocol:
+          type: string
+        yield_source_type:
+          type: string
+    AdminFundListItem:
+      type: object
+      description: Fund list item for admin back-office views (minimal for fast listing)
+      required:
+      - fund_id
+      - base_asset_mint
+      - status
+      - current_value
+      properties:
+        base_asset_mint:
+          type: string
+          description: Base asset token mint address
+        current_value:
+          type: integer
+          description: Current value in base asset (raw)
+          minimum: 0
+        fund_id:
+          type: string
+          description: Fund ID
+        organization_id:
+          type:
+          - string
+          - 'null'
+          description: Organization ID (if known)
+        organization_name:
+          type:
+          - string
+          - 'null'
+          description: Organization name (if known)
+        status:
+          type: string
+          description: Fund status (Live, Paused, WithdrawOnly)
+        strategy_name:
+          type:
+          - string
+          - 'null'
+          description: Strategy name (if any)
+    ApiAssignFundToOrganization:
+      type: object
+      required:
+      - organization_id
+      - organization_fund_id
+      properties:
+        organization_fund_id:
+          type: string
+        organization_id:
+          type: string
     ApiDailyFeeDistribution:
       type: object
       required:
@@ -3624,19 +2988,562 @@ components:
         total_amount_distributed:
           type: number
           format: double
-    CreateOrganizationResponse:
+    AdminFundFee:
       type: object
-      description: Response for creating a new organization
+      description: Fund fee detail for admin
       required:
-      - organization
+      - fee_type
+      - fee_bps
+      - recipient
+      properties:
+        fee_bps:
+          type: integer
+          format: int32
+          description: Fee in basis points (100 = 1%)
+          minimum: 0
+        fee_type:
+          type: string
+          description: Fee type (e.g., "ProtocolBase", "App", "Performance")
+        recipient:
+          type: string
+          description: Fee recipient address
+    RevokeOrganizationInviteResponse:
+      type: object
+      description: Response for revoking an organization invitation
+      required:
+      - invitation
       - message
       properties:
+        invitation:
+          $ref: '#/components/schemas/AdminOrganizationInvitation'
+          description: The revoked invitation details
         message:
           type: string
           description: Success message
-        organization:
-          $ref: '#/components/schemas/AdminOrganization'
-          description: The created organization details
+    ApiUpdateFundFeesSettings:
+      type: object
+      description: Fee settings for updating a fund (without fund_id since it's in the path)
+      required:
+      - fees
+      properties:
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiFundFee'
+          description: List of fee configurations for the fund
+    ApiRetryJobResult:
+      type: object
+      required:
+      - message
+      - job_id
+      - previous_state
+      - new_state
+      properties:
+        job_id:
+          type: string
+        message:
+          type: string
+        new_state:
+          type: string
+        previous_state:
+          type: string
+    CreateOrganizationInviteResponse:
+      type: object
+      description: Response for creating an organization invitation
+      required:
+      - invitation
+      - message
+      properties:
+        invitation:
+          $ref: '#/components/schemas/AdminOrganizationInvitation'
+          description: The created invitation details
+        message:
+          type: string
+          description: Success message
+    ProtocolValues:
+      type: object
+      required:
+      - asset
+      - usd_value
+      - protocol
+      - apy
+      properties:
+        apy:
+          type: number
+          format: double
+        asset:
+          type: string
+        protocol:
+          type: string
+        usd_value:
+          type: number
+          format: double
+    PaginatedResponse:
+      type: object
+      description: Paginated response wrapper
+      required:
+      - data
+      - meta
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProtocolYieldSources'
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+          description: Pagination metadata
+    ApiCreateFundRequest:
+      type: object
+      required:
+      - base_asset_mint
+      - yield_source_ids
+      - strategy_id
+      - risk_aversion_bps
+      - risk_max
+      properties:
+        base_asset_mint:
+          type: string
+          description: Base asset mint address (e.g., USDC mint)
+        constraints:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiFundConstraint'
+          description: Optional constraints for yield strategies
+        fees:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiFundFee'
+          description: Optional fees configuration
+        organization_id:
+          type:
+          - string
+          - 'null'
+          description: Optional organization ID to associate with the fund
+        rebalance_settings:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApiCreateFundRebalanceSettings'
+            description: Optional rebalance settings
+        risk_aversion_bps:
+          type: integer
+          format: int64
+          description: Risk aversion in basis points (0-10000)
+          minimum: 0
+        risk_max:
+          type: integer
+          format: int64
+          description: Maximum risk level (0-100)
+          minimum: 0
+        strategy_id:
+          type: string
+          description: Strategy instance ID this fund belongs to
+        yield_source_ids:
+          $ref: '#/components/schemas/ApiYieldSourceIds'
+          description: Yield source IDs - one per protocol, must match base asset mint
+    ApiStrategyFee:
+      type: object
+      required:
+      - fee_type
+      - percentage
+      - recipient
+      - frequency_seconds
+      properties:
+        fee_type:
+          type: string
+        frequency_seconds:
+          type: integer
+          format: int64
+          minimum: 0
+        percentage:
+          type: number
+          format: double
+        recipient:
+          type: string
+    ApiInputForUpdatingStrategy:
+      type: object
+      required:
+      - template_id
+      - name
+      - visibility_tags
+      - assets
+      - fees
+      properties:
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiTemplateAsset'
+        description:
+          type:
+          - string
+          - 'null'
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiStrategyFee'
+        name:
+          type: string
+        template_id:
+          type: string
+        visibility_tags:
+          type: array
+          items:
+            type: string
+    ApiFundFees:
+      type: object
+      required:
+      - fund_id
+      - fees
+      properties:
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiFundFee'
+        fund_id:
+          type: string
+    ApiDeleteStrategyOperationResult:
+      type: object
+      required:
+      - message
+      - strategy_id
+      properties:
+        message:
+          type: string
+        strategy_id:
+          type: string
+    FeeInfoForStrategy:
+      type: object
+      required:
+      - fee_bps
+      - fee_recipient
+      - frequency_seconds
+      - fee_type
+      properties:
+        fee_bps:
+          type: integer
+          format: int32
+          minimum: 0
+        fee_recipient:
+          type: string
+        fee_type:
+          type: string
+        frequency_seconds:
+          type: integer
+          format: int64
+          minimum: 0
+    StrategyInstance:
+      type: object
+      required:
+      - id
+      - org_id
+      - name
+      - template_id
+      - funds
+      - fee_info
+      - created_at
+      - updated_at
+      properties:
+        created_at:
+          type: integer
+          format: int64
+          minimum: 0
+        description:
+          type:
+          - string
+          - 'null'
+        fee_info:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeeInfoForStrategy'
+        funds:
+          type: array
+          items:
+            $ref: '#/components/schemas/FundRef'
+        id:
+          type: string
+        name:
+          type: string
+        org_id:
+          type: string
+        status:
+          $ref: '#/components/schemas/StrategyInstanceStatus'
+        template_id:
+          type: string
+        updated_at:
+          type: integer
+          format: int64
+          minimum: 0
+    ApiUpdateFundAdminRequest:
+      type: object
+      description: Request body for updating a fund via admin endpoint
+      properties:
+        delegated_withdrawer:
+          type:
+          - string
+          - 'null'
+          description: Optional delegated withdraw authority (submits an admin job). Set `null` to clear.
+        fees_settings:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApiUpdateFundFeesSettings'
+            description: Optional fee settings to update (submits an admin job)
+        fund_settings:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApiUpdateFundConstraintsSettings'
+            description: Optional fund constraints and risk settings to update (submits an admin job)
+        rebalance_settings:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApiUpdateFundRebalanceSettings'
+            description: Optional rebalance settings to update
+    AssetValuePair:
+      type: object
+      required:
+      - time
+      - asset
+      - usd_value
+      - value_in_base_asset
+      properties:
+        asset:
+          type: string
+        fund_id:
+          type:
+          - string
+          - 'null'
+        time:
+          type: string
+        usd_value:
+          type: number
+          format: double
+        value_in_base_asset:
+          type: number
+          format: double
+    ApiUnAssignFundFromOrganization:
+      type: object
+      required:
+      - organization_fund_id
+      properties:
+        organization_fund_id:
+          type: string
+    AdminYieldSourcesResponse:
+      type: object
+      description: Response type for admin yield sources grouped by asset
+      required:
+      - total_assets
+      - assets
+      properties:
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminAssetYieldSources'
+          description: Yield sources by asset
+        total_assets:
+          type: integer
+          description: Total number of assets with yield sources configured
+          minimum: 0
+    AdminOrganizationInvitation:
+      type: object
+      description: Organization invitation from Clerk
+      required:
+      - id
+      - email_address
+      - role
+      - status
+      - created_at
+      properties:
+        created_at:
+          type: integer
+          format: int64
+          description: When the invitation was created (Unix timestamp)
+          minimum: 0
+        email_address:
+          type: string
+          description: Email address the invitation was sent to
+        id:
+          type: string
+          description: Invitation ID
+        role:
+          type: string
+          description: Role assigned to the invitation
+        status:
+          type: string
+          description: Status of the invitation (pending, accepted, revoked)
+    ApiConstraintType:
+      type: string
+      enum:
+      - MaxPercentage
+      - MaxBaseAssetAmount
+    AdminOrganizationDetailResponse:
+      type: object
+      description: Response for single organization detail endpoint
+      required:
+      - id
+      - name
+      - created_at
+      - updated_at
+      - tags
+      - strategy_count
+      - fund_count
+      - members
+      - invitations
+      properties:
+        created_at:
+          type: integer
+          format: int64
+          description: When the organization was created (Unix timestamp)
+          minimum: 0
+        fee_distribution_key:
+          type:
+          - string
+          - 'null'
+          description: Fee distribution public key
+        fund_count:
+          type: integer
+          description: Number of funds in this organization
+          minimum: 0
+        id:
+          type: string
+          description: Organization ID
+        invitations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminOrganizationInvitation'
+          description: Pending invitations for this organization
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminOrganizationMember'
+          description: Current members of this organization
+        name:
+          type: string
+          description: Organization name
+        slug:
+          type:
+          - string
+          - 'null'
+          description: Organization slug
+        strategy_count:
+          type: integer
+          description: Number of strategies in this organization
+          minimum: 0
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags associated with the organization
+        updated_at:
+          type: integer
+          format: int64
+          description: When the organization was last updated (Unix timestamp)
+          minimum: 0
+    ApiInputForDeletingStrategy:
+      type: object
+      required:
+      - strategy_id
+      properties:
+        strategy_id:
+          type: string
+    ApiSelectiveYieldSources:
+      type: object
+      required:
+      - mint
+      - yield_sources
+      properties:
+        mint:
+          type: string
+        yield_sources:
+          $ref: '#/components/schemas/ApiSelectiveYieldSource'
+    AdminAssetYieldSources:
+      type: object
+      description: Yield source configuration for a specific asset (for admin endpoint)
+      required:
+      - mint
+      - yield_sources
+      properties:
+        mint:
+          type: string
+          description: Base asset mint address
+        yield_sources:
+          $ref: '#/components/schemas/ApiSelectiveYieldSource'
+          description: Yield sources configured for this asset by protocol
+    ApiUpdateOrganizationTagsInputs:
+      type: object
+      required:
+      - organization_id
+      - tags
+      properties:
+        organization_id:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+    ApiInputForUpdatingSelectiveYieldSource:
+      type: object
+      required:
+      - mint
+      - yield_sources
+      properties:
+        mint:
+          type: string
+        yield_sources:
+          $ref: '#/components/schemas/ApiSelectiveYieldSource'
+    ApiJobStatus:
+      type: object
+      required:
+      - job_id
+      - job_type
+      - payload
+      - state
+      - created_at
+      - updated_at
+      properties:
+        additional_fund_metadata:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiFundWithBaseAssetMapper'
+        created_at:
+          type: integer
+          format: int64
+          minimum: 0
+        error:
+          type:
+          - string
+          - 'null'
+        job_id:
+          type: string
+        job_type:
+          type: string
+        payload:
+          type: string
+        state:
+          type: string
+        updated_at:
+          type: integer
+          format: int64
+          minimum: 0
+    ApiCancelJobResult:
+      type: object
+      required:
+      - message
+      - job_id
+      - previous_state
+      - new_state
+      properties:
+        job_id:
+          type: string
+        message:
+          type: string
+        new_state:
+          type: string
+        previous_state:
+          type: string
     AdminStrategyListItem:
       type: object
       description: Strategy list item for admin back-office views (minimal for fast listing)
@@ -3676,7 +3583,28 @@ components:
           format: int64
           description: Updated timestamp
           minimum: 0
-    ApiInputForUpdatingSelectiveYieldSource:
+    AdminStrategyFee:
+      type: object
+      description: Fee info for admin strategy detail
+      required:
+      - fee_bps
+      - fee_recipient
+      - fee_type
+      - frequency_seconds
+      properties:
+        fee_bps:
+          type: integer
+          format: int32
+          minimum: 0
+        fee_recipient:
+          type: string
+        fee_type:
+          type: string
+        frequency_seconds:
+          type: integer
+          format: int64
+          minimum: 0
+    ApiTemplateAsset:
       type: object
       required:
       - mint
@@ -3685,105 +3613,119 @@ components:
         mint:
           type: string
         yield_sources:
-          $ref: '#/components/schemas/ApiSelectiveYieldSource'
-    ApiTemplateYieldSource:
+          $ref: '#/components/schemas/ApiTemplateYieldSource'
+    CreateOrganizationRequest:
       type: object
-      properties:
-        drift_lending:
-          type:
-          - string
-          - 'null'
-        jup_lend:
-          type:
-          - string
-          - 'null'
-        kamino:
-          type:
-          - string
-          - 'null'
-        marginfiv2:
-          type:
-          - string
-          - 'null'
-    ApiFundUpdateRequest:
-      type: object
+      description: Request body for creating a new organization via Clerk
       required:
-      - fund_id
-      - constraints
+      - name
       properties:
-        constraints:
+        name:
+          type: string
+          description: Organization name
+        slug:
+          type:
+          - string
+          - 'null'
+          description: Optional slug override
+        tags:
           type: array
           items:
-            $ref: '#/components/schemas/ApiFundConstraint'
-        fund_id:
-          type: string
-        risk_aversion_bps:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 0
-        risk_max:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 0
-    ApiConstraintType:
-      type: string
-      enum:
-      - MaxPercentage
-      - MaxBaseAssetAmount
-    ApiFundFeeDistribution:
+            type: string
+          description: Optional tags to set for the organization
+    RevokeOrganizationInviteRequest:
       type: object
-      description: Fee distribution data point for fund metrics
+      description: Request body for revoking an organization invitation
+      required:
+      - requesting_user_id
+      properties:
+        requesting_user_id:
+          type: string
+          description: User ID of the person requesting the revocation
+    FundMetricDataPoint:
+      type: object
+      description: Single fund metric data point
       required:
       - time
-      - total_amount_distributed
+      - current_value_usd
+      - current_value
+      - allocated_to_yield_usd
+      - allocated_to_yield
+      - unallocated_amount_usd
+      - unallocated_amount
+      - total_deposits
+      - deposits_usd
+      - withdrawals_usd
+      - current_apy
+      - risk_level
+      - share_price
+      - base_asset_price_usd
+      - user_count
+      - allocation_count
       properties:
+        allocated_to_yield:
+          type: number
+          format: double
+          description: Amount allocated to yield in base asset
+        allocated_to_yield_usd:
+          type: number
+          format: double
+          description: Amount allocated to yield in USD
+        allocation_count:
+          type: number
+          format: double
+          description: Number of allocations
+        base_asset_price_usd:
+          type: number
+          format: double
+          description: Base asset price in USD
+        current_apy:
+          type: number
+          format: double
+          description: Current APY
+        current_value:
+          type: number
+          format: double
+          description: Current value in base asset (with decimals applied)
+        current_value_usd:
+          type: number
+          format: double
+          description: Current value in USD
+        deposits_usd:
+          type: number
+          format: double
+          description: Deposits in USD
+        risk_level:
+          type: number
+          format: double
+          description: Risk level
+        share_price:
+          type: number
+          format: double
+          description: Share price
         time:
           type: string
           description: Timestamp (ISO 8601)
-        total_amount_distributed:
+        total_deposits:
           type: number
           format: double
-          description: Total amount distributed
-    ApiJobStatus:
-      type: object
-      required:
-      - job_id
-      - job_type
-      - payload
-      - state
-      - created_at
-      - updated_at
-      properties:
-        additional_fund_metadata:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiFundWithBaseAssetMapper'
-        created_at:
-          type: integer
-          format: int64
-          minimum: 0
-        error:
-          type:
-          - string
-          - 'null'
-        job_id:
-          type: string
-        job_type:
-          type: string
-        payload:
-          type: string
-        state:
-          type: string
-        updated_at:
-          type: integer
-          format: int64
-          minimum: 0
+          description: Total deposits in base asset
+        unallocated_amount:
+          type: number
+          format: double
+          description: Unallocated amount in base asset
+        unallocated_amount_usd:
+          type: number
+          format: double
+          description: Unallocated amount in USD
+        user_count:
+          type: number
+          format: double
+          description: User count
+        withdrawals_usd:
+          type: number
+          format: double
+          description: Withdrawals in USD
     CreateOrganizationInviteRequest:
       type: object
       description: Request body for creating an organization invitation
@@ -3801,6 +3743,64 @@ components:
         role:
           type: string
           description: Role to assign to the invited user (e.g., "org:member", "org:admin")
+    AdminAgentAssetMetrics:
+      type: object
+      required:
+      - mint
+      - deposit_interactions
+      - withdraw_interactions
+      - deposits
+      - withdrawals
+      - user_fund_deposits
+      properties:
+        deposit_interactions:
+          type: integer
+          format: int64
+          description: Sum of agent deposit interactions for this asset
+          minimum: 0
+        deposits:
+          type: integer
+          description: Sum of tracked agent deposit amounts for this asset from `agent_data.tokens[*].deposits`
+          minimum: 0
+        mint:
+          type: string
+          description: Asset mint address
+        user_fund_deposits:
+          type: integer
+          description: Sum of `user_fund.deposit` for tracked agents for this asset
+          minimum: 0
+        withdraw_interactions:
+          type: integer
+          format: int64
+          description: Sum of agent withdraw interactions for this asset
+          minimum: 0
+        withdrawals:
+          type: integer
+          description: Sum of tracked agent withdraw amounts for this asset from `agent_data.tokens[*].withdrawals`
+          minimum: 0
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Error message description
+    FundRef:
+      type: object
+      required:
+      - mint
+      - fund_id
+      properties:
+        allocation_percent:
+          type:
+          - number
+          - 'null'
+          format: double
+        fund_id:
+          type: string
+        mint:
+          type: string
   securitySchemes:
     api_key:
       type: apiKey

@@ -146,72 +146,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PaginationMeta:
-      type: object
-      description: Pagination metadata
-      required:
-      - page
-      - per_page
-      - total
-      - total_pages
-      - has_more
-      properties:
-        has_more:
-          type: boolean
-          description: Whether there are more pages
-        page:
-          type: integer
-          format: int32
-          description: Current page number
-          minimum: 0
-        per_page:
-          type: integer
-          format: int32
-          description: Number of items per page
-          minimum: 0
-        total:
-          type: integer
-          format: int64
-          description: Total number of items
-          minimum: 0
-        total_pages:
-          type: integer
-          format: int32
-          description: Total number of pages
-          minimum: 0
-    PaginatedResponse:
-      type: object
-      description: Paginated response wrapper
-      required:
-      - data
-      - meta
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProtocolYieldSources'
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-          description: Pagination metadata
-    ProtocolYieldSources:
-      type: object
-      required:
-      - protocol
-      - yield_sources
-      - count
-      properties:
-        count:
-          type: integer
-          description: Number of yield sources in this protocol
-          minimum: 0
-        protocol:
-          type: string
-          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
-        yield_sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiYieldSource'
-          description: List of yield sources for this protocol
     ApiYieldSource:
       type: object
       required:
@@ -251,6 +185,72 @@ components:
         yield_type:
           type: string
           description: Type of yield source (e.g., "Lending", "TokenStaking", etc.)
+    ProtocolYieldSources:
+      type: object
+      required:
+      - protocol
+      - yield_sources
+      - count
+      properties:
+        count:
+          type: integer
+          description: Number of yield sources in this protocol
+          minimum: 0
+        protocol:
+          type: string
+          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
+        yield_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiYieldSource'
+          description: List of yield sources for this protocol
+    PaginatedResponse:
+      type: object
+      description: Paginated response wrapper
+      required:
+      - data
+      - meta
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProtocolYieldSources'
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+          description: Pagination metadata
+    PaginationMeta:
+      type: object
+      description: Pagination metadata
+      required:
+      - page
+      - per_page
+      - total
+      - total_pages
+      - has_more
+      properties:
+        has_more:
+          type: boolean
+          description: Whether there are more pages
+        page:
+          type: integer
+          format: int32
+          description: Current page number
+          minimum: 0
+        per_page:
+          type: integer
+          format: int32
+          description: Number of items per page
+          minimum: 0
+        total:
+          type: integer
+          format: int64
+          description: Total number of items
+          minimum: 0
+        total_pages:
+          type: integer
+          format: int32
+          description: Total number of pages
+          minimum: 0
     ErrorResponse:
       type: object
       required:

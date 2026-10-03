@@ -101,6 +101,27 @@ paths:
       - bearer_auth: []
 components:
   schemas:
+    CodexToken:
+      type: object
+      required:
+      - address
+      - symbol
+      - name
+      - decimals
+      properties:
+        address:
+          type: string
+        decimals:
+          type: integer
+          format: int32
+        logo_uri:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        symbol:
+          type: string
     SupportedAssetsByVenueResponse:
       type: object
       required:
@@ -121,23 +142,24 @@ components:
           items:
             type: string
           description: Canonical venue names.
-    SupportedVenueAsset:
+    SupportedAssetsResponse:
       type: object
       required:
-      - mint
-      - name
-      - apy
+      - supported_base_assets
       properties:
-        apy:
-          type: number
-          format: double
-          description: Current APY for this venue + mint pair (decimal, e.g. 0.052 for 5.2%)
-        mint:
-          type: string
-          description: Base asset mint address
-        name:
-          type: string
-          description: Common token name (typically symbol, e.g. USDC)
+        supported_base_assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodexToken'
+          description: List of supported base assets with metadata
+    GlobalConfigResponse:
+      type: object
+      required:
+      - global_config
+      properties:
+        global_config:
+          $ref: '#/components/schemas/ApiGlobalConfig'
+          description: Global configuration information
     ApiGlobalConfig:
       type: object
       required:
@@ -184,24 +206,6 @@ components:
           format: int64
           description: Timestamp when the config was last updated
           minimum: 0
-    GlobalConfigResponse:
-      type: object
-      required:
-      - global_config
-      properties:
-        global_config:
-          $ref: '#/components/schemas/ApiGlobalConfig'
-          description: Global configuration information
-    SupportedAssetsResponse:
-      type: object
-      required:
-      - supported_base_assets
-      properties:
-        supported_base_assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/CodexToken'
-          description: List of supported base assets with metadata
     ErrorResponse:
       type: object
       required:
@@ -210,27 +214,23 @@ components:
         message:
           type: string
           description: Error message description
-    CodexToken:
+    SupportedVenueAsset:
       type: object
       required:
-      - address
-      - symbol
+      - mint
       - name
-      - decimals
+      - apy
       properties:
-        address:
+        apy:
+          type: number
+          format: double
+          description: Current APY for this venue + mint pair (decimal, e.g. 0.052 for 5.2%)
+        mint:
           type: string
-        decimals:
-          type: integer
-          format: int32
-        logo_uri:
-          type:
-          - string
-          - 'null'
+          description: Base asset mint address
         name:
           type: string
-        symbol:
-          type: string
+          description: Common token name (typically symbol, e.g. USDC)
   securitySchemes:
     api_key:
       type: apiKey

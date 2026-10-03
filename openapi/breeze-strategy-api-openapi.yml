@@ -53,49 +53,43 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    StrategyInstanceStatus:
-      type: string
-      enum:
-      - active
-      - pending
-      - failed
-      - updating
-    FundRef:
+    ApiInputForGetStrategyByTags:
       type: object
       required:
-      - mint
-      - fund_id
+      - tags
       properties:
-        allocation_percent:
-          type:
-          - number
-          - 'null'
-          format: double
-        fund_id:
+        tags:
+          type: array
+          items:
+            type: string
+    FeeInfoForStrategy:
+      type: object
+      required:
+      - fee_bps
+      - fee_recipient
+      - frequency_seconds
+      - fee_type
+      properties:
+        fee_bps:
+          type: integer
+          format: int32
+          minimum: 0
+        fee_recipient:
           type: string
-        mint:
+        fee_type:
           type: string
-    Vec:
-      type: array
-      items:
-        allOf:
-        - $ref: '#/components/schemas/StrategyInstance'
-          description: The full strategy instance data
-        - type: object
-          required:
-          - apy
-          - total_users
-          properties:
-            apy:
-              type: number
-              format: double
-              description: Weighted APY of the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
-            total_users:
-              type: integer
-              format: int64
-              description: Total unique users in the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
-              minimum: 0
-        description: Strategy with pre-computed metrics for list views (avoids N+1 queries)
+        frequency_seconds:
+          type: integer
+          format: int64
+          minimum: 0
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Error message description
     StrategyInstance:
       type: object
       required:
@@ -138,43 +132,49 @@ components:
           type: integer
           format: int64
           minimum: 0
-    FeeInfoForStrategy:
+    Vec:
+      type: array
+      items:
+        allOf:
+        - $ref: '#/components/schemas/StrategyInstance'
+          description: The full strategy instance data
+        - type: object
+          required:
+          - apy
+          - total_users
+          properties:
+            apy:
+              type: number
+              format: double
+              description: Weighted APY of the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
+            total_users:
+              type: integer
+              format: int64
+              description: Total unique users in the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
+              minimum: 0
+        description: Strategy with pre-computed metrics for list views (avoids N+1 queries)
+    StrategyInstanceStatus:
+      type: string
+      enum:
+      - active
+      - pending
+      - failed
+      - updating
+    FundRef:
       type: object
       required:
-      - fee_bps
-      - fee_recipient
-      - frequency_seconds
-      - fee_type
+      - mint
+      - fund_id
       properties:
-        fee_bps:
-          type: integer
-          format: int32
-          minimum: 0
-        fee_recipient:
+        allocation_percent:
+          type:
+          - number
+          - 'null'
+          format: double
+        fund_id:
           type: string
-        fee_type:
+        mint:
           type: string
-        frequency_seconds:
-          type: integer
-          format: int64
-          minimum: 0
-    ErrorResponse:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Error message description
-    ApiInputForGetStrategyByTags:
-      type: object
-      required:
-      - tags
-      properties:
-        tags:
-          type: array
-          items:
-            type: string
   securitySchemes:
     api_key:
       type: apiKey

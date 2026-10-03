@@ -80,21 +80,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Error message description
-    StructuredInputForWithdraw:
-      type: object
-      required:
-      - params
-      properties:
-        params:
-          $ref: '#/components/schemas/InputForWithdraw'
     InputForWithdraw:
       type: object
       properties:
@@ -190,6 +175,21 @@ components:
           type:
           - string
           - 'null'
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Error message description
+    StructuredInputForWithdraw:
+      type: object
+      required:
+      - params
+      properties:
+        params:
+          $ref: '#/components/schemas/InputForWithdraw'
   securitySchemes:
     api_key:
       type: apiKey

@@ -1,0 +1,27 @@
+slug: breeze
+provider: Breeze
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Organization API Keys
+  spec_file: breeze-organization-api-keys-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.75
+  evidence: POST /organization/api-keys  create_organization_api_key  Create organization api key; schemas
+    ApiKeyCreatedResponse, PortalUpdateApiKeyRequest
+  reason: Operations are pure CRUD over API keys issued to organizations consuming the Breeze REST API
+    — issuance and stewardship of developer credentials for the platform's public API, i.e. Developer
+    Identity & Credential Management. Some ambiguity with generic Identity & Access Management, hence
+    not top confidence.

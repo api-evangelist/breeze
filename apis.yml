@@ -54,6 +54,8 @@ tags:
 - Payments
 - Blockchain
 - AI Agents
+- Web3
+- Cryptocurrency
 tags_raw:
 - Company
 - Crypto Web3
@@ -64,6 +66,8 @@ tags_raw:
 - Blockchain
 - API
 - AI Agents
+- Web3
+- Cryptocurrency
 apis:
 - aid: breeze:breeze-admin-api
   name: Breeze Admin API
@@ -228,6 +232,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/breeze-capability-edges.yml
+  name: Breeze Business Capability Map
 - type: Website
   url: https://www.breeze.baby
 - type: DeveloperPortal

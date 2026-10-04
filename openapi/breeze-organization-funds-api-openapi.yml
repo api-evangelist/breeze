@@ -47,12 +47,46 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiLendFundStatus:
-      type: string
-      enum:
-      - Live
-      - Paused
-      - WithdrawOnly
+    ApiFundWithStrategyInfo:
+      type: object
+      required:
+      - fund
+      properties:
+        assigned_org:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApiFundOrganization'
+        fund:
+          $ref: '#/components/schemas/ApiFund'
+        strategy_name:
+          type:
+          - string
+          - 'null'
+    ApiFundConstraint:
+      type: object
+      required:
+      - yield_source_target
+      - constraint_type
+      - value
+      properties:
+        constraint_type:
+          $ref: '#/components/schemas/ApiConstraintType'
+        value:
+          type: integer
+          format: int64
+          minimum: 0
+        yield_source_target:
+          $ref: '#/components/schemas/ApiYieldSourceTarget'
+    ApiYieldSourceTarget:
+      type: object
+      required:
+      - yield_source_type
+      - protocol
+      properties:
+        protocol:
+          type: string
+        yield_source_type:
+          type: string
     ApiProtocolOptions:
       type: object
       required:
@@ -72,61 +106,6 @@ components:
           type: string
         marginfi_bank:
           type: string
-    ApiFundOrganization:
-      type: object
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-    ApiFundConstraint:
-      type: object
-      required:
-      - yield_source_target
-      - constraint_type
-      - value
-      properties:
-        constraint_type:
-          $ref: '#/components/schemas/ApiConstraintType'
-        value:
-          type: integer
-          format: int64
-          minimum: 0
-        yield_source_target:
-          $ref: '#/components/schemas/ApiYieldSourceTarget'
-    ApiFundWithStrategyInfo:
-      type: object
-      required:
-      - fund
-      properties:
-        assigned_org:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/ApiFundOrganization'
-        fund:
-          $ref: '#/components/schemas/ApiFund'
-        strategy_name:
-          type:
-          - string
-          - 'null'
-    ApiConstraintType:
-      type: string
-      enum:
-      - MaxPercentage
-      - MaxBaseAssetAmount
-    ApiYieldSourceTarget:
-      type: object
-      required:
-      - yield_source_type
-      - protocol
-      properties:
-        protocol:
-          type: string
-        yield_source_type:
-          type: string
     OrganizationFundsResponse:
       type: object
       description: Organization funds response with admin flag
@@ -140,45 +119,6 @@ components:
             $ref: '#/components/schemas/ApiFundWithStrategyInfo'
         is_admin:
           type: boolean
-    ApiYieldAllocation:
-      type: object
-      required:
-      - index
-      - yield_source_type
-      - protocol
-      - protocol_id
-      - position_id
-      - deposit_amount
-      - deposit_timestamp
-      - current_value
-      - time_weighted_value
-      properties:
-        current_value:
-          type: integer
-          format: int64
-          minimum: 0
-        deposit_amount:
-          type: integer
-          format: int64
-          minimum: 0
-        deposit_timestamp:
-          type: integer
-          format: int64
-        index:
-          type: integer
-          format: int32
-          minimum: 0
-        position_id:
-          type: string
-        protocol:
-          type: string
-        protocol_id:
-          type: string
-        time_weighted_value:
-          type: integer
-          minimum: 0
-        yield_source_type:
-          type: string
     ApiFund:
       type: object
       required:
@@ -304,6 +244,12 @@ components:
           type:
           - string
           - 'null'
+    ApiLendFundStatus:
+      type: string
+      enum:
+      - Live
+      - Paused
+      - WithdrawOnly
     ErrorResponse:
       type: object
       required:
@@ -312,6 +258,60 @@ components:
         message:
           type: string
           description: Error message description
+    ApiYieldAllocation:
+      type: object
+      required:
+      - index
+      - yield_source_type
+      - protocol
+      - protocol_id
+      - position_id
+      - deposit_amount
+      - deposit_timestamp
+      - current_value
+      - time_weighted_value
+      properties:
+        current_value:
+          type: integer
+          format: int64
+          minimum: 0
+        deposit_amount:
+          type: integer
+          format: int64
+          minimum: 0
+        deposit_timestamp:
+          type: integer
+          format: int64
+        index:
+          type: integer
+          format: int32
+          minimum: 0
+        position_id:
+          type: string
+        protocol:
+          type: string
+        protocol_id:
+          type: string
+        time_weighted_value:
+          type: integer
+          minimum: 0
+        yield_source_type:
+          type: string
+    ApiFundOrganization:
+      type: object
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    ApiConstraintType:
+      type: string
+      enum:
+      - MaxPercentage
+      - MaxBaseAssetAmount
   securitySchemes:
     api_key:
       type: apiKey

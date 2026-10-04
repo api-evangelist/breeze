@@ -53,43 +53,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiInputForGetStrategyByTags:
-      type: object
-      required:
-      - tags
-      properties:
-        tags:
-          type: array
-          items:
-            type: string
-    FeeInfoForStrategy:
-      type: object
-      required:
-      - fee_bps
-      - fee_recipient
-      - frequency_seconds
-      - fee_type
-      properties:
-        fee_bps:
-          type: integer
-          format: int32
-          minimum: 0
-        fee_recipient:
-          type: string
-        fee_type:
-          type: string
-        frequency_seconds:
-          type: integer
-          format: int64
-          minimum: 0
-    ErrorResponse:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Error message description
     StrategyInstance:
       type: object
       required:
@@ -153,13 +116,6 @@ components:
               description: Total unique users in the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
               minimum: 0
         description: Strategy with pre-computed metrics for list views (avoids N+1 queries)
-    StrategyInstanceStatus:
-      type: string
-      enum:
-      - active
-      - pending
-      - failed
-      - updating
     FundRef:
       type: object
       required:
@@ -175,6 +131,50 @@ components:
           type: string
         mint:
           type: string
+    ApiInputForGetStrategyByTags:
+      type: object
+      required:
+      - tags
+      properties:
+        tags:
+          type: array
+          items:
+            type: string
+    StrategyInstanceStatus:
+      type: string
+      enum:
+      - active
+      - pending
+      - failed
+      - updating
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Error message description
+    FeeInfoForStrategy:
+      type: object
+      required:
+      - fee_bps
+      - fee_recipient
+      - frequency_seconds
+      - fee_type
+      properties:
+        fee_bps:
+          type: integer
+          format: int32
+          minimum: 0
+        fee_recipient:
+          type: string
+        fee_type:
+          type: string
+        frequency_seconds:
+          type: integer
+          format: int64
+          minimum: 0
   securitySchemes:
     api_key:
       type: apiKey

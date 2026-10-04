@@ -33,6 +33,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiTokenPair:
+      type: object
+      required:
+      - token_mint
+      - amount
+      properties:
+        amount:
+          type: integer
+          minimum: 0
+        token_mint:
+          type: string
     ApiOrganizationFundStats:
       type: object
       required:
@@ -62,17 +73,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ApiTokenPair'
-    ApiTokenPair:
-      type: object
-      required:
-      - token_mint
-      - amount
-      properties:
-        amount:
-          type: integer
-          minimum: 0
-        token_mint:
-          type: string
   securitySchemes:
     api_key:
       type: apiKey

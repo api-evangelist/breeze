@@ -137,6 +137,25 @@ paths:
       - bearer_auth: []
 components:
   schemas:
+    YieldSourceResponse:
+      type: object
+      required:
+      - yield_source
+      properties:
+        yield_source:
+          $ref: '#/components/schemas/ApiYieldSource'
+          description: Yield source information
+    AssetsApyRequest:
+      type: object
+      description: Request body for assets APY endpoint
+      required:
+      - mints
+      properties:
+        mints:
+          type: array
+          items:
+            type: string
+          description: Array of asset mint addresses to get APY for
     ApiYieldSource:
       type: object
       required:
@@ -176,25 +195,15 @@ components:
         yield_type:
           type: string
           description: Type of yield source (e.g., "Lending", "TokenStaking", etc.)
-    ProtocolYieldSources:
+    AssetsApyResponse:
       type: object
+      description: Response for assets APY endpoint
       required:
-      - protocol
-      - yield_sources
-      - count
+      - apy
       properties:
-        count:
-          type: integer
-          description: Number of yield sources in this protocol
-          minimum: 0
-        protocol:
+        apy:
           type: string
-          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
-        yield_sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiYieldSource'
-          description: List of yield sources for this protocol
+          description: Maximum APY percentage across all yield sources for the given mints (e.g., "5.25")
     PaginatedResponse:
       type: object
       description: Paginated response wrapper
@@ -242,25 +251,6 @@ components:
           format: int32
           description: Total number of pages
           minimum: 0
-    YieldSourceResponse:
-      type: object
-      required:
-      - yield_source
-      properties:
-        yield_source:
-          $ref: '#/components/schemas/ApiYieldSource'
-          description: Yield source information
-    AssetsApyRequest:
-      type: object
-      description: Request body for assets APY endpoint
-      required:
-      - mints
-      properties:
-        mints:
-          type: array
-          items:
-            type: string
-          description: Array of asset mint addresses to get APY for
     ErrorResponse:
       type: object
       required:
@@ -269,15 +259,25 @@ components:
         message:
           type: string
           description: Error message description
-    AssetsApyResponse:
+    ProtocolYieldSources:
       type: object
-      description: Response for assets APY endpoint
       required:
-      - apy
+      - protocol
+      - yield_sources
+      - count
       properties:
-        apy:
+        count:
+          type: integer
+          description: Number of yield sources in this protocol
+          minimum: 0
+        protocol:
           type: string
-          description: Maximum APY percentage across all yield sources for the given mints (e.g., "5.25")
+          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
+        yield_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiYieldSource'
+          description: List of yield sources for this protocol
   securitySchemes:
     api_key:
       type: apiKey

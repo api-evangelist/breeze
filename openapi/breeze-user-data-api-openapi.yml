@@ -185,25 +185,6 @@ components:
         yield_type:
           type: string
           description: Type of yield source (e.g., "Lending", "TokenStaking", etc.)
-    ProtocolYieldSources:
-      type: object
-      required:
-      - protocol
-      - yield_sources
-      - count
-      properties:
-        count:
-          type: integer
-          description: Number of yield sources in this protocol
-          minimum: 0
-        protocol:
-          type: string
-          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
-        yield_sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiYieldSource'
-          description: List of yield sources for this protocol
     PaginatedResponse:
       type: object
       description: Paginated response wrapper
@@ -259,6 +240,25 @@ components:
         message:
           type: string
           description: Error message description
+    ProtocolYieldSources:
+      type: object
+      required:
+      - protocol
+      - yield_sources
+      - count
+      properties:
+        count:
+          type: integer
+          description: Number of yield sources in this protocol
+          minimum: 0
+        protocol:
+          type: string
+          description: Protocol/source name (e.g., "kamino", "marginfi", "drift")
+        yield_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiYieldSource'
+          description: List of yield sources for this protocol
   securitySchemes:
     api_key:
       type: apiKey

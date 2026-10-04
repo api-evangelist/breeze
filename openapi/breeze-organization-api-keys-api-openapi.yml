@@ -158,6 +158,48 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    PortalCreateApiKeyRequest:
+      type: object
+      properties:
+        expires_at:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Expiration timestamp (optional)
+          minimum: 0
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name/description for the API key
+        scopes:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Permissions or scopes for the API key
+    PortalUpdateApiKeyRequest:
+      type: object
+      properties:
+        active:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the API key is active
+        expires_at:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Expiration timestamp (optional)
+          minimum: 0
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name/description for the API key
     ApiKeyCreatedResponse:
       type: object
       required:
@@ -170,21 +212,14 @@ components:
         message:
           type: string
           description: Success message
-    ApiKeyListResponse:
+    ErrorResponse:
       type: object
       required:
-      - api_keys
-      - total
+      - message
       properties:
-        api_keys:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiKey'
-          description: List of API keys for the organization
-        total:
-          type: integer
-          description: Total count of API keys
-          minimum: 0
+        message:
+          type: string
+          description: Error message description
     ApiKey:
       type: object
       required:
@@ -232,56 +267,21 @@ components:
           items:
             type: string
           description: Permissions or scopes for the API key
-    PortalCreateApiKeyRequest:
-      type: object
-      properties:
-        expires_at:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: Expiration timestamp (optional)
-          minimum: 0
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name/description for the API key
-        scopes:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Permissions or scopes for the API key
-    PortalUpdateApiKeyRequest:
-      type: object
-      properties:
-        active:
-          type:
-          - boolean
-          - 'null'
-          description: Whether the API key is active
-        expires_at:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: Expiration timestamp (optional)
-          minimum: 0
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name/description for the API key
-    ErrorResponse:
+    ApiKeyListResponse:
       type: object
       required:
-      - message
+      - api_keys
+      - total
       properties:
-        message:
-          type: string
-          description: Error message description
+        api_keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiKey'
+          description: List of API keys for the organization
+        total:
+          type: integer
+          description: Total count of API keys
+          minimum: 0
   securitySchemes:
     api_key:
       type: apiKey

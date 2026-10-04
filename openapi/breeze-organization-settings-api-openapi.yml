@@ -92,36 +92,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiOrganizationSettingsResponse:
-      type: object
-      required:
-      - settings
-      properties:
-        settings:
-          $ref: '#/components/schemas/ApiOrganizationSettings'
-          description: Organization settings
-    ApiUpdateOrganizationSettingsRequest:
-      type: object
-      properties:
-        fee_distribution_key:
-          type:
-          - string
-          - 'null'
-          description: Fee distribution key for the organization
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Tags for the organization
-    ApiGetRequestBasedOrgTagsInput:
-      type: object
-      properties:
-        organization_id:
-          type:
-          - string
-          - 'null'
     ApiOrganizationSettings:
       type: object
       required:
@@ -148,6 +118,36 @@ components:
         message:
           type: string
           description: Error message description
+    ApiOrganizationSettingsResponse:
+      type: object
+      required:
+      - settings
+      properties:
+        settings:
+          $ref: '#/components/schemas/ApiOrganizationSettings'
+          description: Organization settings
+    ApiGetRequestBasedOrgTagsInput:
+      type: object
+      properties:
+        organization_id:
+          type:
+          - string
+          - 'null'
+    ApiUpdateOrganizationSettingsRequest:
+      type: object
+      properties:
+        fee_distribution_key:
+          type:
+          - string
+          - 'null'
+          description: Fee distribution key for the organization
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Tags for the organization
   securitySchemes:
     api_key:
       type: apiKey

@@ -101,6 +101,14 @@ paths:
       - bearer_auth: []
 components:
   schemas:
+    GlobalConfigResponse:
+      type: object
+      required:
+      - global_config
+      properties:
+        global_config:
+          $ref: '#/components/schemas/ApiGlobalConfig'
+          description: Global configuration information
     CodexToken:
       type: object
       required:
@@ -122,44 +130,6 @@ components:
           type: string
         symbol:
           type: string
-    SupportedAssetsByVenueResponse:
-      type: object
-      required:
-      - venues
-      - venue_to_supported_assets
-      properties:
-        venue_to_supported_assets:
-          type: object
-          description: Mapping from venue to its supported base assets.
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/SupportedVenueAsset'
-          propertyNames:
-            type: string
-        venues:
-          type: array
-          items:
-            type: string
-          description: Canonical venue names.
-    SupportedAssetsResponse:
-      type: object
-      required:
-      - supported_base_assets
-      properties:
-        supported_base_assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/CodexToken'
-          description: List of supported base assets with metadata
-    GlobalConfigResponse:
-      type: object
-      required:
-      - global_config
-      properties:
-        global_config:
-          $ref: '#/components/schemas/ApiGlobalConfig'
-          description: Global configuration information
     ApiGlobalConfig:
       type: object
       required:
@@ -206,14 +176,16 @@ components:
           format: int64
           description: Timestamp when the config was last updated
           minimum: 0
-    ErrorResponse:
+    SupportedAssetsResponse:
       type: object
       required:
-      - message
+      - supported_base_assets
       properties:
-        message:
-          type: string
-          description: Error message description
+        supported_base_assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodexToken'
+          description: List of supported base assets with metadata
     SupportedVenueAsset:
       type: object
       required:
@@ -231,6 +203,34 @@ components:
         name:
           type: string
           description: Common token name (typically symbol, e.g. USDC)
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Error message description
+    SupportedAssetsByVenueResponse:
+      type: object
+      required:
+      - venues
+      - venue_to_supported_assets
+      properties:
+        venue_to_supported_assets:
+          type: object
+          description: Mapping from venue to its supported base assets.
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/SupportedVenueAsset'
+          propertyNames:
+            type: string
+        venues:
+          type: array
+          items:
+            type: string
+          description: Canonical venue names.
   securitySchemes:
     api_key:
       type: apiKey

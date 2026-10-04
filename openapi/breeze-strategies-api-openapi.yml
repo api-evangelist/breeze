@@ -646,265 +646,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    StrategyDetailResponse:
-      allOf:
-      - $ref: '#/components/schemas/StrategyInstance'
-        description: The full strategy instance data
-      - type: object
-        required:
-        - apy
-        - protocol_allocations
-        properties:
-          apy:
-            type: number
-            format: double
-            description: Computed APY (average of non-zero yield source APYs across allocations)
-          protocol_allocations:
-            type: array
-            items:
-              $ref: '#/components/schemas/ProtocolValues'
-      description: Detailed strategy response with all computed metrics (optimized batch queries)
-    ApiInputForInitializingStrategy:
-      type: object
-      required:
-      - name
-      - template_id
-      - fee_recipient
-      - fee_percentage
-      - frequency_seconds
-      properties:
-        delegated_withdrawer:
-          type:
-          - string
-          - 'null'
-          description: Optional delegated withdraw authority applied to each fund created for this strategy.
-        description:
-          type:
-          - string
-          - 'null'
-        fee_percentage:
-          type: number
-          format: double
-        fee_recipient:
-          type: string
-        frequency_seconds:
-          type: integer
-          format: int64
-          minimum: 0
-        name:
-          type: string
-        squads_usage:
-          type: boolean
-          description: Optional, if the user uses squads multisig / grid
-        template_id:
-          type: string
-    ApiCreateStrategyTemplateResult:
-      type: object
-      required:
-      - message
-      - strategy_name
-      - template_id
-      properties:
-        message:
-          type: string
-        strategy_name:
-          type: string
-        template_id:
-          type: string
-    ApiPreRebalanceAllocation:
-      type: object
-      required:
-      - protocol_id
-      - position_id
-      - current_value
-      - yield_source_type
-      - protocol
-      properties:
-        current_value:
-          type: integer
-          format: int64
-          minimum: 0
-        position_id:
-          type: string
-        protocol:
-          type: string
-        protocol_id:
-          type: string
-        yield_source_type:
-          type: string
-    ApiCloseStrategyFundsRequest:
-      type: object
-      required:
-      - strategy_id
-      properties:
-        strategy_id:
-          type: string
-    ApiSelectiveYieldSource:
-      type: object
-      properties:
-        drift_lending:
-          type:
-          - string
-          - 'null'
-        jup_lend:
-          type:
-          - string
-          - 'null'
-        kamino:
-          type:
-          - string
-          - 'null'
-        marginfiv2:
-          type:
-          - string
-          - 'null'
-    CreateStrategyApiResult:
-      type: object
-      required:
-      - task_id_for_creating_all_funds
-      - status
-      - message
-      properties:
-        message:
-          type: string
-        status:
-          type: string
-        strategy_id:
-          type:
-          - string
-          - 'null'
-        task_id_for_creating_all_funds:
-          type: string
-    ProtocolValues:
-      type: object
-      required:
-      - asset
-      - usd_value
-      - protocol
-      - apy
-      properties:
-        apy:
-          type: number
-          format: double
-        asset:
-          type: string
-        protocol:
-          type: string
-        usd_value:
-          type: number
-          format: double
-    ApiStrategyMetricUniversal:
-      type: object
-      required:
-      - start
-      - end
-      - aggregation_window
-      - strategy_id
-      - data
-      - combined_asset_value_over_time
-      - per_asset_value_over_time
-      - fee_distribution_metrics
-      properties:
-        aggregation_window:
-          type: string
-          description: Aggregation window (e.g., "1h", "1d", "5m") representing time between data points
-        combined_asset_value_over_time:
-          type: array
-          items:
-            $ref: '#/components/schemas/CombinedAssetValueOverTime'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/UniversalStrategyMetrics'
-          description: Array of aggregated metric data points
-        end:
-          type: string
-          description: End timestamp of the data range
-        fee_distribution_metrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiDailyFeeDistribution'
-        per_asset_value_over_time:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/AssetValuePair'
-          propertyNames:
-            type: string
-        start:
-          type: string
-          description: Start timestamp of the data range
-        strategy_id:
-          type: array
-          items:
-            type: string
-          description: Strategy ID for the metrics
-    StrategyInstanceStatus:
-      type: string
-      enum:
-      - active
-      - pending
-      - failed
-      - updating
-    ApiStrategyFee:
-      type: object
-      required:
-      - fee_type
-      - percentage
-      - recipient
-      - frequency_seconds
-      properties:
-        fee_type:
-          type: string
-        frequency_seconds:
-          type: integer
-          format: int64
-          minimum: 0
-        percentage:
-          type: number
-          format: double
-        recipient:
-          type: string
-    ApiStrategyTemplate:
-      type: object
-      required:
-      - id
-      - name
-      - visibility_tags
-      - assets
-      - fees
-      - created_at
-      - updated_at
-      properties:
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiTemplateAsset'
-        created_at:
-          type: integer
-          format: int64
-          minimum: 0
-        description:
-          type:
-          - string
-          - 'null'
-        fees:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiStrategyFee'
-        id:
-          type: string
-        name:
-          type: string
-        updated_at:
-          type: integer
-          format: int64
-          minimum: 0
-        visibility_tags:
-          type: array
-          items:
-            type: string
     UniversalStrategyMetrics:
       type: object
       required:
@@ -952,6 +693,371 @@ components:
         withdrawals_usd:
           type: number
           format: double
+    ApiTargetAllocation:
+      type: object
+      required:
+      - yield_source_pubkey
+      - yield_source_type
+      - protocol
+      - target_amount
+      - objective_function_score
+      properties:
+        objective_function_score:
+          type: number
+          format: double
+        protocol:
+          type: string
+        target_amount:
+          type: integer
+          format: int64
+          minimum: 0
+        yield_source_pubkey:
+          type: string
+        yield_source_type:
+          type: string
+    ApiStrategyMetricUniversal:
+      type: object
+      required:
+      - start
+      - end
+      - aggregation_window
+      - strategy_id
+      - data
+      - combined_asset_value_over_time
+      - per_asset_value_over_time
+      - fee_distribution_metrics
+      properties:
+        aggregation_window:
+          type: string
+          description: Aggregation window (e.g., "1h", "1d", "5m") representing time between data points
+        combined_asset_value_over_time:
+          type: array
+          items:
+            $ref: '#/components/schemas/CombinedAssetValueOverTime'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UniversalStrategyMetrics'
+          description: Array of aggregated metric data points
+        end:
+          type: string
+          description: End timestamp of the data range
+        fee_distribution_metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiDailyFeeDistribution'
+        per_asset_value_over_time:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/AssetValuePair'
+          propertyNames:
+            type: string
+        start:
+          type: string
+          description: Start timestamp of the data range
+        strategy_id:
+          type: array
+          items:
+            type: string
+          description: Strategy ID for the metrics
+    ApiPreRebalanceAllocation:
+      type: object
+      required:
+      - protocol_id
+      - position_id
+      - current_value
+      - yield_source_type
+      - protocol
+      properties:
+        current_value:
+          type: integer
+          format: int64
+          minimum: 0
+        position_id:
+          type: string
+        protocol:
+          type: string
+        protocol_id:
+          type: string
+        yield_source_type:
+          type: string
+    StrategyMetrics:
+      type: object
+      required:
+      - time
+      - usd_value
+      - asset_value_pairs
+      - total_users
+      - apy
+      - organization_cumulative_earnings
+      - deposits_usd
+      - withdrawals_usd
+      properties:
+        apy:
+          type: number
+          format: double
+          description: Weighted APY of the strategy
+        asset_value_pairs:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssetValuePair'
+          description: Values of each asset both in usd and in asset
+        deposits_usd:
+          type: number
+          format: double
+          description: Total deposits and withdrawals in usd
+        organization_cumulative_earnings:
+          type: number
+          format: double
+          description: Entire earnings of the strategy in usd
+        time:
+          type: string
+        total_users:
+          type: integer
+          format: int64
+          description: Amount of unique users in the strategy
+          minimum: 0
+        usd_value:
+          type: number
+          format: double
+          description: Values of entire strategy
+        withdrawals_usd:
+          type: number
+          format: double
+    ApiDailyFeeDistribution:
+      type: object
+      required:
+      - time
+      - total_amount_distributed
+      properties:
+        time:
+          type: string
+        total_amount_distributed:
+          type: number
+          format: double
+    ApiStrategyFee:
+      type: object
+      required:
+      - fee_type
+      - percentage
+      - recipient
+      - frequency_seconds
+      properties:
+        fee_type:
+          type: string
+        frequency_seconds:
+          type: integer
+          format: int64
+          minimum: 0
+        percentage:
+          type: number
+          format: double
+        recipient:
+          type: string
+    ApiUpdateStrategyDelegatedWithdrawerRequest:
+      type: object
+      required:
+      - strategy_id
+      properties:
+        delegated_withdrawer:
+          type:
+          - string
+          - 'null'
+          description: Set to `null` to clear the delegated withdrawer on every fund in the strategy.
+        strategy_id:
+          type: string
+    ApiStrategyMetricCurrentData:
+      type: object
+      required:
+      - total_deposit
+      - total_strategy
+      - tvl
+      - yield_earnings
+      - strategy_user_count
+      - total_deposits_in_karmino
+      - total_deposits_in_drift_lending
+      - total_deposits_in_marginfi
+      - total_deposits_in_jup_lend
+      - total_earnings_in_fees
+      properties:
+        strategy_user_count:
+          type: integer
+          minimum: 0
+        total_deposit:
+          type: number
+          format: double
+        total_deposits_in_drift_lending:
+          type: number
+          format: double
+        total_deposits_in_jup_lend:
+          type: number
+          format: double
+        total_deposits_in_karmino:
+          type: number
+          format: double
+        total_deposits_in_marginfi:
+          type: number
+          format: double
+        total_earnings_in_fees:
+          type: number
+          format: double
+        total_strategy:
+          type: integer
+          format: int32
+          minimum: 0
+        tvl:
+          type: number
+          format: double
+        yield_earnings:
+          type: number
+          format: double
+    ApiInputForInitializingStrategy:
+      type: object
+      required:
+      - name
+      - template_id
+      - fee_recipient
+      - fee_percentage
+      - frequency_seconds
+      properties:
+        delegated_withdrawer:
+          type:
+          - string
+          - 'null'
+          description: Optional delegated withdraw authority applied to each fund created for this strategy.
+        description:
+          type:
+          - string
+          - 'null'
+        fee_percentage:
+          type: number
+          format: double
+        fee_recipient:
+          type: string
+        frequency_seconds:
+          type: integer
+          format: int64
+          minimum: 0
+        name:
+          type: string
+        squads_usage:
+          type: boolean
+          description: Optional, if the user uses squads multisig / grid
+        template_id:
+          type: string
+    CombinedAssetValueOverTime:
+      type: object
+      required:
+      - time
+      - assets
+      properties:
+        assets:
+          type: object
+          additionalProperties:
+            type: number
+            format: double
+          propertyNames:
+            type: string
+        time:
+          type: string
+    ApiStrategyTemplate:
+      type: object
+      required:
+      - id
+      - name
+      - visibility_tags
+      - assets
+      - fees
+      - created_at
+      - updated_at
+      properties:
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiTemplateAsset'
+        created_at:
+          type: integer
+          format: int64
+          minimum: 0
+        description:
+          type:
+          - string
+          - 'null'
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiStrategyFee'
+        id:
+          type: string
+        name:
+          type: string
+        updated_at:
+          type: integer
+          format: int64
+          minimum: 0
+        visibility_tags:
+          type: array
+          items:
+            type: string
+    ApiCreateStrategyTemplateResult:
+      type: object
+      required:
+      - message
+      - strategy_name
+      - template_id
+      properties:
+        message:
+          type: string
+        strategy_name:
+          type: string
+        template_id:
+          type: string
+    ProtocolValues:
+      type: object
+      required:
+      - asset
+      - usd_value
+      - protocol
+      - apy
+      properties:
+        apy:
+          type: number
+          format: double
+        asset:
+          type: string
+        protocol:
+          type: string
+        usd_value:
+          type: number
+          format: double
+    ApiInputForCreatingStrategy:
+      type: object
+      required:
+      - name
+      - visibility_tags
+      - assets
+      - fees
+      properties:
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiTemplateAsset'
+        description:
+          type:
+          - string
+          - 'null'
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiStrategyFee'
+        name:
+          type: string
+        visibility_tags:
+          type: array
+          items:
+            type: string
     CurrentStrategyData:
       type: object
       required:
@@ -995,66 +1101,6 @@ components:
           type: integer
           format: int64
           minimum: 0
-    ApiTemplateAsset:
-      type: object
-      required:
-      - mint
-      - yield_sources
-      properties:
-        mint:
-          type: string
-        yield_sources:
-          $ref: '#/components/schemas/ApiTemplateYieldSource'
-    ApiTargetAllocation:
-      type: object
-      required:
-      - yield_source_pubkey
-      - yield_source_type
-      - protocol
-      - target_amount
-      - objective_function_score
-      properties:
-        objective_function_score:
-          type: number
-          format: double
-        protocol:
-          type: string
-        target_amount:
-          type: integer
-          format: int64
-          minimum: 0
-        yield_source_pubkey:
-          type: string
-        yield_source_type:
-          type: string
-    FeeInfoForStrategy:
-      type: object
-      required:
-      - fee_bps
-      - fee_recipient
-      - frequency_seconds
-      - fee_type
-      properties:
-        fee_bps:
-          type: integer
-          format: int32
-          minimum: 0
-        fee_recipient:
-          type: string
-        fee_type:
-          type: string
-        frequency_seconds:
-          type: integer
-          format: int64
-          minimum: 0
-    ApiInputForUpdatingStrategyInstance:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: New name for the strategy (optional)
     StrategyInstance:
       type: object
       required:
@@ -1097,6 +1143,150 @@ components:
           type: integer
           format: int64
           minimum: 0
+    ApiSelectiveYieldSource:
+      type: object
+      properties:
+        drift_lending:
+          type:
+          - string
+          - 'null'
+        jup_lend:
+          type:
+          - string
+          - 'null'
+        kamino:
+          type:
+          - string
+          - 'null'
+        marginfiv2:
+          type:
+          - string
+          - 'null'
+    StrategyWithListMetrics:
+      allOf:
+      - $ref: '#/components/schemas/StrategyInstance'
+        description: The full strategy instance data
+      - type: object
+        required:
+        - apy
+        - total_users
+        - tvl_usd
+        - fees_collected_usd
+        properties:
+          apy:
+            type: number
+            format: double
+            description: Weighted APY of the strategy.
+          fees_collected_usd:
+            type: number
+            format: double
+            description: Total fees collected (sum of amount_distributed) across all funds in the strategy.
+          total_users:
+            type: integer
+            format: int64
+            description: Total unique users in the strategy.
+            minimum: 0
+          tvl_usd:
+            type: number
+            format: double
+            description: Total value locked in USD across all funds in the strategy.
+      description: Strategy with full list metrics (TVL, fees, APY, users) for GET /organization/strategies.
+    CreateStrategyApiResult:
+      type: object
+      required:
+      - task_id_for_creating_all_funds
+      - status
+      - message
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+        strategy_id:
+          type:
+          - string
+          - 'null'
+        task_id_for_creating_all_funds:
+          type: string
+    Vec:
+      type: array
+      items:
+        allOf:
+        - $ref: '#/components/schemas/StrategyInstance'
+          description: The full strategy instance data
+        - type: object
+          required:
+          - apy
+          - total_users
+          properties:
+            apy:
+              type: number
+              format: double
+              description: Weighted APY of the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
+            total_users:
+              type: integer
+              format: int64
+              description: Total unique users in the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
+              minimum: 0
+        description: Strategy with pre-computed metrics for list views (avoids N+1 queries)
+    CodexToken:
+      type: object
+      required:
+      - address
+      - symbol
+      - name
+      - decimals
+      properties:
+        address:
+          type: string
+        decimals:
+          type: integer
+          format: int32
+        logo_uri:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        symbol:
+          type: string
+    AssetValuePair:
+      type: object
+      required:
+      - time
+      - asset
+      - usd_value
+      - value_in_base_asset
+      properties:
+        asset:
+          type: string
+        fund_id:
+          type:
+          - string
+          - 'null'
+        time:
+          type: string
+        usd_value:
+          type: number
+          format: double
+        value_in_base_asset:
+          type: number
+          format: double
+    ApiInputForUpdatingStrategyInstance:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: New name for the strategy (optional)
+    ApiCloseStrategyFundsRequest:
+      type: object
+      required:
+      - strategy_id
+      properties:
+        strategy_id:
+          type: string
     ApiRebalanceHistory:
       type: object
       required:
@@ -1164,67 +1354,6 @@ components:
           type:
           - string
           - 'null'
-    StrategyAvailableAssetsResponse:
-      type: object
-      required:
-      - assets
-      properties:
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/StrategyAvailableAsset'
-          description: List of available strategy assets with their yield sources
-    StrategyAvailableAsset:
-      type: object
-      required:
-      - token_info
-      properties:
-        token_info:
-          $ref: '#/components/schemas/CodexToken'
-        yield_sources:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/ApiSelectiveYieldSource'
-    Vec:
-      type: array
-      items:
-        allOf:
-        - $ref: '#/components/schemas/StrategyInstance'
-          description: The full strategy instance data
-        - type: object
-          required:
-          - apy
-          - total_users
-          properties:
-            apy:
-              type: number
-              format: double
-              description: Weighted APY of the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
-            total_users:
-              type: integer
-              format: int64
-              description: Total unique users in the strategy (from latest snapshot, may be stale). Defaults to 0 if no snapshot.
-              minimum: 0
-        description: Strategy with pre-computed metrics for list views (avoids N+1 queries)
-    ApiTemplateYieldSource:
-      type: object
-      properties:
-        drift_lending:
-          type:
-          - string
-          - 'null'
-        jup_lend:
-          type:
-          - string
-          - 'null'
-        kamino:
-          type:
-          - string
-          - 'null'
-        marginfiv2:
-          type:
-          - string
-          - 'null'
     ApiStrategyMetrics:
       type: object
       required:
@@ -1255,68 +1384,79 @@ components:
         strategy_id:
           type: string
           description: Strategy ID for the metrics
-    AssetValuePair:
+    StrategyAvailableAsset:
       type: object
       required:
-      - time
-      - asset
-      - usd_value
-      - value_in_base_asset
+      - token_info
       properties:
-        asset:
-          type: string
-        fund_id:
-          type:
-          - string
-          - 'null'
-        time:
-          type: string
-        usd_value:
-          type: number
-          format: double
-        value_in_base_asset:
-          type: number
-          format: double
-    ApiInputForCreatingStrategy:
+        token_info:
+          $ref: '#/components/schemas/CodexToken'
+        yield_sources:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApiSelectiveYieldSource'
+    FeeInfoForStrategy:
       type: object
       required:
-      - name
-      - visibility_tags
-      - assets
-      - fees
+      - fee_bps
+      - fee_recipient
+      - frequency_seconds
+      - fee_type
       properties:
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiTemplateAsset'
-        description:
-          type:
-          - string
-          - 'null'
-        fees:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiStrategyFee'
-        name:
+        fee_bps:
+          type: integer
+          format: int32
+          minimum: 0
+        fee_recipient:
           type: string
-        visibility_tags:
-          type: array
-          items:
-            type: string
-    CombinedAssetValueOverTime:
+        fee_type:
+          type: string
+        frequency_seconds:
+          type: integer
+          format: int64
+          minimum: 0
+    ApiTemplateAsset:
       type: object
       required:
-      - time
-      - assets
+      - mint
+      - yield_sources
       properties:
-        assets:
-          type: object
-          additionalProperties:
+        mint:
+          type: string
+        yield_sources:
+          $ref: '#/components/schemas/ApiTemplateYieldSource'
+    StrategyDetailResponse:
+      allOf:
+      - $ref: '#/components/schemas/StrategyInstance'
+        description: The full strategy instance data
+      - type: object
+        required:
+        - apy
+        - protocol_allocations
+        properties:
+          apy:
             type: number
             format: double
-          propertyNames:
-            type: string
-        time:
+            description: Computed APY (average of non-zero yield source APYs across allocations)
+          protocol_allocations:
+            type: array
+            items:
+              $ref: '#/components/schemas/ProtocolValues'
+      description: Detailed strategy response with all computed metrics (optimized batch queries)
+    FundRef:
+      type: object
+      required:
+      - mint
+      - fund_id
+      properties:
+        allocation_percent:
+          type:
+          - number
+          - 'null'
+          format: double
+        fund_id:
+          type: string
+        mint:
           type: string
     ApiRebalanceInstruction:
       type: object
@@ -1335,29 +1475,23 @@ components:
           type: string
         yield_source_type:
           type: string
-    ApiDailyFeeDistribution:
+    StrategyInstanceStatus:
+      type: string
+      enum:
+      - active
+      - pending
+      - failed
+      - updating
+    StrategyAvailableAssetsResponse:
       type: object
       required:
-      - time
-      - total_amount_distributed
+      - assets
       properties:
-        time:
-          type: string
-        total_amount_distributed:
-          type: number
-          format: double
-    ApiUpdateStrategyDelegatedWithdrawerRequest:
-      type: object
-      required:
-      - strategy_id
-      properties:
-        delegated_withdrawer:
-          type:
-          - string
-          - 'null'
-          description: Set to `null` to clear the delegated withdrawer on every fund in the strategy.
-        strategy_id:
-          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/StrategyAvailableAsset'
+          description: List of available strategy assets with their yield sources
     ErrorResponse:
       type: object
       required:
@@ -1366,159 +1500,25 @@ components:
         message:
           type: string
           description: Error message description
-    StrategyMetrics:
+    ApiTemplateYieldSource:
       type: object
-      required:
-      - time
-      - usd_value
-      - asset_value_pairs
-      - total_users
-      - apy
-      - organization_cumulative_earnings
-      - deposits_usd
-      - withdrawals_usd
       properties:
-        apy:
-          type: number
-          format: double
-          description: Weighted APY of the strategy
-        asset_value_pairs:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssetValuePair'
-          description: Values of each asset both in usd and in asset
-        deposits_usd:
-          type: number
-          format: double
-          description: Total deposits and withdrawals in usd
-        organization_cumulative_earnings:
-          type: number
-          format: double
-          description: Entire earnings of the strategy in usd
-        time:
-          type: string
-        total_users:
-          type: integer
-          format: int64
-          description: Amount of unique users in the strategy
-          minimum: 0
-        usd_value:
-          type: number
-          format: double
-          description: Values of entire strategy
-        withdrawals_usd:
-          type: number
-          format: double
-    CodexToken:
-      type: object
-      required:
-      - address
-      - symbol
-      - name
-      - decimals
-      properties:
-        address:
-          type: string
-        decimals:
-          type: integer
-          format: int32
-        logo_uri:
+        drift_lending:
           type:
           - string
           - 'null'
-        name:
-          type: string
-        symbol:
-          type: string
-    ApiStrategyMetricCurrentData:
-      type: object
-      required:
-      - total_deposit
-      - total_strategy
-      - tvl
-      - yield_earnings
-      - strategy_user_count
-      - total_deposits_in_karmino
-      - total_deposits_in_drift_lending
-      - total_deposits_in_marginfi
-      - total_deposits_in_jup_lend
-      - total_earnings_in_fees
-      properties:
-        strategy_user_count:
-          type: integer
-          minimum: 0
-        total_deposit:
-          type: number
-          format: double
-        total_deposits_in_drift_lending:
-          type: number
-          format: double
-        total_deposits_in_jup_lend:
-          type: number
-          format: double
-        total_deposits_in_karmino:
-          type: number
-          format: double
-        total_deposits_in_marginfi:
-          type: number
-          format: double
-        total_earnings_in_fees:
-          type: number
-          format: double
-        total_strategy:
-          type: integer
-          format: int32
-          minimum: 0
-        tvl:
-          type: number
-          format: double
-        yield_earnings:
-          type: number
-          format: double
-    StrategyWithListMetrics:
-      allOf:
-      - $ref: '#/components/schemas/StrategyInstance'
-        description: The full strategy instance data
-      - type: object
-        required:
-        - apy
-        - total_users
-        - tvl_usd
-        - fees_collected_usd
-        properties:
-          apy:
-            type: number
-            format: double
-            description: Weighted APY of the strategy.
-          fees_collected_usd:
-            type: number
-            format: double
-            description: Total fees collected (sum of amount_distributed) across all funds in the strategy.
-          total_users:
-            type: integer
-            format: int64
-            description: Total unique users in the strategy.
-            minimum: 0
-          tvl_usd:
-            type: number
-            format: double
-            description: Total value locked in USD across all funds in the strategy.
-      description: Strategy with full list metrics (TVL, fees, APY, users) for GET /organization/strategies.
-    FundRef:
-      type: object
-      required:
-      - mint
-      - fund_id
-      properties:
-        allocation_percent:
+        jup_lend:
           type:
-          - number
+          - string
           - 'null'
-          format: double
-        fund_id:
-          type: string
-        mint:
-          type: string
+        kamino:
+          type:
+          - string
+          - 'null'
+        marginfiv2:
+          type:
+          - string
+          - 'null'
   securitySchemes:
     api_key:
       type: apiKey

@@ -1,17 +1,22 @@
-generated: '2026-07-18'
+generated: '2026-09-23'
 method: generated
-source: openapi/breeze-openapi-original.json
+source: openapi/breeze-admin-api-openapi.yml, openapi/breeze-deposits-api-openapi.yml, openapi/breeze-fund-api-openapi.yml,
+  openapi/breeze-funds-api-openapi.yml, openapi/breeze-global-config-api-openapi.yml, openapi/breeze-organization-api-keys-api-openapi.yml,
+  openapi/breeze-organization-api-openapi.yml, openapi/breeze-organization-funds-api-openapi.yml,
+  openapi/breeze-organization-settings-api-openapi.yml, openapi/breeze-selective-yield-sources-api-openapi.yml,
+  openapi/breeze-strategies-api-openapi.yml, openapi/breeze-strategy-api-openapi.yml, openapi/breeze-user-data-api-openapi.yml,
+  openapi/breeze-withdrawals-api-openapi.yml, openapi/breeze-yield-sources-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 89
   by_action_class:
-    connected: 44
-    acting: 45
+    connected: 48
+    acting: 41
   by_consequence:
-    read: 44
-    write: 38
+    read: 48
+    write: 34
     safety-critical: 1
     physical: 6
   human_in_the_loop_required: 1
@@ -594,22 +599,16 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /assets/apy
-  method: post
-  operationId: get_assets_apy
+- path: /organization/get-job-status
+  method: get
+  operationId: get_job_status
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /deposit/ix
   method: post
   operationId: process_for_deposit_with_instruction
@@ -646,6 +645,16 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /organization/stats
+  method: get
+  operationId: get_organization_stats
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /fund/{fund_id}
   method: get
   operationId: get_fund
@@ -696,9 +705,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /funds
+- path: /organization/fund-requests
   method: get
-  operationId: get_organization_funds
+  operationId: get_organization_request_funds
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -706,6 +715,38 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /organization/fund-resolver
+  method: post
+  operationId: fund_resolver
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /organization/request-fund
+  method: post
+  operationId: request_new_fund
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /global-config
   method: get
   operationId: get_global_config
@@ -729,16 +770,6 @@ operations:
 - path: /global-config/supported-assets-by-venue
   method: get
   operationId: get_supported_assets_by_venue
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /needs-onboarding
-  method: get
-  operationId: needs_onboarding
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -804,6 +835,62 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /needs-onboarding
+  method: get
+  operationId: needs_onboarding
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /funds
+  method: get
+  operationId: get_organization_funds
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organization/settings
+  method: put
+  operationId: update_organization_settings
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /organization/settings
+  method: post
+  operationId: get_organization_settings
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organization/get-selective-yield-sources
+  method: post
+  operationId: get_selective_yield_sources
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /organization/create-strategy-template
   method: post
   operationId: create_new_strategy_template
@@ -836,132 +923,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /organization/fund-requests
-  method: get
-  operationId: get_organization_request_funds
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /organization/fund-resolver
-  method: post
-  operationId: fund_resolver
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /organization/get-job-status
-  method: get
-  operationId: get_job_status
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /organization/get-selective-yield-sources
-  method: post
-  operationId: get_selective_yield_sources
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /organization/get-strategy
-  method: post
-  operationId: get_strategy_template_by_tags
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /organization/request-fund
-  method: post
-  operationId: request_new_fund
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /organization/settings
-  method: put
-  operationId: update_organization_settings
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /organization/settings
-  method: post
-  operationId: get_organization_settings
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /organization/stats
-  method: get
-  operationId: get_organization_stats
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /organization/strategies
   method: get
   operationId: get_organization_strategies
@@ -1112,6 +1073,16 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /organization/get-strategy
+  method: post
+  operationId: get_strategy_template_by_tags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /user-balances/{fund_user}
   method: get
   operationId: get_user_balances
@@ -1168,6 +1139,16 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /assets/apy
+  method: post
+  operationId: get_assets_apy
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /yield-source/{yield_source_id}
   method: get
   operationId: get_yield_source

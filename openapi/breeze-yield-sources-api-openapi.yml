@@ -137,6 +137,39 @@ paths:
       - bearer_auth: []
 components:
   schemas:
+    PaginationMeta:
+      type: object
+      description: Pagination metadata
+      required:
+      - page
+      - per_page
+      - total
+      - total_pages
+      - has_more
+      properties:
+        has_more:
+          type: boolean
+          description: Whether there are more pages
+        page:
+          type: integer
+          format: int32
+          description: Current page number
+          minimum: 0
+        per_page:
+          type: integer
+          format: int32
+          description: Number of items per page
+          minimum: 0
+        total:
+          type: integer
+          format: int64
+          description: Total number of items
+          minimum: 0
+        total_pages:
+          type: integer
+          format: int32
+          description: Total number of pages
+          minimum: 0
     YieldSourceResponse:
       type: object
       required:
@@ -145,17 +178,6 @@ components:
         yield_source:
           $ref: '#/components/schemas/ApiYieldSource'
           description: Yield source information
-    AssetsApyRequest:
-      type: object
-      description: Request body for assets APY endpoint
-      required:
-      - mints
-      properties:
-        mints:
-          type: array
-          items:
-            type: string
-          description: Array of asset mint addresses to get APY for
     ApiYieldSource:
       type: object
       required:
@@ -195,15 +217,25 @@ components:
         yield_type:
           type: string
           description: Type of yield source (e.g., "Lending", "TokenStaking", etc.)
-    AssetsApyResponse:
+    ErrorResponse:
       type: object
-      description: Response for assets APY endpoint
       required:
-      - apy
+      - message
       properties:
-        apy:
+        message:
           type: string
-          description: Maximum APY percentage across all yield sources for the given mints (e.g., "5.25")
+          description: Error message description
+    AssetsApyRequest:
+      type: object
+      description: Request body for assets APY endpoint
+      required:
+      - mints
+      properties:
+        mints:
+          type: array
+          items:
+            type: string
+          description: Array of asset mint addresses to get APY for
     PaginatedResponse:
       type: object
       description: Paginated response wrapper
@@ -218,47 +250,15 @@ components:
         meta:
           $ref: '#/components/schemas/PaginationMeta'
           description: Pagination metadata
-    PaginationMeta:
+    AssetsApyResponse:
       type: object
-      description: Pagination metadata
+      description: Response for assets APY endpoint
       required:
-      - page
-      - per_page
-      - total
-      - total_pages
-      - has_more
+      - apy
       properties:
-        has_more:
-          type: boolean
-          description: Whether there are more pages
-        page:
-          type: integer
-          format: int32
-          description: Current page number
-          minimum: 0
-        per_page:
-          type: integer
-          format: int32
-          description: Number of items per page
-          minimum: 0
-        total:
-          type: integer
-          format: int64
-          description: Total number of items
-          minimum: 0
-        total_pages:
-          type: integer
-          format: int32
-          description: Total number of pages
-          minimum: 0
-    ErrorResponse:
-      type: object
-      required:
-      - message
-      properties:
-        message:
+        apy:
           type: string
-          description: Error message description
+          description: Maximum APY percentage across all yield sources for the given mints (e.g., "5.25")
     ProtocolYieldSources:
       type: object
       required:

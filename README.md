@@ -64,6 +64,142 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Breeze is a company surfaced as a portfolio company of multicoin-capital and added to the API Evangelist network as a stub for enrichment. Sector: crypto-web3. This profile is a lead awaiting the enrichment pipeline.
+Breeze is instant, non-custodial yield infrastructure for Solana. Any Solana app — wallets, payment products, trading platforms, Telegram bots, and AI agents — can embed automated yield for its users with a few lines of code via the Breeze REST API, a TypeScript SDK, prebuilt UI components, and an Agent Kit (MCP server, x402 and MPP pay-per-call access, and a drop-in Agent Skill). Yield is generated on USDC, USDT, USDS, SOL and Solana LSTs (JitoSOL, mSOL, JupSOL) plus JLP while custody stays with the user and positions remain liquid and composable. Breeze was built by Anagram and is backed by Multicoin Capital.
 
-Backed by: multicoin-capital — https://breeze.com
+**Areas:** Company · Web3 · Solana · Yield · DeFi · Payments · Blockchain · AI Agents · Cryptocurrency
+
+## Breeze on APIs.io
+
+Everything profiled for Breeze is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/breeze/](https://apis.io/providers/breeze/)** — or go straight to one of the APIs or properties below.
+
+### APIs (15)
+
+- [Breeze Admin API](https://apis.io/apis/breeze/breeze-admin-api/) — Administrative operations
+- [Breeze Deposits API](https://apis.io/apis/breeze/breeze-deposits-api/) — Deposit operations
+- [Breeze Fund API](https://apis.io/apis/breeze/breeze-fund-api/) — The fund API from Breeze — 1 operation(s) for fund.
+- [Breeze Funds API](https://apis.io/apis/breeze/breeze-funds-api/) — Fund management operations
+- [Breeze Global Config API](https://apis.io/apis/breeze/breeze-global-config-api/) — Global configuration and supported assets
+- [Breeze Organization API Keys API](https://apis.io/apis/breeze/breeze-organization-api-keys-api/) — Organization API key management
+- [Breeze Organization API](https://apis.io/apis/breeze/breeze-organization-api/) — Organization onboarding and status
+- [Breeze Organization Funds API](https://apis.io/apis/breeze/breeze-organization-funds-api/) — The Organization Funds API from Breeze — 1 operation(s) for organization funds.
+- [Breeze Organization Settings API](https://apis.io/apis/breeze/breeze-organization-settings-api/) — The Organization Settings API from Breeze — 1 operation(s) for organization settings.
+- [Breeze Selective Yield Sources API](https://apis.io/apis/breeze/breeze-selective-yield-sources-api/) — The Selective Yield Sources API from Breeze — 1 operation(s) for selective yield sources.
+- [Breeze Strategies API](https://apis.io/apis/breeze/breeze-strategies-api/) — The Strategies API from Breeze — 14 operation(s) for strategies.
+- [Breeze Strategy API](https://apis.io/apis/breeze/breeze-strategy-api/) — The Strategy API from Breeze — 1 operation(s) for strategy.
+- [Breeze User Data API](https://apis.io/apis/breeze/breeze-user-data-api/) — User balance and yield data
+- [Breeze Withdrawals API](https://apis.io/apis/breeze/breeze-withdrawals-api/) — Withdrawal operations
+- [Breeze Yield Sources API](https://apis.io/apis/breeze/breeze-yield-sources-api/) — Yield source information and statistics
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [breeze](https://apis.io/servers/breeze/breeze/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Breeze Agentic Access](https://apis.io/agentic-access/breeze/breeze-agentic-access/)
+
+#### Collections (15)
+
+Postman and Open Collection request collections.
+
+- [Breeze Admin API](https://apis.io/collections/breeze/open-breeze-admin-api/)
+- [Breeze Admin Deposits API](https://apis.io/collections/breeze/open-breeze-deposits-api/)
+- [Breeze Admin fund API](https://apis.io/collections/breeze/open-breeze-fund-api/)
+- [Breeze Admin Funds API](https://apis.io/collections/breeze/open-breeze-funds-api/)
+- [Breeze Admin Global Config API](https://apis.io/collections/breeze/open-breeze-global-config-api/)
+- [Breeze Admin Organization API](https://apis.io/collections/breeze/open-breeze-organization-api/)
+- [Breeze Admin Organization API Keys API](https://apis.io/collections/breeze/open-breeze-organization-api-keys-api/)
+- [Breeze Admin Organization Funds API](https://apis.io/collections/breeze/open-breeze-organization-funds-api/)
+- [Breeze Admin Organization Settings API](https://apis.io/collections/breeze/open-breeze-organization-settings-api/)
+- [Breeze Admin Selective Yield Sources API](https://apis.io/collections/breeze/open-breeze-selective-yield-sources-api/)
+- [Breeze Admin Strategies API](https://apis.io/collections/breeze/open-breeze-strategies-api/)
+- [Breeze Admin Strategy API](https://apis.io/collections/breeze/open-breeze-strategy-api/)
+- [Breeze Admin User Data API](https://apis.io/collections/breeze/open-breeze-user-data-api/)
+- [Breeze Admin Withdrawals API](https://apis.io/collections/breeze/open-breeze-withdrawals-api/)
+- [Breeze Admin Yield Sources API](https://apis.io/collections/breeze/open-breeze-yield-sources-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Breeze Openapi Overlay](https://apis.io/overlays/breeze/breeze-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Breeze Authentication](https://apis.io/security/breeze/breeze-authentication/)
+- [Breeze Domain Security](https://apis.io/security/breeze/breeze-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.breeze.baby)
+- [Documentation](https://docs.breeze.baby)
+- [Getting started](https://docs.breeze.baby/get-your-api-key/instruction)
+- [API reference](https://docs.breeze.baby/breeze-api/breeze-api)
+- [Sign up](https://portal.breeze.baby)
+- [Support](https://t.me/breezedevs)
+- [GitHub](https://github.com/anagrambuild)
+
+## API Evangelist rating
+
+**Kin Score 34.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 47.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 63.7 |
+| Access clarity | 13.2 |
+
+**Agent readiness 25.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.2** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/breeze/](https://apis.io/providers/breeze/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Breeze: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/breeze/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
